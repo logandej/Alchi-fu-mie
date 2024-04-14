@@ -1165,11 +1165,6 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 1002255988}
     m_Modifications:
-    - target: {fileID: 41162805321037489, guid: b56e62ca13173e54ea5b957b441a3321,
-        type: 3}
-      propertyPath: m_text
-      value: Play
-      objectReference: {fileID: 0}
     - target: {fileID: 2317875032301547017, guid: b56e62ca13173e54ea5b957b441a3321,
         type: 3}
       propertyPath: m_Pivot.x
@@ -1275,17 +1270,6 @@ PrefabInstance:
       propertyPath: m_Name
       value: MenuItemButton
       objectReference: {fileID: 0}
-    - target: {fileID: 6164494061139665216, guid: b56e62ca13173e54ea5b957b441a3321,
-        type: 3}
-      propertyPath: m_Intensity
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 6381534141244092465, guid: b56e62ca13173e54ea5b957b441a3321,
-        type: 3}
-      propertyPath: m_Sprite
-      value: 
-      objectReference: {fileID: 21300000, guid: dc0e6f9111f554374ba914b977ea1738,
-        type: 3}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
