@@ -792,7 +792,7 @@ MonoBehaviour:
   - {fileID: 1307726119}
   - {fileID: 825788768}
   defaultSelect: 1
-  selectedIndex: 0
+  selectedIndex: 17
 --- !u!1 &1281574149
 GameObject:
   m_ObjectHideFlags: 0

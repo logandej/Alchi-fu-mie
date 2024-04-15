@@ -26,24 +26,28 @@ public class MenuItem : MonoBehaviour, IPointerClickHandler, IPointerEnterHandle
     public void Select()
     {
         eventSelected.Invoke(); // Déclencher l'événement de sélection
-        ShowObjects(objectShowOnClick, true); // Afficher les objets associés au clic
+        ListObjects.Show(objectShowOnClick); // Afficher les objets associés au clic
         isSelected = true; // Mettre à jour l'état de sélection
     }
 
     // Méthode pour désélectionner le bouton
     public void Deselect()
     {
-        ShowObjects(objectShowOnClick, false); // Cacher les objets associés au clic
+        ListObjects.Hide(objectShowOnClick); // Cacher les objets associés au clic
         isSelected = false; // Mettre à jour l'état de sélection
     }
 
     // Méthode appelée lors du clic sur le bouton
     public void OnPointerClick(PointerEventData eventData)
     {
-        Select(); // Sélectionner le bouton
-        audioSource.clip = clickClip; // Définir le clip audio à jouer
-        audioSource.Play(); // Jouer le clip audio
-        ShowObjects(objectShowOnEnter, false); // Cacher les objets associés à l'entrée du curseur
+        if (!isSelected)
+        {
+            Select(); // Sélectionner le bouton
+            audioSource.clip = clickClip; // Définir le clip audio à jouer
+            audioSource.Play(); // Jouer le clip audio
+            ListObjects.Hide(objectShowOnEnter); // Cacher les objets associés à l'entrée du curseur
+
+        }
     }
 
     // Méthode appelée lorsque le curseur entre dans la zone du bouton
@@ -53,23 +57,16 @@ public class MenuItem : MonoBehaviour, IPointerClickHandler, IPointerEnterHandle
         {
             audioSource.clip = enterClip; // Définir le clip audio à jouer
             audioSource.Play(); // Jouer le clip audio
-            ShowObjects(objectShowOnEnter, true); // Afficher les objets associés à l'entrée du curseur
+            ListObjects.Show(objectShowOnEnter); // Afficher les objets associés à l'entrée du curseur
         }
     }
 
     // Méthode appelée lorsque le curseur quitte la zone du bouton
     public void OnPointerExit(PointerEventData eventData)
     {
-        ShowObjects(objectShowOnEnter, false); // Cacher les objets associés à l'entrée du curseur
+        ListObjects.Hide(objectShowOnEnter); // Cacher les objets associés à l'entrée du curseur
     }
 
-    // Méthode pour afficher ou masquer une liste d'objets
-    private void ShowObjects(List<GameObject> list, bool show)
-    {
-        foreach (GameObject obj in list)
-        {
-            obj.SetActive(show); // Activer ou désactiver l'objet selon le paramètre 'show'
-        }
-    }
+
 }
 

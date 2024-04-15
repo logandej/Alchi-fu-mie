@@ -7,8 +7,12 @@ public class ListMenuItem : MonoBehaviour
     [SerializeField] List<MenuItem> menuItems = new List<MenuItem>(); // Liste des éléments du menu
     [SerializeField] bool defaultSelect = true; // Indique si un élément doit être sélectionné par défaut
     [SerializeField] int selectedIndex = 0; // Index de l'élément actuellement sélectionné
+
+  
+    
     private void Start()
     {
+        selectedIndex = Mathf.Clamp(selectedIndex, 0, menuItems.Count - 1);
         // Parcourir tous les éléments du menu
         for (int i = 0; i < menuItems.Count; i++)
         {
