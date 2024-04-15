@@ -10024,6 +10024,7 @@ GameObject:
   - component: {fileID: 7399378199175019932}
   - component: {fileID: 6987579004382373610}
   - component: {fileID: 6042571352844784826}
+  - component: {fileID: 6406334724683329872}
   m_Layer: 5
   m_Name: MenuItemButton
   m_TagString: Untagged
@@ -10142,7 +10143,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 4635445341761988615}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: d0b148fe25e99eb48b9724523833bab1, type: 3}
   m_Name: 
@@ -10355,6 +10356,24 @@ AudioSource:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
+--- !u!114 &6406334724683329872
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4635445341761988615}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fcd7d99b41719a345ac40472123de72b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  objectShowOnEnter:
+  - {fileID: 4781637962626312714}
+  objectShowOnClick:
+  - {fileID: 4627992749349297537}
+  enterClip: {fileID: 8300000, guid: a4762221ab44e51479255563977206b3, type: 3}
+  clickClip: {fileID: 8300000, guid: 25cc8a95a94b42e438b7fc9d2e0a1a3e, type: 3}
 --- !u!1 &4781637962626312714
 GameObject:
   m_ObjectHideFlags: 0
