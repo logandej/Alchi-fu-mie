@@ -6,6 +6,8 @@ public class AudioManager : MonoBehaviour
 {
     public static AudioManager Instance;
 
+    [SerializeField] AudioSource music;
+ 
     void Awake()
     {
         if (Instance == null)
@@ -22,6 +24,10 @@ public class AudioManager : MonoBehaviour
 
     }
 
-   
+    public void PlayMusic(AudioClip clip)
+    {
+        music.clip = clip;
+        music.Play();
+    }
 }
 

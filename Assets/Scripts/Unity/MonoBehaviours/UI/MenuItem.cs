@@ -3,12 +3,21 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Events;
 using UnityEngine.EventSystems;
-
+using UnityEngine.UI;
 
 public class MenuItem : MonoBehaviour, IPointerClickHandler, IPointerEnterHandler, IPointerExitHandler
 {
+    [Header("Change Background Sprite (optional)")]
+    private Sprite defaultSprite;
+    [SerializeField] Sprite enterSprite;
+    [SerializeField] Sprite clickSprite;
+    private Button button;
+
+    [Header("Additional To Show (optional)")]
     [SerializeField] List<GameObject> objectShowOnEnter; // Liste des objets à afficher lorsque le curseur entre dans la zone du bouton
     [SerializeField] List<GameObject> objectShowOnClick; // Liste des objets à afficher lors du clic sur le bouton
+
+    [Header("Audio (mandatory)")]
     [SerializeField] AudioClip enterClip; // Clip audio à jouer lorsque le curseur entre dans la zone du bouton
     [SerializeField] AudioClip clickClip; // Clip audio à jouer lors du clic sur le bouton
     private AudioSource audioSource; // Composant AudioSource pour jouer les clips audio
@@ -18,6 +27,8 @@ public class MenuItem : MonoBehaviour, IPointerClickHandler, IPointerEnterHandle
     // Méthode appelée lors de l'initialisation de l'objet
     private void Awake()
     {
+        button = GetComponent<Button>();
+        defaultSprite=button.image.sprite;
         audioSource = GetComponent<AudioSource>(); // Récupérer le composant AudioSource attaché à cet objet
         eventSelected = new UnityEvent(); // Créer une nouvelle instance de UnityEvent pour l'événement de sélection
     }
@@ -25,14 +36,18 @@ public class MenuItem : MonoBehaviour, IPointerClickHandler, IPointerEnterHandle
     // Méthode pour sélectionner le bouton
     public void Select()
     {
+       
         eventSelected.Invoke(); // Déclencher l'événement de sélection
         ListObjects.Show(objectShowOnClick); // Afficher les objets associés au clic
+        if (clickSprite != null)
+            button.image.sprite = clickSprite;
         isSelected = true; // Mettre à jour l'état de sélection
     }
 
     // Méthode pour désélectionner le bouton
     public void Deselect()
     {
+        button.image.sprite = defaultSprite;
         ListObjects.Hide(objectShowOnClick); // Cacher les objets associés au clic
         isSelected = false; // Mettre à jour l'état de sélection
     }
@@ -55,6 +70,8 @@ public class MenuItem : MonoBehaviour, IPointerClickHandler, IPointerEnterHandle
     {
         if (!isSelected) // Vérifier si le bouton n'est pas déjà sélectionné
         {
+            if (enterSprite != null)
+                button.image.sprite = enterSprite;
             audioSource.clip = enterClip; // Définir le clip audio à jouer
             audioSource.Play(); // Jouer le clip audio
             ListObjects.Show(objectShowOnEnter); // Afficher les objets associés à l'entrée du curseur
@@ -64,6 +81,8 @@ public class MenuItem : MonoBehaviour, IPointerClickHandler, IPointerEnterHandle
     // Méthode appelée lorsque le curseur quitte la zone du bouton
     public void OnPointerExit(PointerEventData eventData)
     {
+        if(!isSelected)
+            button.image.sprite = defaultSprite;
         ListObjects.Hide(objectShowOnEnter); // Cacher les objets associés à l'entrée du curseur
     }
 
