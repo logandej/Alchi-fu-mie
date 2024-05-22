@@ -1,0 +1,305 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>AFM_DLL</name>
+    </assembly>
+    <members>
+        <member name="M:AFM_DLL.Extensions.ListExtensions.Shuffle``1(System.Collections.Generic.IList{``0})">
+            <summary>
+                Mélange une liste d'objets
+            </summary>
+        </member>
+        <member name="M:AFM_DLL.Extensions.ListExtensions.PopFirst``1(System.Collections.Generic.IList{``0})">
+            <summary>
+            Retire et renvoie le premier élément de la liste
+            </summary>
+        </member>
+        <member name="T:AFM_DLL.Models.Cards.Card">
+            <summary>
+            Classe abstraite qui représente toutes les cartes du jeu
+            </summary>
+        </member>
+        <member name="M:AFM_DLL.Models.Cards.Card.AddToBoard(AFM_DLL.Models.BoardData.Board,System.Boolean,System.Nullable{AFM_DLL.Models.BoardData.BoardPosition})">
+            <summary>
+                Permet d'ajouter une carte au plateau donné
+            </summary>
+            <param name="board">Le plateau de jeu sur lequel l'opération a lieu</param>
+            <param name="isBlueSide">Indique si c'est le joueur bleu ou le joueur rouge qui joue la carte</param>
+            <param name="position">Indique sur quelle colonne la carte doit être ajoutée (null pour les sortilèges)</param>
+            <returns>Si l'ajout de carte a eu lieu avec succès</returns>
+        </member>
+        <member name="M:AFM_DLL.Models.Cards.Card.RemoveFromBoard(AFM_DLL.Models.BoardData.Board,System.Boolean,System.Nullable{AFM_DLL.Models.BoardData.BoardPosition})">
+            <summary>
+                Permet de retirer une carte au plateau donné
+            </summary>
+            <param name="board">Le plateau de jeu sur lequel l'opération a lieu</param>
+            <param name="isBlueSide">Indique si c'est le joueur bleu ou le joueur rouge qui retire la carte</param>
+            <param name="position">Indique sur quelle colonne la carte doit être retirée (null pour les sortilèges)</param>
+            <returns>Si le retrait de carte a eu lieu avec succès</returns>
+        </member>
+        <member name="T:AFM_DLL.Models.Cards.ElementCard">
+            <summary>
+                Représente une carte élement (pierre, feuille ou ciseau)
+            </summary>
+        </member>
+        <member name="P:AFM_DLL.Models.Cards.ElementCard.ActiveElement">
+            <summary>
+                Élément actif de la carte (prend en compte les surcharges par sortilège)
+            </summary>
+        </member>
+        <member name="P:AFM_DLL.Models.Cards.ElementCard.InitialElement">
+            <summary>
+                Élément de base de la carte
+            </summary>
+        </member>
+        <member name="P:AFM_DLL.Models.Cards.ElementCard.OverrideElement">
+            <summary>
+                Surcharge d'élément de la carte (potentiellement dû à un sortilège)
+            </summary>
+        </member>
+        <member name="T:AFM_DLL.Models.Cards.Spells.AddManaFromScissorsSpell">
+            <summary>
+                Sortilège qui ajoute un point de mana par carte ciseaux sur le terrain
+            </summary>
+        </member>
+        <member name="T:AFM_DLL.Models.Cards.Spells.AddManaFromPaperSpell">
+            <summary>
+                Sortilège qui ajoute un point de mana par carte feuille sur le terrain
+            </summary>
+        </member>
+        <member name="T:AFM_DLL.Models.Cards.Spells.AddManaFromRockSpell">
+            <summary>
+                Sortilège qui ajoute un point de mana par carte pierre sur le terrain
+            </summary>
+        </member>
+        <member name="T:AFM_DLL.Models.Cards.Spells.DoubleDamageSpell">
+            <summary>
+                Représente le sortilège qui double les dégâts des deux côtés pendant un tour uniquement
+            </summary>
+        </member>
+        <member name="T:AFM_DLL.Models.Cards.SpellCard">
+            <summary>
+                Représente toutes les cartes sortilèges et propose une méthode pour en générer
+            </summary>
+        </member>
+        <member name="M:AFM_DLL.Models.Cards.SpellCard.FromType(AFM_DLL.Models.Enum.SpellType)">
+            <summary>
+                Génère une instance de carte sortilège en fonction du type de sort donné
+            </summary>
+            <param name="spell">
+                Le type de sort qui sera instancié par cette méthode
+            </param>
+            <returns></returns>
+            <exception cref="T:System.NotImplementedException">
+                Il n'existe pas encore de cartes sortilèges pour ce type de carte
+            </exception>
+        </member>
+        <member name="M:AFM_DLL.Models.Cards.SpellCard.GetManaCost">
+            <summary>
+                Le coût en mana du sort.
+            </summary>
+        </member>
+        <member name="M:AFM_DLL.Models.Cards.SpellCard.GetDescription">
+            <summary>
+                La description du sort
+            </summary>
+        </member>
+        <member name="M:AFM_DLL.Models.Cards.SpellCard.GetSpellType">
+            <summary>
+                Le type du sort tel qu'indiqué à l'instanciation du sort
+            </summary>
+        </member>
+        <member name="M:AFM_DLL.Models.Cards.SpellCard.CanBePlayed(System.Int32)">
+            <summary>
+                Indique si le sort peut être joué en fonction du mana actuel d'un joueur
+            </summary>
+            <param name="currPlayerMana">
+                Le mana actuel du joueur qui souhaite jouer la carte    
+            </param>
+            <returns>
+                Si la carte peut être jouée
+            </returns>
+        </member>
+        <member name="M:AFM_DLL.Models.Cards.SpellCard.ActivateSpell(AFM_DLL.Models.BoardData.Board,System.Boolean)">
+            <summary>
+                Active le sort sur le plateau donné
+            </summary>
+            <param name="board">Le plateau d'activation, permettant au sort d'accéder aux différents éléments de la partie</param>
+            <param name="isBlueSide">Indique si le sortilège est lancé depuis le côté bleu de la partie</param>
+        </member>
+        <member name="T:AFM_DLL.Models.Enum.FightResult">
+            <summary>
+                Indique le résultat d'un duel d'élément
+            </summary>
+        </member>
+        <member name="T:AFM_DLL.Models.Enum.SpellType">
+            <summary>
+                Contient tous les types de sortilèges différents de l'application
+            </summary>
+        </member>
+        <member name="T:AFM_DLL.Models.PlayerInfo.Deck">
+            <summary>
+                Représente le deck d'un joueur.
+            </summary>
+        </member>
+        <member name="P:AFM_DLL.Models.PlayerInfo.Deck.Hero">
+            <summary>
+                Le héros du joueur
+            </summary>
+        </member>
+        <member name="P:AFM_DLL.Models.PlayerInfo.Deck.Elements">
+            <summary>
+                Les cartes éléments choisies par le joueur
+            </summary>
+        </member>
+        <member name="P:AFM_DLL.Models.PlayerInfo.Deck.Spells">
+            <summary>
+                Les cartes sortilèges choisies par le joueur <br/>
+                Il ne peut y avoir que trois fois la même carte dans 
+            </summary>
+        </member>
+        <member name="P:AFM_DLL.Models.PlayerInfo.Deck.IsDeckValid">
+            <summary>
+                Indique si le deck est valide et utilisable. <br/>
+                Un deck valide possède 10 éléments, 10 sortilèges, et pas plus de 3 exemplaires du même sortilège.
+            </summary>
+        </member>
+        <member name="M:AFM_DLL.Models.PlayerInfo.Deck.AddElement(AFM_DLL.Models.Cards.ElementCard)">
+            <summary>
+                Ajoute un élément au deck d'élément
+            </summary>
+            <param name="card">
+                La carte élément à ajouter
+            </param>
+            <returns>
+                Si l'ajout a correctement été réalisé
+            </returns>
+        </member>
+        <member name="M:AFM_DLL.Models.PlayerInfo.Deck.RemoveElement(AFM_DLL.Models.Cards.ElementCard)">
+            <summary>
+                Supprime un élément du deck d'élément
+            </summary>
+            <param name="card">
+                La carte élément à supprimer
+            </param>
+            <returns>
+                Si la suppression a correctement eu lieu
+            </returns>
+        </member>
+        <member name="M:AFM_DLL.Models.PlayerInfo.Deck.AddSpell(AFM_DLL.Models.Cards.SpellCard)">
+            <summary>
+                Ajoute un sortilège au deck de sort
+            </summary>
+            <param name="card">
+                La carte sort à ajouter
+            </param>
+            <returns>
+                Si l'ajout a correctement été réalisé
+            </returns>
+        </member>
+        <member name="M:AFM_DLL.Models.PlayerInfo.Deck.RemoveSpell(AFM_DLL.Models.Cards.SpellCard)">
+            <summary>
+                Supprime un sortilège du deck de sort
+            </summary>
+            <param name="card">
+                La carte sort à supprimer
+            </param>
+            <returns>
+                Si la suppression a correctement eu lieu
+            </returns>
+        </member>
+        <member name="M:AFM_DLL.Models.PlayerInfo.Deck.Shuffle">
+            <summary>
+                Mélange les decks de sort et d'élément
+            </summary>
+        </member>
+        <member name="T:AFM_DLL.Models.PlayerInfo.Hand">
+            <summary>
+                Représente la main d'un joueur
+            </summary>
+        </member>
+        <member name="P:AFM_DLL.Models.PlayerInfo.Hand.Elements">
+            <summary>
+                Les éléments actuellement dans la main du joueur (pas plus de 4)
+            </summary>
+        </member>
+        <member name="P:AFM_DLL.Models.PlayerInfo.Hand.Spells">
+            <summary>
+                Les sortilèges actuellement dans la main du joueur
+            </summary>
+        </member>
+        <member name="T:AFM_DLL.Models.PlayerInfo.Hero">
+            <summary>
+                Représente le héros choisi par le joueur
+            </summary>
+        </member>
+        <member name="P:AFM_DLL.Models.PlayerInfo.Hero.ActiveElement">
+            <summary>
+                Élément actif du héros (prend en compte les surcharges par remplacement)
+            </summary>
+        </member>
+        <member name="P:AFM_DLL.Models.PlayerInfo.Hero.InitialElement">
+            <summary>
+                Élément de base du héros
+            </summary>
+        </member>
+        <member name="P:AFM_DLL.Models.PlayerInfo.Hero.OverrideElement">
+            <summary>
+                Surcharge d'élément du héros (potentiellement dû à un remplacement)
+            </summary>
+        </member>
+        <member name="T:AFM_DLL.Models.PlayerInfo.PlayerGame">
+            <summary>
+                Représente l'état d'un joueur dans une partie
+            </summary>
+        </member>
+        <member name="M:AFM_DLL.Models.PlayerInfo.PlayerGame.AddMana(System.Int32)">
+            <summary>
+                Ajoute du mana au joueur
+            </summary>
+            <param name="mana">La quantité de mana à ajouter</param>
+            <returns>Le nombre de mana réellement ajouté</returns>
+        </member>
+        <member name="M:AFM_DLL.Models.PlayerInfo.PlayerGame.RemoveMana(System.Int32)">
+            <summary>
+                Retire du mana au joueur
+            </summary>
+            <param name="mana">La quantité de mana à retirer</param>
+            <returns>Si le joueur possède suffisamment de mana</returns>
+        </member>
+        <member name="M:AFM_DLL.Models.PlayerInfo.PlayerGame.AddHealth(System.Int32)">
+            <summary>
+                Ajoute des points de vie au joueur
+            </summary>
+            <param name="health">La quantité de points de vie à ajouter</param>
+        </member>
+        <member name="M:AFM_DLL.Models.PlayerInfo.PlayerGame.RemoveHealth(System.Int32)">
+            <summary>
+                Retire des points de vie au joueur
+            </summary>
+            <param name="health">La quantité de points de vie à retirer</param>
+        </member>
+        <member name="M:AFM_DLL.Models.PlayerInfo.PlayerGame.GiveUp">
+            <summary>
+                Permet au joueur d'abandonner la partie
+            </summary>
+        </member>
+        <member name="M:AFM_DLL.Helpers.FightHelper.ElementFight(AFM_DLL.Element,AFM_DLL.Element)">
+            <summary>
+            Réalise un duel entre deux éléments et indique l'issue du combat par rapport à l'élément de base
+            </summary>
+            <param name="element">
+                L'élément "joueur" pour lequel le résultat renvoyé sera appliqué.
+            </param>
+            <param name="enemy">
+                L'élément "ennemi" auquel l'élément "joueur" sera comparé
+            </param>
+            <returns></returns>
+        </member>
+        <member name="T:AFM_DLL.Element">
+            <summary>
+                Représente un élément (pierre, feuille ou ciseaux)
+            </summary>
+        </member>
+    </members>
+</doc>
