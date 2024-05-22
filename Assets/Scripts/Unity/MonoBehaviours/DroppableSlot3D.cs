@@ -1,3 +1,5 @@
+using AFM_DLL.Models.BoardData;
+using AFM_DLL.Models.Cards;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -109,7 +111,6 @@ public class DroppableSlot3D : MonoBehaviour
         draggable.transform.localPosition = Vector3.zero;
 
         Debug.Log("occup");
-
     }
 
 

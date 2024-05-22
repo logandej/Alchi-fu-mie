@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class DraggableItem3D : MonoBehaviour
 {
+    
     public Rigidbody _rigidbody { private set; get; }
     private float _startYPos;
     private BoardController _board;
@@ -19,7 +20,6 @@ public class DraggableItem3D : MonoBehaviour
     {
         _board = GetComponentInParent<BoardController>();
         _rigidbody = GetComponent<Rigidbody>();
-
         _startYPos = 0; // Better to not hardcode that one but whatever
     }
 
@@ -63,7 +63,6 @@ public class DraggableItem3D : MonoBehaviour
     // Méthode pour définir le slot actuel
     public void SetCurrentSlot(DroppableSlot3D slot)
     {
-       
         _currentSlot = slot;
     }
 }
