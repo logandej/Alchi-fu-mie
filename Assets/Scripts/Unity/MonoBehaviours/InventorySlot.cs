@@ -5,6 +5,9 @@ using UnityEngine.EventSystems;
 
 public class InventorySlot : MonoBehaviour, IDropHandler
 {
+    [SerializeField] AudioClip clipOnDrop;
+    [SerializeField] ParticleSystem particleOnDrop;
+
     [SerializeField]
     private bool multipleElements = false;
     // Permet de savoir si plusieurs éléments peuvent être placés dans ce slot
@@ -74,11 +77,24 @@ public class InventorySlot : MonoBehaviour, IDropHandler
 
     public void PlaceItem(GameObject dropped)
     {
-        // Récupère la référence à l'élément déplacé
-        DraggableItem draggableItem = dropped.GetComponent<DraggableItem>();
-        // Met à jour la référence à l'élément actuellement placé dans ce slot
-        currentItem = draggableItem;
-        // Place l'élément déplacé dans ce slot
-        draggableItem.PlaceToSlot(transform);
+        try
+        {
+            if (particleOnDrop != null)
+                particleOnDrop.Play();
+            AudioManager.Instance.PlayEffect(clipOnDrop);
+            // Récupère la référence à l'élément déplacé
+            DraggableItem draggableItem = dropped.GetComponent<DraggableItem>();
+            // Met à jour la référence à l'élément actuellement placé dans ce slot
+            currentItem = draggableItem;
+            // Place l'élément déplacé dans ce slot
+            draggableItem.PlaceToSlot(transform);
+        }
+        catch
+        {
+            Debug.LogWarning("Eumm attention il y a une erreur de try");
+        }
     }
+
+
+    public bool GetMultipleElements() { return multipleElements; }
 }
