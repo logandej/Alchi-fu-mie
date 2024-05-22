@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
+
 public static class ListObjects
 {
     public static void Show(List<GameObject> list)
@@ -19,4 +20,6 @@ public static class ListObjects
             obj.SetActive(false); // Activer ou désactiver l'objet selon le paramètre 'show'
         }
     }
+
+   
 }

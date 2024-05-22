@@ -2,13 +2,16 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
+
 public class BoardController : MonoBehaviour
 {
     [HideInInspector] public Vector3 CurrentMousePosition;
     private Camera mainCamera;
 
+
     void Start()
     {
+        
         mainCamera = Camera.main;
     }
 
