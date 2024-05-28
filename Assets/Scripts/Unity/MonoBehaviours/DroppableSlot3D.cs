@@ -1,13 +1,9 @@
-using AFM_DLL.Models.BoardData;
-using AFM_DLL.Models.Cards;
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.EventSystems;
 
 public class DroppableSlot3D : MonoBehaviour
 {
-    public DraggableItem3D draggableItem;
+
+    protected DraggableItem3D _draggableItem;
     public enum State
     {
         Deactivated,
@@ -15,150 +11,149 @@ public class DroppableSlot3D : MonoBehaviour
         Occupied
     }
 
-    public State state;
+    public State CurrentState;
 
-    [SerializeField] GameObject visualIndicator;
-    [SerializeField] ParticleSystem snapVisualIndicator;
-    [SerializeField] AudioClip onDropClip;
-    private AudioSource audioSource;
+    [Header("Effects")]
+    [SerializeField] GameObject _visualIndicator;
+    [SerializeField] ParticleSystem _snapVisualIndicator;
 
-    [SerializeField] AudioClip moveUpClip;
-    [SerializeField] AudioClip moveDownClip;
-    [SerializeField] float targetHeight = 1;
-    private float defaultHeight;
-    private Vector3 initialPosition;
-    private Vector3 targetPosition;
-    private float startTime;
-    private float duration;
+    [Header("Audio")]
+    private AudioSource _audioSource;
+    [SerializeField] AudioClip _onDropClip;
+    [SerializeField] AudioClip _moveUpClip;
+    [SerializeField] AudioClip _moveDownClip;
+
+    [Header("Animation")]
+    [SerializeField] float _targetHeight = 1;
+    private float _defaultHeight;
 
     
 
-    [SerializeField] Transform parentTransform;
-    private bool isTranslating = false;
+    [SerializeField] Transform _parentTransform;
+
+   
 
 
 
-    private void Start()
+    protected void Start()
     {
-        audioSource = GetComponent<AudioSource>();
-        visualIndicator.SetActive(false);
-        defaultHeight = transform.localPosition.y;
+        _audioSource = GetComponent<AudioSource>();
+        _visualIndicator.SetActive(false);
+        //Définition de la hauteur de base de la pierre
+        _defaultHeight = transform.localPosition.y;
     }
 
+    // Actions quand une carte rentre dans la zone de trigger 
     private void OnTriggerEnter(Collider other)
-    {
+    {      
         DraggableItem3D draggableItem = other.GetComponent<DraggableItem3D>();
-        if (draggableItem != null && state == State.Deactivated)
+        if (draggableItem != null && CurrentState == State.Deactivated)
         {
-            draggableItem.SetCurrentSlot(this);
-            Select();
-
+            CheckSelection(draggableItem);
         }
     }
 
+    protected virtual void CheckSelection(DraggableItem3D draggableItem)
+    {
+        draggableItem.SetCurrentSlot(this);
+        draggableItem.spriteController.SetTransparent();
+      
 
+        Select();
+    }
+
+    //Actions quand on retire la carte 
     private void OnTriggerExit(Collider other)
     {
         DraggableItem3D draggableItem = other.GetComponent<DraggableItem3D>();
         if (draggableItem != null)
         {
-            if (state==State.Selected)
+            if (CurrentState==State.Selected)
             {
-                if(draggableItem._currentSlot==this)
+                if (draggableItem.CurrentSlot == this)
+                {
+                    draggableItem.spriteController.SetOpaque();
                     draggableItem.SetCurrentSlot(null);
+                }
                 Deactive();
-
-            }
-           
-            
+            }           
         }
     }
-
-    public void Deactive()
-    {
-        this.draggableItem = null;
-        state = State.Deactivated;
+    ///
+    /// <summary>
+    /// Met le status de du slot à désactivé
+    /// </summary>
+    public virtual void Deactive()
+    {   
+        this._draggableItem = null;
+        CurrentState = State.Deactivated;
         MoveDown();
-        visualIndicator.SetActive(false);
-        audioSource.clip = moveDownClip;
-        audioSource.Play();
-
+        _visualIndicator.SetActive(false);
+        _audioSource.clip = _moveDownClip;
+        _audioSource.Play();
     }
 
-    public void Select()
+    public void DestroyDraggable()
+    {
+        if (this._draggableItem != null)
+        {
+            Destroy(this._draggableItem.gameObject);
+        }
+        this._draggableItem = null;
+        CurrentState = State.Deactivated;
+        MoveDown();
+    }
+
+
+    /// <summary>
+    /// Met le status du slot en Select, prêt à accueillir la carte
+    /// </summary>
+    private void Select()
     {
         MoveUp();
-        state = State.Selected;
-        visualIndicator.SetActive(true);
-        audioSource.clip = moveUpClip;
-        audioSource.Play();
-
-
+        CurrentState = State.Selected;
+        _visualIndicator.SetActive(true);
+        _audioSource.clip = _moveUpClip;
+        _audioSource.Play();
     }
-
-    public void Occup(DraggableItem3D draggable)
+    /// <summary>
+    /// Met le status du slot à occupé
+    /// </summary>
+    public virtual void Occup(DraggableItem3D draggable)
     {
-        state = State.Occupied;
-        this.draggableItem = draggable;
-        audioSource.clip = onDropClip;
-        audioSource.Play();
-        snapVisualIndicator.Play();
-        visualIndicator.SetActive(false);
+        CurrentState = State.Occupied;
+        this._draggableItem = draggable;
+        _audioSource.clip = _onDropClip;
+        _audioSource.Play();
+        _snapVisualIndicator.Play();
+        _visualIndicator.SetActive(false);
 
-        draggable.transform.SetParent(parentTransform);
-        draggable._rigidbody.velocity = Vector3.zero;
-        draggable._rigidbody.isKinematic = true;
-        draggable.transform.localPosition = Vector3.zero;
-
-        Debug.Log("occup");
+        draggable.spriteController.SetOpaque();
+        draggable.transform.SetParent(_parentTransform);
+        draggable.Rigidbody.velocity = Vector3.zero;
+        draggable.Rigidbody.isKinematic = true;
+        TransitionManager.ChangeLocalPosition(draggable.gameObject, Vector3.zero, 0.3f);
     }
-
-
+    /// <summary>
+    ///Monte la pierre 
+    /// </summary>
     private void MoveUp()
     {
-        TranslateToHeight(targetHeight, 0.7f);
-        audioSource.clip = moveUpClip;
-        audioSource.Play();
+        TransitionManager.ChangeLocalPosition(this.gameObject, new Vector3(transform.localPosition.x, _targetHeight, transform.localPosition.z), 0.7f);
+        _audioSource.clip = _moveUpClip;
+        _audioSource.Play();
     }
-
+    /// <summary>
+    /// Descend la pierre
+    /// </summary>
     private void MoveDown()
     {
-        TranslateToHeight(defaultHeight, 1.2f);
-        audioSource.clip = moveDownClip;
-        audioSource.Play();
-    }
-
-    void Update()
-    {
-        if (isTranslating)
-        {
-            // Calculer le pourcentage du temps écoulé
-            float percentageComplete = (Time.time - startTime) / duration;
-
-            // Si le pourcentage est supérieur à 1, la translation est terminée
-            if (percentageComplete >= 1f)
-            {
-                transform.localPosition = targetPosition;
-                isTranslating = false;
-                return;
-            }
-
-            // Interpoler entre la position initiale et la position cible
-            transform.localPosition = Vector3.Lerp(initialPosition, targetPosition, percentageComplete);
-        }
+        TransitionManager.ChangeLocalPosition(this.gameObject, new Vector3(transform.localPosition.x, _defaultHeight, transform.localPosition.z), 0.7f);
+        _audioSource.clip = _moveDownClip;
+        _audioSource.Play();
     }
 
 
-
-    // Fonction pour démarrer la translation vers une hauteur spécifique avec une durée spécifiée
-    public void TranslateToHeight(float targetHeight, float moveDuration)
-    {
-        initialPosition = transform.localPosition;
-        targetPosition = new Vector3(initialPosition.x, targetHeight, initialPosition.z);
-        startTime = Time.time;
-        duration = moveDuration;
-        isTranslating = true;
-    }
 
 
 
