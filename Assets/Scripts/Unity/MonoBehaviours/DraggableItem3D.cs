@@ -48,7 +48,7 @@ public class DraggableItem3D : MonoBehaviour
     {
         if (BoardController.Instance.Board.GetAllyBoardSide(IsBlue).IsSideReady) return;
 
-        if (CurrentSlot == null && !GameManager.Instance.CursorOccupied)
+        if (CurrentSlot == null && !PartyManager.Instance.CursorOccupied)
         {
             HandPosition.x = transform.localPosition.x;
             TransitionManager.ChangeLocalPosition(this.gameObject, HandPosition+new Vector3(0,0.1f,0.1f), 0.1f);
@@ -60,7 +60,7 @@ public class DraggableItem3D : MonoBehaviour
     {
         if (BoardController.Instance.Board.GetAllyBoardSide(IsBlue).IsSideReady) return;
 
-        if (CurrentSlot == null && !GameManager.Instance.CursorOccupied)
+        if (CurrentSlot == null && !PartyManager.Instance.CursorOccupied)
         {
             HandPosition.x = transform.localPosition.x;
             TransitionManager.ChangeLocalPosition(this.gameObject, HandPosition, 0.1f);
@@ -73,7 +73,7 @@ public class DraggableItem3D : MonoBehaviour
 
         if (BoardController.Instance.Board.GetAllyBoardSide(IsBlue).IsSideReady) return;
 
-        GameManager.Instance.CursorOccupied = true;
+        PartyManager.Instance.CursorOccupied = true;
 
         Vector3 newWorldPosition = new Vector3(_board.CurrentMousePosition.x, _startYPos + heightFromBoard, _board.CurrentMousePosition.z);
 
@@ -100,14 +100,14 @@ public class DraggableItem3D : MonoBehaviour
         }
         else
         {
-            BoardSideController boardSide = IsBlue ? GameManager.Instance.BoardController.BoardSideBlue : GameManager.Instance.BoardController.BoardSideRed;
+            BoardSideController boardSide = IsBlue ? PartyManager.Instance.BoardController.BoardSideBlue : PartyManager.Instance.BoardController.BoardSideRed;
             boardSide.PlaceToHand(this);
             // Retourner la carte à sa position d'origine si le slot est occupé ou si aucun slot n'est défini
             Rigidbody.velocity = Vector3.zero;
             spriteController.SizeNormal();
             Lock();
         }
-        GameManager.Instance.CursorOccupied = false;
+        PartyManager.Instance.CursorOccupied = false;
 
     }
 

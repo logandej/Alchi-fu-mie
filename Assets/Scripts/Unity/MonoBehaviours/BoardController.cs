@@ -62,11 +62,11 @@ public class BoardController : MonoBehaviour
 
     public void ShowReady(bool isBlue)
     {
-        GameManager.Instance.ShowReady(isBlue);
+        PartyManager.Instance.ShowReady(isBlue);
     }
     public void HideReady(bool isBlue)
     {
-        GameManager.Instance.HideReady(isBlue);
+        PartyManager.Instance.HideReady(isBlue);
     }
 
     public async void SetPlayerReady(bool isBlue)
@@ -76,7 +76,7 @@ public class BoardController : MonoBehaviour
         //True if 2 are ready
         if (this.Board.SetSideReady(isBlue))
         {
-            //GameManager.Instance.ShowLetterBox();
+            PartyManager.Instance.ShowLetterBox();
             await EvaluateSpell();
             await EvaluateCardColumns();
             BoardSideBlue.UpdateHealthAndMana();
@@ -87,7 +87,7 @@ public class BoardController : MonoBehaviour
             BoardSideBlue.DestroyPlacedCards();
             BoardSideRed.DestroyPlacedCards();
 
-            //GameManager.Instance.HideLetterBox();
+            PartyManager.Instance.HideLetterBox();
             //ReDraw
             if (this.Board.GetAllyBoardSide(BoardSideBlue).Player.HealthPoints > 0 || this.Board.GetAllyBoardSide(BoardSideRed).Player.HealthPoints > 0) {
                 DrawCards();
@@ -106,7 +106,7 @@ public class BoardController : MonoBehaviour
         var result = this.Board.EvaluateSpells();
         if (result.SpellsInOrder.Count != 0)
         {
-            await GameManager.Instance.ShowSpellsTitle();
+            await PartyManager.Instance.ShowSpellsTitle();
             if (result.SpellsInOrder.Count == 1)
             {
                 await ExecuteSpell(result.SpellsInOrder[0].isBlueSide ? BoardSideBlue : BoardSideRed);
@@ -141,7 +141,7 @@ public class BoardController : MonoBehaviour
     public async Task EvaluateCardColumns()
     {
         await Task.Delay(2000);
-        await GameManager.Instance.ShowElementsTitle();
+        await PartyManager.Instance.ShowElementsTitle();
         Debug.Log("Columns");
         var result = this.Board.EvaluateCardColumns();
         

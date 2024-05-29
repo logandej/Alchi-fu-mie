@@ -399,7 +399,7 @@ ParticleSystem:
   emitterVelocityMode: 0
   looping: 0
   prewarm: 0
-  playOnAwake: 1
+  playOnAwake: 0
   useUnscaledTime: 0
   autoRandomSeed: 1
   startDelay:
@@ -5067,6 +5067,80 @@ ParticleSystem:
         m_PostInfinity: 2
         m_RotationOrder: 4
     vectorLabel1_3: W
+--- !u!1 &138288355
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 138288358}
+  - component: {fileID: 138288357}
+  - component: {fileID: 138288356}
+  m_Layer: 0
+  m_Name: PartyManager
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &138288356
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 138288355}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b2268199962ea064aa438104fef46975, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  BoardController: {fileID: 919132149434953170}
+  ElementCardPrefab: {fileID: 980993347675119829, guid: 0a77010bcf0f4a943ac91bd0c162fcc9,
+    type: 3}
+  SpellCardPrefab: {fileID: 3602070488889522246, guid: 89783cb952a9db444b32e7e9ffe20ac7,
+    type: 3}
+  _readyBlue: {fileID: 2114592025}
+  _readyRed: {fileID: 1793610175}
+  _spellsTitleObject: {fileID: 1540311485}
+  _spellsTitleParticle: {fileID: 1643408761}
+  _elementTitleObject: {fileID: 750968174}
+  _elementsTitleParticle: {fileID: 2124736378}
+  _upLetterBox: {fileID: 1360739948}
+  _bottomLetterBox: {fileID: 345529611}
+  CursorOccupied: 0
+  translateSpellX: 0.2
+--- !u!114 &138288357
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 138288355}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a8e43d9563ca2e947ba4ce8bee3b047a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  cameraUI: {fileID: 0}
+  cursorTexture: {fileID: 2800000, guid: eb5a5f6230af8c24897654bff42bfadf, type: 3}
+--- !u!4 &138288358
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 138288355}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0.14004062, y: 1.4941993, z: 94.027214}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &149409699
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -5895,7 +5969,7 @@ ParticleSystem:
   emitterVelocityMode: 0
   looping: 0
   prewarm: 0
-  playOnAwake: 1
+  playOnAwake: 0
   useUnscaledTime: 0
   autoRandomSeed: 1
   startDelay:
@@ -10531,6 +10605,21 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!115 &392027234
+MonoScript:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_Name: 
+  serializedVersion: 7
+  m_DefaultReferences: {}
+  m_Icon: {fileID: 0}
+  m_Type: 0
+  m_ExecutionOrder: 0
+  m_ClassName: TransitionManager/TransitionHelper
+  m_Namespace: 
+  m_AssemblyName: Assembly-CSharp
 --- !u!114 &403551526 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 3864009114682781516, guid: f4801c71c56b0014aba4c06159ef8d7c,
@@ -11106,7 +11195,6 @@ RectTransform:
   m_ConstrainProportionsScale: 1
   m_Children:
   - {fileID: 13971651}
-  - {fileID: 2124736375}
   m_Father: {fileID: 828436477}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
@@ -11631,6 +11719,50 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 982922192}
   m_CullTransparentMesh: 1
+--- !u!1 &1039120681
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1039120683}
+  - component: {fileID: 1039120682}
+  m_Layer: 0
+  m_Name: TransitionHelper
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &1039120682
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1039120681}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 392027234}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!4 &1039120683
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1039120681}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1206107109
 GameObject:
   m_ObjectHideFlags: 0
@@ -16848,7 +16980,7 @@ ParticleSystem:
   emitterVelocityMode: 0
   looping: 0
   prewarm: 0
-  playOnAwake: 1
+  playOnAwake: 0
   useUnscaledTime: 0
   autoRandomSeed: 1
   startDelay:
@@ -21634,7 +21766,6 @@ RectTransform:
   m_ConstrainProportionsScale: 1
   m_Children:
   - {fileID: 284868318}
-  - {fileID: 1625057337}
   m_Father: {fileID: 828436477}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
@@ -21667,7 +21798,7 @@ GameObject:
   - component: {fileID: 1643408761}
   - component: {fileID: 1643500761}
   m_Layer: 0
-  m_Name: CFX3_MagicAura_B_Runic
+  m_Name: ParticleSpellTtile
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -21737,14 +21868,14 @@ Transform:
   m_GameObject: {fileID: 1625027609}
   serializedVersion: 2
   m_LocalRotation: {x: -0.7071068, y: -0, z: -0, w: 0.7071068}
-  m_LocalPosition: {x: -399.706, y: -224.67, z: -0.519}
-  m_LocalScale: {x: 0.2083333, y: 0.20833331, z: 0.20833331}
+  m_LocalPosition: {x: 1.417, y: 0.7919922, z: -2.486}
+  m_LocalScale: {x: 0.49999994, y: 0.5000001, z: 0.5000001}
   m_ConstrainProportionsScale: 1
   m_Children:
   - {fileID: 1625057339}
   - {fileID: 1625057341}
   - {fileID: 1625057343}
-  m_Father: {fileID: 1540311486}
+  m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!4 &1625057339
 Transform:
@@ -21808,7 +21939,7 @@ ParticleSystem:
   emitterVelocityMode: 0
   looping: 0
   prewarm: 0
-  playOnAwake: 1
+  playOnAwake: 0
   useUnscaledTime: 0
   autoRandomSeed: 1
   startDelay:
@@ -26493,7 +26624,7 @@ ParticleSystem:
   emitterVelocityMode: 0
   looping: 0
   prewarm: 0
-  playOnAwake: 1
+  playOnAwake: 0
   useUnscaledTime: 0
   autoRandomSeed: 1
   startDelay:
@@ -31192,7 +31323,7 @@ ParticleSystem:
   emitterVelocityMode: 0
   looping: 0
   prewarm: 0
-  playOnAwake: 1
+  playOnAwake: 0
   useUnscaledTime: 0
   autoRandomSeed: 1
   startDelay:
@@ -35801,7 +35932,7 @@ ParticleSystem:
   emitterVelocityMode: 0
   looping: 0
   prewarm: 0
-  playOnAwake: 1
+  playOnAwake: 0
   useUnscaledTime: 0
   autoRandomSeed: 1
   startDelay:
@@ -46342,19 +46473,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   cameraUI: {fileID: 0}
   cursorTexture: {fileID: 2800000, guid: eb5a5f6230af8c24897654bff42bfadf, type: 3}
-  BoardController: {fileID: 919132149434953170}
-  ElementCardPrefab: {fileID: 980993347675119829, guid: 0a77010bcf0f4a943ac91bd0c162fcc9,
-    type: 3}
-  SpellCardPrefab: {fileID: 3602070488889522246, guid: 89783cb952a9db444b32e7e9ffe20ac7,
-    type: 3}
-  _readyBlue: {fileID: 2114592025}
-  _readyRed: {fileID: 1793610175}
-  _spellsTitleObject: {fileID: 1540311485}
-  _elementTitleObject: {fileID: 750968174}
-  _upLetterBox: {fileID: 1360739946}
-  _bottomLetterBox: {fileID: 345529609}
-  CursorOccupied: 0
-  translateSpellX: 0.12
 --- !u!4 &1994299726
 Transform:
   m_ObjectHideFlags: 0
@@ -46684,7 +46802,7 @@ GameObject:
   - component: {fileID: 2124736378}
   - component: {fileID: 2124736377}
   m_Layer: 0
-  m_Name: CFX3_MagicAura_B_Runic
+  m_Name: ParticleElementTitle
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -46699,14 +46817,14 @@ Transform:
   m_GameObject: {fileID: 2124736374}
   serializedVersion: 2
   m_LocalRotation: {x: -0.7071068, y: -0, z: -0, w: 0.7071068}
-  m_LocalPosition: {x: -399.691, y: -224.66998, z: -0.525}
-  m_LocalScale: {x: 0.2083333, y: 0.20833331, z: 0.20833331}
+  m_LocalPosition: {x: 1.4529498, y: 0.7919922, z: -2.5004}
+  m_LocalScale: {x: 0.49999994, y: 0.5000001, z: 0.5000001}
   m_ConstrainProportionsScale: 1
   m_Children:
   - {fileID: 1356235670}
   - {fileID: 355557985}
   - {fileID: 123475694}
-  m_Father: {fileID: 750968175}
+  m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!199 &2124736377
 ParticleSystemRenderer:
@@ -46801,7 +46919,7 @@ ParticleSystem:
   emitterVelocityMode: 0
   looping: 0
   prewarm: 0
-  playOnAwake: 1
+  playOnAwake: 0
   useUnscaledTime: 0
   autoRandomSeed: 1
   startDelay:
@@ -51923,12 +52041,16 @@ SceneRoots:
   - {fileID: 1948585774}
   - {fileID: 1217397539}
   - {fileID: 1994299726}
+  - {fileID: 138288358}
   - {fileID: 543450653419534187}
   - {fileID: 2091637814}
   - {fileID: 250751624}
   - {fileID: 1828497527}
   - {fileID: 650953994}
   - {fileID: 674859265}
+  - {fileID: 1625057337}
+  - {fileID: 2124736375}
   - {fileID: 1696748130}
   - {fileID: 428252161}
   - {fileID: 377351837}
+  - {fileID: 1039120683}

@@ -125,19 +125,19 @@ public class BoardSideController : MonoBehaviour
                 throw new System.Exception($"Resource not found at path: {resourcePath}");
             }
 
-            GameManager.Instance.ElementCardPrefab.Data = data;
-            
-            GameManager.Instance.ElementCardPrefab.GetComponent<DraggableItem3D>().IsBlue = IsBlue;
-            var ele = Instantiate(GameManager.Instance.ElementCardPrefab, HandTransform);
+            PartyManager.Instance.ElementCardPrefab.Data = data;
+
+            PartyManager.Instance.ElementCardPrefab.GetComponent<DraggableItem3D>().IsBlue = IsBlue;
+            var ele = Instantiate(PartyManager.Instance.ElementCardPrefab, HandTransform);
             ele.ElementCard = c;
           
         }
        );
 
         //Instanciate Spell Card
-        GameManager.Instance.SpellCardPrefab.Data = Resources.Load<SpellCardScriptable>("ScriptableObjects/Spells/"+drawResult.DrawnSpell.GetSpellType());
-        GameManager.Instance.SpellCardPrefab.GetComponent<DraggableItem3D>().IsBlue = IsBlue;
-        var ele = Instantiate(GameManager.Instance.SpellCardPrefab, HandSpellTransform);
+        PartyManager.Instance.SpellCardPrefab.Data = Resources.Load<SpellCardScriptable>("ScriptableObjects/Spells/"+drawResult.DrawnSpell.GetSpellType());
+        PartyManager.Instance.SpellCardPrefab.GetComponent<DraggableItem3D>().IsBlue = IsBlue;
+        var ele = Instantiate(PartyManager.Instance.SpellCardPrefab, HandSpellTransform);
         ele.SpellCard = drawResult.DrawnSpell;
 
         ReplaceHands();

@@ -14,7 +14,7 @@ public class DroppableSlot3DSpell : DroppableSlot3D
 
     public override void Occup(DraggableItem3D draggable)
     {
-        if (!draggable.GetComponent<SpellCardDisplay>().SpellCard.AddToBoard(GameManager.Instance.BoardController.Board, draggable.IsBlue, null))
+        if (!draggable.GetComponent<SpellCardDisplay>().SpellCard.AddToBoard(PartyManager.Instance.BoardController.Board, draggable.IsBlue, null))
             Debug.LogError("Ajout au board non réussi");
         base.Occup(draggable);
 
@@ -23,7 +23,7 @@ public class DroppableSlot3DSpell : DroppableSlot3D
     public override void Deactive()
     {
         if (_draggableItem != null)
-            _draggableItem.GetComponent<SpellCardDisplay>().SpellCard.RemoveFromBoard(GameManager.Instance.BoardController.Board, _draggableItem.IsBlue, null);
+            _draggableItem.GetComponent<SpellCardDisplay>().SpellCard.RemoveFromBoard(PartyManager.Instance.BoardController.Board, _draggableItem.IsBlue, null);
         base.Deactive();
     }
 
