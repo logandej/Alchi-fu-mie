@@ -4,6 +4,7 @@ public class DroppableSlot3D : MonoBehaviour
 {
 
     protected DraggableItem3D _draggableItem;
+    [SerializeField] protected bool _isBlue;
     public enum State
     {
         Deactivated,
@@ -45,8 +46,10 @@ public class DroppableSlot3D : MonoBehaviour
 
     // Actions quand une carte rentre dans la zone de trigger 
     private void OnTriggerEnter(Collider other)
-    {      
+    {
         DraggableItem3D draggableItem = other.GetComponent<DraggableItem3D>();
+        if (draggableItem.IsBlue != _isBlue) return;
+
         if (draggableItem != null && CurrentState == State.Deactivated)
         {
             CheckSelection(draggableItem);
@@ -66,6 +69,8 @@ public class DroppableSlot3D : MonoBehaviour
     private void OnTriggerExit(Collider other)
     {
         DraggableItem3D draggableItem = other.GetComponent<DraggableItem3D>();
+        if (draggableItem.IsBlue != _isBlue) return;
+
         if (draggableItem != null)
         {
             if (CurrentState==State.Selected)
@@ -98,6 +103,8 @@ public class DroppableSlot3D : MonoBehaviour
         if (this._draggableItem != null)
         {
             Destroy(this._draggableItem.gameObject);
+            //this._draggableItem.transform.SetParent(null);
+            //this._draggableItem.gameObject.transform.position = Vector3.one * 100;
         }
         this._draggableItem = null;
         CurrentState = State.Deactivated;
@@ -128,6 +135,7 @@ public class DroppableSlot3D : MonoBehaviour
         _snapVisualIndicator.Play();
         _visualIndicator.SetActive(false);
 
+        draggable.spriteController.SetLayerIndex(0);
         draggable.spriteController.SetOpaque();
         draggable.transform.SetParent(_parentTransform);
         draggable.Rigidbody.velocity = Vector3.zero;

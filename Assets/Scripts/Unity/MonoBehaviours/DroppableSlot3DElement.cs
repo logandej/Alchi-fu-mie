@@ -1,15 +1,13 @@
 using AFM_DLL.Models.BoardData;
 using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
 
 public class DroppableSlot3DElement : DroppableSlot3D
 {
     [Header("DLL INFOS")]
     public BoardPosition BoardPosition;
-
- 
-
 
     protected override void CheckSelection(DraggableItem3D draggableItem)
     {
@@ -21,12 +19,13 @@ public class DroppableSlot3DElement : DroppableSlot3D
 
     public override void Occup(DraggableItem3D draggable)
     {
-        Debug.Log("HandCountOccupBefore" + BoardController.Instance.Board.GetAllyBoardSide(draggable.IsBlue).Player.Hand.Elements.Count);
-        if (!draggable.GetComponent<ElementCardDisplay>().Data.ElementCard.AddToBoard(BoardController.Instance.Board, draggable.IsBlue, BoardPosition))
+        if (!draggable.GetComponent<ElementCardDisplay>().ElementCard.AddToBoard(BoardController.Instance.Board, draggable.IsBlue, BoardPosition))
             Debug.LogError("Ajout au board non réussi");
-        Debug.Log("HandCountOccupAfter" + BoardController.Instance.Board.GetAllyBoardSide(draggable.IsBlue).Player.Hand.Elements.Count);
 
-
+        if (!BoardController.Instance.Board.GetAllyBoardSide(_isBlue).AllElementsOfSide.Any(c=>c==null))
+        {
+            BoardController.Instance.ShowReady(_isBlue);
+        }
         base.Occup(draggable);
 
 
@@ -36,11 +35,42 @@ public class DroppableSlot3DElement : DroppableSlot3D
     {
         if (_draggableItem != null)
         {
-            Debug.Log("HandCountDeactiveBefore" + BoardController.Instance.Board.GetAllyBoardSide(_draggableItem.IsBlue).Player.Hand.Elements.Count);
-            _draggableItem.GetComponent<ElementCardDisplay>().Data.ElementCard.RemoveFromBoard(BoardController.Instance.Board, _draggableItem.IsBlue, BoardPosition);
-            Debug.Log("HandCountDeactiveAfter" + BoardController.Instance.Board.GetAllyBoardSide(_draggableItem.IsBlue).Player.Hand.Elements.Count);
+            _draggableItem.GetComponent<ElementCardDisplay>().ElementCard.RemoveFromBoard(BoardController.Instance.Board, _draggableItem.IsBlue, BoardPosition);
+            BoardController.Instance.HideReady(_isBlue);
+
         }
         base.Deactive();
 
+    }
+
+
+    public void ChangeOverrideCard()
+    {
+        _draggableItem.GetComponent<ElementCardDisplay>().ChangeVisuel();
+    }
+
+    /// <summary>
+    /// Evaluate the card, boolean winner ?
+    /// </summary>
+    public void StartEvaluateElementCard(int result)
+    {
+        TransitionManager.ChangeLocalPosition(_draggableItem.gameObject, _draggableItem.transform.localPosition + Vector3.up,0.2f);
+        if (result == -1)
+        {
+            StartCoroutine(LoseColumn());
+        }
+    }
+
+    IEnumerator LoseColumn()
+    {
+        yield return new WaitForSeconds(1f);
+        _draggableItem.GetComponent<ElementCardDisplay>().Delete();
+        DestroyDraggable();
+
+    }
+
+    public void StopEvaluateElementCard()
+    {
+        TransitionManager.ChangeLocalPosition(_draggableItem.gameObject, _draggableItem.transform.localPosition - Vector3.up, 0.2f);
     }
 }

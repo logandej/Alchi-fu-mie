@@ -14,7 +14,6 @@ public class DraggableItem3D : MonoBehaviour
     [SerializeField] float heightFromBoard = 5;
     [SerializeField] float speedDrag = 10;
     [SerializeField] float rotation = 4;
-    private Vector3 handPosition;
 
     public GameManager.Type Type;
     public bool IsBlue;
@@ -34,11 +33,11 @@ public class DraggableItem3D : MonoBehaviour
 
     private void OnMouseDown()
     {
+        if (BoardController.Instance.Board.GetAllyBoardSide(IsBlue).IsSideReady) return;
         if (CurrentSlot != null)
         {
             CurrentSlot.Deactive();
             SetCurrentSlot(null);
-           
 
         }
         Unlock();
@@ -47,7 +46,9 @@ public class DraggableItem3D : MonoBehaviour
 
     private void OnMouseEnter()
     {
-        if (CurrentSlot == null && !GameManager.Instance.cursorOccupied)
+        if (BoardController.Instance.Board.GetAllyBoardSide(IsBlue).IsSideReady) return;
+
+        if (CurrentSlot == null && !GameManager.Instance.CursorOccupied)
         {
             HandPosition.x = transform.localPosition.x;
             TransitionManager.ChangeLocalPosition(this.gameObject, HandPosition+new Vector3(0,0.1f,0.1f), 0.1f);
@@ -57,7 +58,9 @@ public class DraggableItem3D : MonoBehaviour
 
     private void OnMouseExit()
     {
-        if (CurrentSlot == null && !GameManager.Instance.cursorOccupied)
+        if (BoardController.Instance.Board.GetAllyBoardSide(IsBlue).IsSideReady) return;
+
+        if (CurrentSlot == null && !GameManager.Instance.CursorOccupied)
         {
             HandPosition.x = transform.localPosition.x;
             TransitionManager.ChangeLocalPosition(this.gameObject, HandPosition, 0.1f);
@@ -67,9 +70,10 @@ public class DraggableItem3D : MonoBehaviour
 
     private void OnMouseDrag()
     {
-       
-        
-        GameManager.Instance.cursorOccupied = true;
+
+        if (BoardController.Instance.Board.GetAllyBoardSide(IsBlue).IsSideReady) return;
+
+        GameManager.Instance.CursorOccupied = true;
 
         Vector3 newWorldPosition = new Vector3(_board.CurrentMousePosition.x, _startYPos + heightFromBoard, _board.CurrentMousePosition.z);
 
@@ -87,7 +91,8 @@ public class DraggableItem3D : MonoBehaviour
 
     private void OnMouseUp()
     {
-       
+        if (BoardController.Instance.Board.GetAllyBoardSide(IsBlue).IsSideReady) return;
+
         if (CurrentSlot != null)
         {
             CurrentSlot.Occup(this);
@@ -99,10 +104,11 @@ public class DraggableItem3D : MonoBehaviour
             boardSide.PlaceToHand(this);
             // Retourner la carte à sa position d'origine si le slot est occupé ou si aucun slot n'est défini
             Rigidbody.velocity = Vector3.zero;
-            GameManager.Instance.cursorOccupied = false;
             spriteController.SizeNormal();
             Lock();
         }
+        GameManager.Instance.CursorOccupied = false;
+
     }
 
     // Méthode pour définir le slot actuel

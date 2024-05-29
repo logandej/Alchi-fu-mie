@@ -1,10 +1,12 @@
 using System.Collections;
 using System.Collections.Generic;
+using TMPro;
 using UnityEngine;
 
 public class DataBar : MonoBehaviour
 {
     [SerializeField] List<GameObject> _listObjects;
+    [SerializeField] TMP_Text text;  
     [SerializeField] int _maxCount = 10;
     private int _currentCount;
 
@@ -27,6 +29,7 @@ public class DataBar : MonoBehaviour
     }
     private void UpdateDataBar()
     {
+        text.text = _currentCount.ToString();
         for(int i=0; i < _maxCount; i++)
         {
             if (i < _currentCount)

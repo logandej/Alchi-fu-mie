@@ -29,7 +29,7 @@ public class ListMenuItem : MonoBehaviour
         {
             int index = i; // Capturer la valeur actuelle de i pour éviter les problèmes de référence
             // Ajouter un écouteur d'événement pour l'événement de sélection de l'élément
-            menuItems[i].eventSelected.AddListener(() => SelectOne(index));
+            menuItems[i].EventSelected.AddListener(() => SelectOne(index));
         }
         // Sélectionner un élément par défaut si nécessaire
         if (defaultSelect)

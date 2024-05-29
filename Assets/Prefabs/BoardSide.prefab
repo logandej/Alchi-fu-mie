@@ -59,7 +59,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
+  - {fileID: -9064286143915916330, guid: 2cd875233f458c24e9500640adaa7d80, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -103,8 +103,9 @@ MonoBehaviour:
       m_Calls: []
   m_text: 10
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
-  m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
+  m_fontAsset: {fileID: 11400000, guid: 2cd875233f458c24e9500640adaa7d80, type: 2}
+  m_sharedMaterial: {fileID: -9064286143915916330, guid: 2cd875233f458c24e9500640adaa7d80,
+    type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []
@@ -272,6 +273,7 @@ MonoBehaviour:
   - {fileID: 8240405437100544481}
   - {fileID: 1302230910461817278}
   - {fileID: 735595793126467746}
+  text: {fileID: 2395997632542811574}
   _maxCount: 10
 --- !u!1 &4470288006221293613
 GameObject:
@@ -571,7 +573,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
+  - {fileID: -9064286143915916330, guid: 2cd875233f458c24e9500640adaa7d80, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -615,8 +617,9 @@ MonoBehaviour:
       m_Calls: []
   m_text: 10
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
-  m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
+  m_fontAsset: {fileID: 11400000, guid: 2cd875233f458c24e9500640adaa7d80, type: 2}
+  m_sharedMaterial: {fileID: -9064286143915916330, guid: 2cd875233f458c24e9500640adaa7d80,
+    type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []
@@ -857,6 +860,7 @@ MonoBehaviour:
   - {fileID: 1155415300077762432}
   - {fileID: 3725669184199407686}
   - {fileID: 804433671755980423}
+  text: {fileID: 3744211300415543954}
   _maxCount: 10
 --- !u!1001 &436150173482174596
 PrefabInstance:

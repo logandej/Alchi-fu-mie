@@ -7,7 +7,7 @@ using UnityEngine;
 [CreateAssetMenu(fileName ="New Element Card", menuName="Card/ElementCard")]
 public class ElementCardScriptable : ScriptableObject
 {
-    public ElementCard ElementCard;
+   
     public Element Element;
     public Sprite Sprite;
     

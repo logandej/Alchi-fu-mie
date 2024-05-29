@@ -5,6 +5,7 @@ using AFM_DLL.Models.PlayerInfo;
 using AFM_DLL.Models.UnityResults;
 using System.Collections;
 using System.Collections.Generic;
+using System.Threading.Tasks;
 using UnityEngine;
 
 public class BoardSideController : MonoBehaviour
@@ -27,6 +28,7 @@ public class BoardSideController : MonoBehaviour
     [SerializeField] DataBar _manaBar;
 
     public bool IsBlue;
+    public bool CanInteract { get; set; }
 
     private void Awake()
     {
@@ -110,8 +112,9 @@ public class BoardSideController : MonoBehaviour
 
     public void DrawCards(DrawResult drawResult)
     {
-      
+
         //Instanciate Element Cards
+        Debug.Log("DRAWN ELEMENTS NUMBER = " + drawResult.DrawnElements.Count);
         drawResult.DrawnElements.ForEach(c =>
         {
             string elementName = System.Enum.GetName(typeof(Element), c.ActiveElement);
@@ -122,10 +125,11 @@ public class BoardSideController : MonoBehaviour
                 throw new System.Exception($"Resource not found at path: {resourcePath}");
             }
 
-            data.ElementCard = c;
             GameManager.Instance.ElementCardPrefab.Data = data;
+            
             GameManager.Instance.ElementCardPrefab.GetComponent<DraggableItem3D>().IsBlue = IsBlue;
             var ele = Instantiate(GameManager.Instance.ElementCardPrefab, HandTransform);
+            ele.ElementCard = c;
           
         }
        );
@@ -134,6 +138,7 @@ public class BoardSideController : MonoBehaviour
         GameManager.Instance.SpellCardPrefab.Data = Resources.Load<SpellCardScriptable>("ScriptableObjects/Spells/"+drawResult.DrawnSpell.GetSpellType());
         GameManager.Instance.SpellCardPrefab.GetComponent<DraggableItem3D>().IsBlue = IsBlue;
         var ele = Instantiate(GameManager.Instance.SpellCardPrefab, HandSpellTransform);
+        ele.SpellCard = drawResult.DrawnSpell;
 
         ReplaceHands();
     }
@@ -160,6 +165,45 @@ public class BoardSideController : MonoBehaviour
 
         card.transform.localPosition = targetPosition;
         ReplaceHands();
+    }
+
+    public async Task UpdateOverrideElements()
+    {
+        for(int i = 0; i < 3; i++)
+        {
+            DroppableSlot3DElement elementSlot = (DroppableSlot3DElement)_droppableSlotList[i];
+            elementSlot.ChangeOverrideCard();
+            await Task.Delay(10);
+        }
+    }
+
+
+    public void StartEvaluateSlot(int index, int result)
+    {
+        DroppableSlot3DElement elementSlot = (DroppableSlot3DElement)_droppableSlotList[index];
+        elementSlot.StartEvaluateElementCard(result);
+    }
+
+    public void StopEvaluateSlot(int index)
+    {
+
+        DroppableSlot3DElement elementSlot = (DroppableSlot3DElement)_droppableSlotList[index];
+        elementSlot.StopEvaluateElementCard();
+    }
+
+    public void StartSpell()
+    {
+        //3 Should be the index of the spellSlot
+        DroppableSlot3DSpell spellSlot = (DroppableSlot3DSpell)_droppableSlotList[3];
+        spellSlot.StartSpell();
+    }
+
+    public void StopSpell()
+    {
+        //3 Should be the index of the spellSlot
+        DroppableSlot3DSpell spellSlot = (DroppableSlot3DSpell)_droppableSlotList[3];
+        spellSlot.StopSpell();
+
     }
 
 }

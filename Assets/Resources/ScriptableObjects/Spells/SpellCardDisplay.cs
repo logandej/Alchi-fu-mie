@@ -6,16 +6,22 @@ using UnityEngine;
 public class SpellCardDisplay : MonoBehaviour
 {
     public SpellCardScriptable Data;
+    public SpellCard SpellCard;
+
+    [SerializeField] ParticleSystem _spellParticle;
     // Start is called before the first frame update
     void Start()
     {
         if (Data == null)
             Debug.LogError("Data Should Be Initialzed");
-        if (Data.SpellCard == null)
-        {
-            Data.SpellCard = SpellCard.FromType(Data.SpellType);
-        }
         GetComponentInChildren<SpriteRenderer>().sprite = Data.Sprite;
+    }
+
+    public void StartSpell()
+    {
+        var effect = Instantiate(_spellParticle, transform.position, transform.rotation);
+        effect.gameObject.SetActive(true);
+        effect.Play();
     }
 
 }

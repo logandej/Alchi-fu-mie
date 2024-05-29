@@ -43,6 +43,11 @@ public class SpriteController : MonoBehaviour
         ChangeSize(0.055f);
     }
 
+    public void SetLayerIndex(int index)
+    {
+        _sprite.sortingOrder = index;
+    }
+
 
 
    
