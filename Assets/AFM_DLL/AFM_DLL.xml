@@ -142,6 +142,16 @@
                 Double les dégâts lors de l'évaluation de ces derniers
             </summary>
         </member>
+        <member name="F:AFM_DLL.Models.BoardData.BoardModifiers.BLUE_PLAYER_WIN_TIE">
+            <summary>
+                Fait gagner le joueur bleu en cas d'egalite dans une colonne
+            </summary>
+        </member>
+        <member name="F:AFM_DLL.Models.BoardData.BoardModifiers.RED_PLAYER_WIN_TIE">
+            <summary>
+                Fait gagner le joueur rouge en cas d'egalite dans une colonne
+            </summary>
+        </member>
         <member name="T:AFM_DLL.Models.BoardData.BoardPosition">
             <summary>
                 La position des cartes éléments sur le plateau du point de vue du joueur
@@ -263,7 +273,7 @@
             <summary>
                 Constructeur d'une carte élément
             </summary>
-            <param name="element">L'élément initial de la carte</param>
+            <param name="activeElement">L'élément initial de la carte</param>
         </member>
         <member name="P:AFM_DLL.Models.Cards.ElementCard.ActiveElement">
             <summary>
@@ -359,6 +369,142 @@
         <member name="M:AFM_DLL.Models.Cards.Spells.DoubleDamageSpell.GetSpellType">
             <inheritdoc/>
         </member>
+        <member name="T:AFM_DLL.Models.Cards.Spells.CancelSpell.CancelEnemySpell">
+            <summary>
+                Remplace les cartes pierre opposées par des cartes ciseaux.
+            </summary>
+        </member>
+        <member name="M:AFM_DLL.Models.Cards.Spells.CancelSpell.CancelEnemySpell.ActivateSpell(AFM_DLL.Models.BoardData.Board,System.Boolean)">
+            <inheritdoc/>
+        </member>
+        <member name="M:AFM_DLL.Models.Cards.Spells.CancelSpell.CancelEnemySpell.GetDescription">
+            <inheritdoc/>
+        </member>
+        <member name="M:AFM_DLL.Models.Cards.Spells.CancelSpell.CancelEnemySpell.GetManaCost">
+            <inheritdoc/>
+        </member>
+        <member name="M:AFM_DLL.Models.Cards.Spells.CancelSpell.CancelEnemySpell.GetSpellType">
+            <inheritdoc/>
+        </member>
+        <member name="T:AFM_DLL.Models.Cards.Spells.ReplaceElement.ReplaceEnemyCardsWithScissors">
+            <summary>
+                Remplace les cartes pierre opposées par des cartes ciseaux.
+            </summary>
+        </member>
+        <member name="M:AFM_DLL.Models.Cards.Spells.ReplaceElement.ReplaceEnemyCardsWithScissors.ActivateSpell(AFM_DLL.Models.BoardData.Board,System.Boolean)">
+            <inheritdoc/>
+        </member>
+        <member name="M:AFM_DLL.Models.Cards.Spells.ReplaceElement.ReplaceEnemyCardsWithScissors.GetDescription">
+            <inheritdoc/>
+        </member>
+        <member name="M:AFM_DLL.Models.Cards.Spells.ReplaceElement.ReplaceEnemyCardsWithScissors.GetManaCost">
+            <inheritdoc/>
+        </member>
+        <member name="M:AFM_DLL.Models.Cards.Spells.ReplaceElement.ReplaceEnemyCardsWithScissors.GetSpellType">
+            <inheritdoc/>
+        </member>
+        <member name="T:AFM_DLL.Models.Cards.Spells.ReplaceElement.ReplaceEnemyCardsWithPlayerCards">
+            <summary>
+                Remplace les cartes pierre opposées par des cartes ciseaux.
+            </summary>
+        </member>
+        <member name="M:AFM_DLL.Models.Cards.Spells.ReplaceElement.ReplaceEnemyCardsWithPlayerCards.ActivateSpell(AFM_DLL.Models.BoardData.Board,System.Boolean)">
+            <inheritdoc/>
+        </member>
+        <member name="M:AFM_DLL.Models.Cards.Spells.ReplaceElement.ReplaceEnemyCardsWithPlayerCards.GetDescription">
+            <inheritdoc/>
+        </member>
+        <member name="M:AFM_DLL.Models.Cards.Spells.ReplaceElement.ReplaceEnemyCardsWithPlayerCards.GetManaCost">
+            <inheritdoc/>
+        </member>
+        <member name="M:AFM_DLL.Models.Cards.Spells.ReplaceElement.ReplaceEnemyCardsWithPlayerCards.GetSpellType">
+            <inheritdoc/>
+        </member>
+        <member name="T:AFM_DLL.Models.Cards.Spells.ReplaceElement.ReplaceEnemyCardsWithPaper">
+            <summary>
+                Remplace les cartes pierre opposées par des cartes ciseaux.
+            </summary>
+        </member>
+        <member name="M:AFM_DLL.Models.Cards.Spells.ReplaceElement.ReplaceEnemyCardsWithPaper.ActivateSpell(AFM_DLL.Models.BoardData.Board,System.Boolean)">
+            <inheritdoc/>
+        </member>
+        <member name="M:AFM_DLL.Models.Cards.Spells.ReplaceElement.ReplaceEnemyCardsWithPaper.GetDescription">
+            <inheritdoc/>
+        </member>
+        <member name="M:AFM_DLL.Models.Cards.Spells.ReplaceElement.ReplaceEnemyCardsWithPaper.GetManaCost">
+            <inheritdoc/>
+        </member>
+        <member name="M:AFM_DLL.Models.Cards.Spells.ReplaceElement.ReplaceEnemyCardsWithPaper.GetSpellType">
+            <inheritdoc/>
+        </member>
+        <member name="T:AFM_DLL.Models.Cards.Spells.ReplaceElement.ReplaceEnemyCardsWithRock">
+            <summary>
+                Remplace les cartes pierre opposées par des cartes ciseaux.
+            </summary>
+        </member>
+        <member name="M:AFM_DLL.Models.Cards.Spells.ReplaceElement.ReplaceEnemyCardsWithRock.ActivateSpell(AFM_DLL.Models.BoardData.Board,System.Boolean)">
+            <inheritdoc/>
+        </member>
+        <member name="M:AFM_DLL.Models.Cards.Spells.ReplaceElement.ReplaceEnemyCardsWithRock.GetDescription">
+            <inheritdoc/>
+        </member>
+        <member name="M:AFM_DLL.Models.Cards.Spells.ReplaceElement.ReplaceEnemyCardsWithRock.GetManaCost">
+            <inheritdoc/>
+        </member>
+        <member name="M:AFM_DLL.Models.Cards.Spells.ReplaceElement.ReplaceEnemyCardsWithRock.GetSpellType">
+            <inheritdoc/>
+        </member>
+        <member name="T:AFM_DLL.Models.Cards.Spells.ReplaceElement.ReplaceEnemyPaperWithRock">
+            <summary>
+                Remplace les cartes pierre opposées par des cartes ciseaux.
+            </summary>
+        </member>
+        <member name="M:AFM_DLL.Models.Cards.Spells.ReplaceElement.ReplaceEnemyPaperWithRock.ActivateSpell(AFM_DLL.Models.BoardData.Board,System.Boolean)">
+            <inheritdoc/>
+        </member>
+        <member name="M:AFM_DLL.Models.Cards.Spells.ReplaceElement.ReplaceEnemyPaperWithRock.GetDescription">
+            <inheritdoc/>
+        </member>
+        <member name="M:AFM_DLL.Models.Cards.Spells.ReplaceElement.ReplaceEnemyPaperWithRock.GetManaCost">
+            <inheritdoc/>
+        </member>
+        <member name="M:AFM_DLL.Models.Cards.Spells.ReplaceElement.ReplaceEnemyPaperWithRock.GetSpellType">
+            <inheritdoc/>
+        </member>
+        <member name="T:AFM_DLL.Models.Cards.Spells.ReplaceElement.ReplaceEnemyPaperWithScissors">
+            <summary>
+                Remplace les cartes pierre opposées par des cartes ciseaux.
+            </summary>
+        </member>
+        <member name="M:AFM_DLL.Models.Cards.Spells.ReplaceElement.ReplaceEnemyPaperWithScissors.ActivateSpell(AFM_DLL.Models.BoardData.Board,System.Boolean)">
+            <inheritdoc/>
+        </member>
+        <member name="M:AFM_DLL.Models.Cards.Spells.ReplaceElement.ReplaceEnemyPaperWithScissors.GetDescription">
+            <inheritdoc/>
+        </member>
+        <member name="M:AFM_DLL.Models.Cards.Spells.ReplaceElement.ReplaceEnemyPaperWithScissors.GetManaCost">
+            <inheritdoc/>
+        </member>
+        <member name="M:AFM_DLL.Models.Cards.Spells.ReplaceElement.ReplaceEnemyPaperWithScissors.GetSpellType">
+            <inheritdoc/>
+        </member>
+        <member name="T:AFM_DLL.Models.Cards.Spells.ReplaceElement.ReplaceEnemyRockWithPaper">
+            <summary>
+                Remplace les cartes pierre opposées par des cartes ciseaux.
+            </summary>
+        </member>
+        <member name="M:AFM_DLL.Models.Cards.Spells.ReplaceElement.ReplaceEnemyRockWithPaper.ActivateSpell(AFM_DLL.Models.BoardData.Board,System.Boolean)">
+            <inheritdoc/>
+        </member>
+        <member name="M:AFM_DLL.Models.Cards.Spells.ReplaceElement.ReplaceEnemyRockWithPaper.GetDescription">
+            <inheritdoc/>
+        </member>
+        <member name="M:AFM_DLL.Models.Cards.Spells.ReplaceElement.ReplaceEnemyRockWithPaper.GetManaCost">
+            <inheritdoc/>
+        </member>
+        <member name="M:AFM_DLL.Models.Cards.Spells.ReplaceElement.ReplaceEnemyRockWithPaper.GetSpellType">
+            <inheritdoc/>
+        </member>
         <member name="T:AFM_DLL.Models.Cards.Spells.ReplaceElement.ReplaceEnemyRockWithScissors">
             <summary>
                 Remplace les cartes pierre opposées par des cartes ciseaux.
@@ -376,9 +522,60 @@
         <member name="M:AFM_DLL.Models.Cards.Spells.ReplaceElement.ReplaceEnemyRockWithScissors.GetSpellType">
             <inheritdoc/>
         </member>
+        <member name="T:AFM_DLL.Models.Cards.Spells.ReplaceElement.ReplaceEnemyScissorsWithPaper">
+            <summary>
+                Remplace les cartes pierre opposées par des cartes ciseaux.
+            </summary>
+        </member>
+        <member name="M:AFM_DLL.Models.Cards.Spells.ReplaceElement.ReplaceEnemyScissorsWithPaper.ActivateSpell(AFM_DLL.Models.BoardData.Board,System.Boolean)">
+            <inheritdoc/>
+        </member>
+        <member name="M:AFM_DLL.Models.Cards.Spells.ReplaceElement.ReplaceEnemyScissorsWithPaper.GetDescription">
+            <inheritdoc/>
+        </member>
+        <member name="M:AFM_DLL.Models.Cards.Spells.ReplaceElement.ReplaceEnemyScissorsWithPaper.GetManaCost">
+            <inheritdoc/>
+        </member>
+        <member name="M:AFM_DLL.Models.Cards.Spells.ReplaceElement.ReplaceEnemyScissorsWithPaper.GetSpellType">
+            <inheritdoc/>
+        </member>
+        <member name="T:AFM_DLL.Models.Cards.Spells.ReplaceElement.ReplaceEnemyScissorsWithRock">
+            <summary>
+                Remplace les cartes pierre opposées par des cartes ciseaux.
+            </summary>
+        </member>
+        <member name="M:AFM_DLL.Models.Cards.Spells.ReplaceElement.ReplaceEnemyScissorsWithRock.ActivateSpell(AFM_DLL.Models.BoardData.Board,System.Boolean)">
+            <inheritdoc/>
+        </member>
+        <member name="M:AFM_DLL.Models.Cards.Spells.ReplaceElement.ReplaceEnemyScissorsWithRock.GetDescription">
+            <inheritdoc/>
+        </member>
+        <member name="M:AFM_DLL.Models.Cards.Spells.ReplaceElement.ReplaceEnemyScissorsWithRock.GetManaCost">
+            <inheritdoc/>
+        </member>
+        <member name="M:AFM_DLL.Models.Cards.Spells.ReplaceElement.ReplaceEnemyScissorsWithRock.GetSpellType">
+            <inheritdoc/>
+        </member>
+        <member name="M:AFM_DLL.Models.Cards.Spells.WinDuelTie.WinDuelTie.ActivateSpell(AFM_DLL.Models.BoardData.Board,System.Boolean)">
+            <inheritdoc/>
+        </member>
+        <member name="M:AFM_DLL.Models.Cards.Spells.WinDuelTie.WinDuelTie.GetDescription">
+            <inheritdoc/>
+        </member>
+        <member name="M:AFM_DLL.Models.Cards.Spells.WinDuelTie.WinDuelTie.GetManaCost">
+            <inheritdoc/>
+        </member>
+        <member name="M:AFM_DLL.Models.Cards.Spells.WinDuelTie.WinDuelTie.GetSpellType">
+            <inheritdoc/>
+        </member>
         <member name="T:AFM_DLL.Models.Cards.SpellCard">
             <summary>
                 Représente toutes les cartes sortilèges et propose une méthode pour en générer
+            </summary>
+        </member>
+        <member name="P:AFM_DLL.Models.Cards.SpellCard.CanBeActived">
+            <summary>
+                Indique si un sort peut être joué ou non
             </summary>
         </member>
         <member name="M:AFM_DLL.Models.Cards.SpellCard.FromType(AFM_DLL.Models.Enum.SpellType)">
@@ -480,6 +677,61 @@
         <member name="F:AFM_DLL.Models.Enum.SpellType.REPLACE_ENEMY_ROCK_WITH_SCISSORS">
             <summary>
                 Surcharge les cartes pierre de l'ennemi par des cartes ciseaux
+            </summary>
+        </member>
+        <member name="F:AFM_DLL.Models.Enum.SpellType.REPLACE_ENEMY_ROCK_WITH_PAPER">
+            <summary>
+                Surcharge les cartes pierre de l'ennemi par des cartes feuille
+            </summary>
+        </member>
+        <member name="F:AFM_DLL.Models.Enum.SpellType.REPLACE_ENEMY_PAPER_WITH_ROCK">
+            <summary>
+                Surcharge les cartes feuille de l'ennemi par des cartes pierre
+            </summary>
+        </member>
+        <member name="F:AFM_DLL.Models.Enum.SpellType.REPLACE_ENEMY_PAPER_WITH_SCISSORS">
+            <summary>
+                Surcharge les cartes feuille de l'ennemi par des cartes ciseaux
+            </summary>
+        </member>
+        <member name="F:AFM_DLL.Models.Enum.SpellType.REPLACE_ENEMY_SCISSORS_WITH_PAPER">
+            <summary>
+                Surcharge les cartes ciseaux de l'ennemi par des cartes feuille
+            </summary>
+        </member>
+        <member name="F:AFM_DLL.Models.Enum.SpellType.REPLACE_ENEMY_SCISSORS_WITH_ROCK">
+            <summary>
+                Surcharge les cartes ciseaux de l'ennemi par des cartes pierre
+            </summary>
+        </member>
+        <member name="F:AFM_DLL.Models.Enum.SpellType.REPLACE_ENEMY_CARDS_WITH_PLAYER_CARDS">
+            <summary>
+                Surcharge les cartes de l'ennemi par les cartes du joueur 
+            </summary>
+        </member>
+        <member name="F:AFM_DLL.Models.Enum.SpellType.REPLACE_ENEMY_CARDS_WITH_ROCK">
+            <summary>
+                Surcharge les cartes de l'ennemi par des cartes pierre
+            </summary>
+        </member>
+        <member name="F:AFM_DLL.Models.Enum.SpellType.REPLACE_ENEMY_CARDS_WITH_PAPER">
+            <summary>
+                Surcharge les cartes de l'ennemi par des cartes papier
+            </summary>
+        </member>
+        <member name="F:AFM_DLL.Models.Enum.SpellType.REPLACE_ENEMY_CARDS_WITH_SCISSORS">
+            <summary>
+                Surcharge les cartes de l'ennemi par des cartes ciseaux
+            </summary>
+        </member>
+        <member name="F:AFM_DLL.Models.Enum.SpellType.CANCEL_ENEMY_SPELL">
+            <summary>
+                Annule le sort de l'ennemi s'il en a un
+            </summary>
+        </member>
+        <member name="F:AFM_DLL.Models.Enum.SpellType.WIN_DUEL_TIE">
+            <summary>
+                Fait gagner le duel en cas d'egalite au joueur ayant lance ce sort.
             </summary>
         </member>
         <member name="T:AFM_DLL.Models.PlayerInfo.Deck">
@@ -603,11 +855,6 @@
         <member name="P:AFM_DLL.Models.PlayerInfo.Hero.OverrideCard">
             <summary>
                 Surcharge d'élément du héros (potentiellement dû à un remplacement)
-            </summary>
-        </member>
-        <member name="E:AFM_DLL.Models.PlayerInfo.Hero.HeroOverrideChanged">
-            <summary>
-                Évènement indiquand quand un héros voit son type surchargé (ou désurchargé)
             </summary>
         </member>
         <member name="T:AFM_DLL.Models.PlayerInfo.PlayerGame">

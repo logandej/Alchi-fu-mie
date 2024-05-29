@@ -54,10 +54,9 @@ public class DraggableItem : MonoBehaviour, IBeginDragHandler, IDragHandler, IEn
         // Désactive le raycasting sur l'image pour éviter les problèmes de sélection pendant le drag
         image.raycastTarget = false;
 
-        InventorySlot inventory = transform.parent.GetComponent<InventorySlot>();
-        if (inventory != null)
+        if (previousParentTransform.TryGetComponent<InventorySlot>(out var inventory))
         {
-            inventory.currentItem = null;
+            inventory.CurrentItem = null;
         }
     }
 
@@ -107,6 +106,6 @@ public class DraggableItem : MonoBehaviour, IBeginDragHandler, IDragHandler, IEn
         transform.SetParent(parentAfterDrag);
         // Réinitialise la position locale de l'objet
         transform.localPosition = Vector3.zero;
-        transformSlot.GetComponent<InventorySlot>().currentItem = this;
+        transformSlot.GetComponent<InventorySlot>().CurrentItem = this;
     }
 }
