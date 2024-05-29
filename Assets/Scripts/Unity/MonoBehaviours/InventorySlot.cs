@@ -20,7 +20,28 @@ public class InventorySlot : MonoBehaviour, IDropHandler
     private bool replaceWithPreviousPlace = true;
     // Permet de savoir si l'élément actuel doit être remplacé à son emplacement précédent ou échangé avec l'élément déplacé
 
-    public DraggableItem currentItem;
+    private DraggableItem _currItem;
+    public DraggableItem CurrentItem
+    {
+        get => _currItem;
+        set
+        {
+            if (_currItem != null)
+            {
+                if (_currItem.TryGetComponent<ElementCardContainer>(out var container))
+                    container.RemoveFromDeck();
+            }
+            if (value != null)
+            {
+                if (value.TryGetComponent<ElementCardContainer>(out var container))
+                    container.AddToDeck();
+            }
+            _currItem = value;
+        }
+    }
+
+    public void InitCurrentItem(DraggableItem item) => _currItem = item;
+
     // Référence à l'élément actuellement placé dans ce slot
 
     public void OnDrop(PointerEventData eventData)
@@ -55,9 +76,8 @@ public class InventorySlot : MonoBehaviour, IDropHandler
     public void RemoveCurrentPrevious()
     {
         // Déplace l'élément actuel à son emplacement précédent
-        currentItem.PlaceToSlot(currentItem.previousParentTransform);
-        currentItem = null;
-
+        CurrentItem.PlaceToSlot(CurrentItem.previousParentTransform);
+        CurrentItem = null;
     }
 
  
@@ -68,9 +88,9 @@ public class InventorySlot : MonoBehaviour, IDropHandler
         Transform parent = dropped.GetComponent<DraggableItem>().parentAfterDrag;
         if (parent.GetComponent<InventorySlot>() != null)
         {
-            print("current item " + currentItem.name + "has to move to parent" + parent.name);
-            currentItem.PlaceToSlot(parent);
-            currentItem = null;
+            print("current item " + CurrentItem.name + "has to move to parent" + parent.name);
+            CurrentItem.PlaceToSlot(parent);
+            CurrentItem = null;
             PlaceItem(dropped);
         }
     }
@@ -84,8 +104,6 @@ public class InventorySlot : MonoBehaviour, IDropHandler
             AudioManager.Instance.PlayEffect(clipOnDrop);
             // Récupère la référence à l'élément déplacé
             DraggableItem draggableItem = dropped.GetComponent<DraggableItem>();
-            // Met à jour la référence à l'élément actuellement placé dans ce slot
-            currentItem = draggableItem;
             // Place l'élément déplacé dans ce slot
             draggableItem.PlaceToSlot(transform);
         }
