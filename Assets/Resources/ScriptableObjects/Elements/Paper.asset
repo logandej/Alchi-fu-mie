@@ -13,4 +13,4 @@ MonoBehaviour:
   m_Name: Paper
   m_EditorClassIdentifier: 
   Element: 1
-  Sprite: {fileID: 21300000, guid: 809ac15702a7629459f5cdce51222d38, type: 3}
+  Sprite: {fileID: 21300000, guid: d516c89aa9a61ac458a25c341a0db616, type: 3}

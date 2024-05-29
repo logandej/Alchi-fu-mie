@@ -13,4 +13,4 @@ MonoBehaviour:
   m_Name: Scissors
   m_EditorClassIdentifier: 
   Element: 2
-  Sprite: {fileID: 21300000, guid: ab5191c26ecece141bffbb5111d2e782, type: 3}
+  Sprite: {fileID: 21300000, guid: 1442201d6f3418744b790baec3881587, type: 3}

@@ -5,47 +5,62 @@ using UnityEngine;
 [RequireComponent(typeof(SpriteRenderer))]
 public class SpriteController : MonoBehaviour
 {
-    private SpriteRenderer _sprite;
+    [SerializeField] SpriteRenderer _sprite;
+    [SerializeField] SpriteRenderer _childrenSprite;
     [SerializeField] float alphaDuration = 0.5f;
     [SerializeField] float scaleDuration = 0.5f;
 
-    private void Start()
-    {
-        _sprite = GetComponent<SpriteRenderer>();
-    }
     public void SetTransparent()
-    {
-        TransitionManager.ChangeColor(_sprite.gameObject, new Color(1, 1, 1, 0.8f),alphaDuration);
-       
+    {     
+           TransitionManager.ChangeColor(_sprite.gameObject, new Color(1, 1, 1, 0.8f), alphaDuration);
+           TransitionManager.ChangeColor(_childrenSprite.gameObject, new Color(1, 1, 1, 0.8f), alphaDuration);     
     }
 
     public void SetOpaque()
     {
-        TransitionManager.ChangeColor(_sprite.gameObject, new Color(1, 1, 1, 1f), alphaDuration);
+            TransitionManager.ChangeColor(_sprite.gameObject, new Color(1, 1, 1, 1f), alphaDuration);
+            TransitionManager.ChangeColor(_childrenSprite.gameObject, new Color(1, 1, 1, 1f), alphaDuration);       
     }
 
     void ChangeSize(float size)
     {
-        TransitionManager.ChangeSize(_sprite.gameObject, size, scaleDuration);
+        TransitionManager.ChangeSize(this.gameObject, size, scaleDuration);
     }
     public void SizeBig()
     {
-        ChangeSize(0.12f);
+        ChangeSize(0.22f);
     }
 
     public void SizeNormal()
     {
-        ChangeSize(0.1f);
+        ChangeSize(0.18f);
     }
 
     public void SizeSmall()
     {
-        ChangeSize(0.055f);
+        ChangeSize(0.10f);
+    }
+
+    public void AddLayerIndex(uint number)
+    {
+        SetLayerIndex(_childrenSprite.sortingOrder+(int)number);
+
+    }
+
+    public void RemoveLayerIndex(uint number)
+    {
+        SetLayerIndex(_childrenSprite.sortingOrder - (int)number);
     }
 
     public void SetLayerIndex(int index)
     {
-        _sprite.sortingOrder = index;
+        _sprite.sortingOrder = index+1;
+        _childrenSprite.sortingOrder = index;
+    }
+
+    public void SetChildSprite(Sprite sprite)
+    {
+        _childrenSprite.sprite = sprite;
     }
 
 

@@ -140,6 +140,7 @@ public class DroppableSlot3D : MonoBehaviour
         draggable.transform.SetParent(_parentTransform);
         draggable.Rigidbody.velocity = Vector3.zero;
         draggable.Rigidbody.isKinematic = true;
+        draggable.transform.rotation = Quaternion.Euler(0, 0, 0);
         TransitionManager.ChangeLocalPosition(draggable.gameObject, Vector3.zero, 0.3f);
     }
     /// <summary>

@@ -11,6 +11,7 @@ public class ElementCardDisplay : MonoBehaviour
     public ElementCard ElementCard;
     [SerializeField] LoadParticle visualEffects;
     [SerializeField] ParticleSystem deleteEffect;
+    private SpriteController _spriteController;
 
     private Element? _overrideElement;
 
@@ -20,7 +21,8 @@ public class ElementCardDisplay : MonoBehaviour
     {
         if (Data == null)
             Debug.LogError("Data Should Be Initialzed");
-        GetComponentInChildren<SpriteRenderer>().sprite = Data.Sprite;
+        _spriteController = GetComponentInChildren<SpriteController>();
+        _spriteController.SetChildSprite(Data.Sprite);
         ElementCard.CardOverrideChanged += SetOverrideSpell;
         
     }
@@ -38,13 +40,13 @@ public class ElementCardDisplay : MonoBehaviour
             print("ChangeVisuel !!!");
             string resourcePath = $"ScriptableObjects/Elements/{_overrideElement}";
             ElementCardScriptable data = Resources.Load<ElementCardScriptable>(resourcePath);
-            GetComponentInChildren<SpriteRenderer>().sprite = data.Sprite;
+            _spriteController.SetChildSprite(data.Sprite);
 
         }
         else
         {
             print("Nothing change"+_overrideElement);
-            GetComponentInChildren<SpriteRenderer>().sprite = Data.Sprite;
+            _spriteController.SetChildSprite(Data.Sprite);
         }
         //ElementCard.CardOverrideChanged -= SetOverrideSpell;
 

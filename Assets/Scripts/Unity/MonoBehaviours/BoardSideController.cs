@@ -104,7 +104,7 @@ public class BoardSideController : MonoBehaviour
         {
             var vector = new Vector3(i * translateX, 0, 0);
             handTransform.GetChild(i).GetComponent<DraggableItem3D>().HandPosition = vector;
-            handTransform.GetChild(i).GetComponentInChildren<SpriteRenderer>().sortingOrder = i;
+            handTransform.GetChild(i).GetComponentInChildren<SpriteController>().SetLayerIndex(i+1);
             handTransform.GetChild(i).transform.localPosition = vector;
         }
     }

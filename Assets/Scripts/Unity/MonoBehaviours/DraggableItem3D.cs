@@ -52,7 +52,7 @@ public class DraggableItem3D : MonoBehaviour
         {
             HandPosition.x = transform.localPosition.x;
             TransitionManager.ChangeLocalPosition(this.gameObject, HandPosition+new Vector3(0,0.1f,0.1f), 0.1f);
-            GetComponentInChildren<SpriteRenderer>().sortingOrder += 1;
+            GetComponentInChildren<SpriteController>().AddLayerIndex(10);
         }
     }
 
@@ -64,7 +64,7 @@ public class DraggableItem3D : MonoBehaviour
         {
             HandPosition.x = transform.localPosition.x;
             TransitionManager.ChangeLocalPosition(this.gameObject, HandPosition, 0.1f);
-            GetComponentInChildren<SpriteRenderer>().sortingOrder -= 1;
+            GetComponentInChildren<SpriteController>().RemoveLayerIndex(10);
         }
     }
 
