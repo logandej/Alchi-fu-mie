@@ -21,6 +21,8 @@ public class BoardController : MonoBehaviour
     public BoardSideController BoardSideBlue;
     public BoardSideController BoardSideRed;
 
+    [SerializeField] AIPlayer _aiPlayer;
+
 
     public void Awake()
     {
@@ -39,14 +41,13 @@ public class BoardController : MonoBehaviour
     {
         Board = new Board(new PlayerGame(BoardSideBlue.Deck), new PlayerGame(BoardSideRed.Deck));
 
-        this.Board.GetAllyBoardSide(true).Player.AddMana(5);
-        this.Board.GetAllyBoardSide(false).Player.AddMana(5);
+        this.BoardSideBlue.BoardSide = this.Board.GetAllyBoardSide(true);
+        this.BoardSideRed.BoardSide = this.Board.GetAllyBoardSide(false);
+
+        Board.GetAllyBoardSide(true).Player.RemoveHealth(8);
+        Board.GetAllyBoardSide(false).Player.RemoveHealth(8);
 
         DrawCards();
-
-        BoardSideBlue.UpdateHealthAndMana();
-        BoardSideRed.UpdateHealthAndMana();
-
 
     }
 
@@ -57,44 +58,72 @@ public class BoardController : MonoBehaviour
         BoardSideBlue.DrawCards(res.BlueSideDrawResult);
         BoardSideRed.DrawCards(res.RedSideDrawResult);
         //Permet aux joueurs d'interagir
-   
+        if (_aiPlayer != null)
+        {
+            _aiPlayer.StartRound();
+        }
+        BoardSideBlue.UpdateHealthAndMana();
+        BoardSideRed.UpdateHealthAndMana();
+
     }
 
-    public void ShowReady(bool isBlue)
+    public void ShowReady()
     {
-        PartyManager.Instance.ShowReady(isBlue);
+        PartyManager.Instance.ShowReady();
     }
-    public void HideReady(bool isBlue)
+    public void HideReady()
     {
-        PartyManager.Instance.HideReady(isBlue);
+        PartyManager.Instance.HideReady();
     }
 
+    /// <summary>
+    /// Set Player Ready
+    /// </summary>
+    /// <param name="isBlue">Is Blue</param>
     public async void SetPlayerReady(bool isBlue)
     {
-        HideReady(isBlue);
+        if(isBlue)
+            HideReady();
 
         //True if 2 are ready
         if (this.Board.SetSideReady(isBlue))
         {
             PartyManager.Instance.ShowLetterBox();
+
+            await BoardSideRed.RevealCards();
+
             await EvaluateSpell();
             await EvaluateCardColumns();
-            BoardSideBlue.UpdateHealthAndMana();
-            BoardSideRed.UpdateHealthAndMana();
 
-            this.Board.ResetBoard();
+
 
             BoardSideBlue.DestroyPlacedCards();
             BoardSideRed.DestroyPlacedCards();
 
-            PartyManager.Instance.HideLetterBox();
             //ReDraw
-            if (this.Board.GetAllyBoardSide(BoardSideBlue).Player.HealthPoints > 0 || this.Board.GetAllyBoardSide(BoardSideRed).Player.HealthPoints > 0) {
+            if (this.Board.GetAllyBoardSide(true).Player.HealthPoints > 0 && this.Board.GetAllyBoardSide(false).Player.HealthPoints > 0) {
+                this.Board.ResetBoard();
+
+                PartyManager.Instance.HideLetterBox();
                 DrawCards();
             }
             else
             {
                 print("Partie Terminée !");
+                BoardSideBlue.UpdateHealthAndMana();
+                BoardSideRed.UpdateHealthAndMana();
+                if(this.Board.GetAllyBoardSide(true).Player.HealthPoints > 0)
+                {
+                    await PartyManager.Instance.ShowVictory();
+                }
+                else if(this.Board.GetAllyBoardSide(false).Player.HealthPoints > 0)
+                {
+                    await PartyManager.Instance.ShowDefeat();
+                }
+                else
+                {
+                    await PartyManager.Instance.ShowTie();
+                }
             }
 
         }
@@ -134,13 +163,15 @@ public class BoardController : MonoBehaviour
         await Task.Delay(1000);
         await BoardSideRed.UpdateOverrideElements();
         await BoardSideBlue.UpdateOverrideElements();
+        BoardSideBlue.UpdateHealthAndMana();
+        BoardSideRed.UpdateHealthAndMana();
         await Task.Delay(1000);
         side.StopSpell();
     }
 
     public async Task EvaluateCardColumns()
     {
-        await Task.Delay(2000);
+        await Task.Delay(1000);
         await PartyManager.Instance.ShowElementsTitle();
         Debug.Log("Columns");
         var result = this.Board.EvaluateCardColumns();
@@ -185,6 +216,8 @@ public class BoardController : MonoBehaviour
 
         BoardSideBlue.StartEvaluateSlot(index, blueValue);
         BoardSideRed.StartEvaluateSlot(index, redValue);
+        BoardSideBlue.UpdateHealthAndMana();
+        BoardSideRed.UpdateHealthAndMana();
 
 
         await Task.Delay(2000);

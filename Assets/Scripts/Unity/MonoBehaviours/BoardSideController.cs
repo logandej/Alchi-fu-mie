@@ -20,12 +20,13 @@ public class BoardSideController : MonoBehaviour
     [SerializeField] List<ElementCardScriptable> _elementDeckList;
     [SerializeField] List<SpellCardScriptable> _spellDeckList;
 
-    [SerializeField] List<DroppableSlot3D> _droppableSlotList;
+    public List<DroppableSlot3D> DroppableSlotList;
 
     public Deck Deck;
 
     [SerializeField] DataBar _healtBar;
     [SerializeField] DataBar _manaBar;
+
 
     public bool IsBlue;
     public bool CanInteract { get; set; }
@@ -58,9 +59,18 @@ public class BoardSideController : MonoBehaviour
 
     public void DestroyPlacedCards()
     {
-        foreach(var droppable in _droppableSlotList)
+        foreach(var droppable in DroppableSlotList)
         {
             droppable.DestroyDraggable();
+        }
+    }
+
+    public async Task RevealCards()
+    {
+        foreach (var droppable in DroppableSlotList)
+        {
+            await droppable.RevealCard();
+            await Task.Delay(1000);
         }
     }
 
@@ -104,7 +114,7 @@ public class BoardSideController : MonoBehaviour
         {
             var vector = new Vector3(i * translateX, 0, 0);
             handTransform.GetChild(i).GetComponent<DraggableItem3D>().HandPosition = vector;
-            handTransform.GetChild(i).GetComponentInChildren<SpriteController>().SetLayerIndex(i+1);
+            handTransform.GetChild(i).GetComponentInChildren<SpriteController>().SetLayerIndex(i+1-100);
             handTransform.GetChild(i).transform.localPosition = vector;
         }
     }
@@ -130,15 +140,20 @@ public class BoardSideController : MonoBehaviour
             PartyManager.Instance.ElementCardPrefab.GetComponent<DraggableItem3D>().IsBlue = IsBlue;
             var ele = Instantiate(PartyManager.Instance.ElementCardPrefab, HandTransform);
             ele.ElementCard = c;
+           
           
         }
        );
 
-        //Instanciate Spell Card
-        PartyManager.Instance.SpellCardPrefab.Data = Resources.Load<SpellCardScriptable>("ScriptableObjects/Spells/"+drawResult.DrawnSpell.GetSpellType());
-        PartyManager.Instance.SpellCardPrefab.GetComponent<DraggableItem3D>().IsBlue = IsBlue;
-        var ele = Instantiate(PartyManager.Instance.SpellCardPrefab, HandSpellTransform);
-        ele.SpellCard = drawResult.DrawnSpell;
+        if (drawResult.DrawnSpell != null)
+        {
+            //Instanciate Spell Card
+            PartyManager.Instance.SpellCardPrefab.Data = Resources.Load<SpellCardScriptable>("ScriptableObjects/Spells/" + drawResult.DrawnSpell.GetSpellType());
+            PartyManager.Instance.SpellCardPrefab.GetComponent<DraggableItem3D>().IsBlue = IsBlue;
+            var ele = Instantiate(PartyManager.Instance.SpellCardPrefab, HandSpellTransform);
+            ele.SpellCard = drawResult.DrawnSpell;
+        }
+        
 
         ReplaceHands();
     }
@@ -171,7 +186,7 @@ public class BoardSideController : MonoBehaviour
     {
         for(int i = 0; i < 3; i++)
         {
-            DroppableSlot3DElement elementSlot = (DroppableSlot3DElement)_droppableSlotList[i];
+            DroppableSlot3DElement elementSlot = (DroppableSlot3DElement)DroppableSlotList[i];
             elementSlot.ChangeOverrideCard();
             await Task.Delay(10);
         }
@@ -180,28 +195,28 @@ public class BoardSideController : MonoBehaviour
 
     public void StartEvaluateSlot(int index, int result)
     {
-        DroppableSlot3DElement elementSlot = (DroppableSlot3DElement)_droppableSlotList[index];
+        DroppableSlot3DElement elementSlot = (DroppableSlot3DElement)DroppableSlotList[index];
         elementSlot.StartEvaluateElementCard(result);
     }
 
     public void StopEvaluateSlot(int index)
     {
 
-        DroppableSlot3DElement elementSlot = (DroppableSlot3DElement)_droppableSlotList[index];
+        DroppableSlot3DElement elementSlot = (DroppableSlot3DElement)DroppableSlotList[index];
         elementSlot.StopEvaluateElementCard();
     }
 
     public void StartSpell()
     {
         //3 Should be the index of the spellSlot
-        DroppableSlot3DSpell spellSlot = (DroppableSlot3DSpell)_droppableSlotList[3];
+        DroppableSlot3DSpell spellSlot = (DroppableSlot3DSpell)DroppableSlotList[3];
         spellSlot.StartSpell();
     }
 
     public void StopSpell()
     {
         //3 Should be the index of the spellSlot
-        DroppableSlot3DSpell spellSlot = (DroppableSlot3DSpell)_droppableSlotList[3];
+        DroppableSlot3DSpell spellSlot = (DroppableSlot3DSpell)DroppableSlotList[3];
         spellSlot.StopSpell();
 
     }

@@ -1,5 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
+using System.Threading.Tasks;
+using TMPro;
 using UnityEngine;
 
 [RequireComponent(typeof(SpriteRenderer))]
@@ -7,8 +9,17 @@ public class SpriteController : MonoBehaviour
 {
     [SerializeField] SpriteRenderer _sprite;
     [SerializeField] SpriteRenderer _childrenSprite;
+    private Sprite _defaultSprite;
+    [SerializeField] Sprite _hideSprite;
     [SerializeField] float alphaDuration = 0.5f;
     [SerializeField] float scaleDuration = 0.5f;
+
+    [SerializeField] List<TMP_Text> _textsToHideOnHide;
+
+    private void Awake()
+    {
+        _defaultSprite = _sprite.sprite;
+    }
 
     public void SetTransparent()
     {     
@@ -24,11 +35,11 @@ public class SpriteController : MonoBehaviour
 
     void ChangeSize(float size)
     {
-        TransitionManager.ChangeSize(this.gameObject, size, scaleDuration);
+        TransitionManager.ChangeSize(this.gameObject, Vector3.one*size, scaleDuration);
     }
     public void SizeBig()
     {
-        ChangeSize(0.22f);
+        ChangeSize(0.25f);
     }
 
     public void SizeNormal()
@@ -63,9 +74,25 @@ public class SpriteController : MonoBehaviour
         _childrenSprite.sprite = sprite;
     }
 
+    public void Hide()
+    {
+        _sprite.sprite = _hideSprite;
+        _textsToHideOnHide.ForEach(c => c.gameObject.SetActive(false));
+    }
+    public async Task Reveal()
+    {
+        Vector3 defaultSize = _sprite.transform.localScale;
+        TransitionManager.ChangeSize(this.gameObject, new Vector3(0,defaultSize.y,defaultSize.z), 0.5f);
+        await Task.Delay(500);
+        _textsToHideOnHide.ForEach(c => c.gameObject.SetActive(true));
+        _sprite.sprite = _defaultSprite;
+        TransitionManager.ChangeSize(this.gameObject, defaultSize, 0.5f);
 
 
-   
+    }
 
-   
+
+
+
+
 }

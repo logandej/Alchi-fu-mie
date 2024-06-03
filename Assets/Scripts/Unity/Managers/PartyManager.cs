@@ -17,13 +17,13 @@ public class PartyManager : MonoBehaviour
 
 
     [SerializeField] GameObject _readyBlue;
-    [SerializeField] GameObject _readyRed;
 
 
-    [SerializeField] GameObject _spellsTitleObject;
-    [SerializeField] ParticleSystem _spellsTitleParticle;
-    [SerializeField] GameObject _elementTitleObject;
-    [SerializeField] ParticleSystem _elementsTitleParticle;
+    [SerializeField] GameObject _titleText;
+    [SerializeField] List<ParticleSystem> _particlesTitle;
+
+
+    [SerializeField] GameObject _quitButton;
 
 
 
@@ -45,58 +45,63 @@ public class PartyManager : MonoBehaviour
 
     private void Start()
     {
-        HideReady(true);
-        HideReady(false);
+        HideReady();
+        _quitButton.SetActive(false);
+
     }
 
     /// <summary>
     /// Show Ready Button when Player is ready
     /// </summary>
-    /// <param name="isBlue">Blue player or Red player</param>
-    public void ShowReady(bool isBlue)
+    public void ShowReady()
     {
-        if (isBlue)
-        {
             _readyBlue.SetActive(true);
-        }
-        else
-        {
-            _readyRed.SetActive(true);
-        }
+       
     }
 
 
     /// <summary>
     /// Hide Ready Button when Player is not ready
     /// </summary>
-    /// <param name="isBlue">Blue player or Red player</param>
-    public void HideReady(bool isBlue)
+    public void HideReady()
     {
-        if (isBlue)
-        {
             _readyBlue.SetActive(false);
-        }
-        else
-        {
-            _readyRed.SetActive(false);
-        }
     }
 
 
     public async Task ShowSpellsTitle()
     {
-        await ShowTitle(_spellsTitleObject, _spellsTitleParticle);
+        await ShowTitle("Spells", _particlesTitle[0], true);
     }
 
     public async Task ShowElementsTitle()
     {
-        await ShowTitle(_elementTitleObject, _elementsTitleParticle);
+        await ShowTitle("Elements", _particlesTitle[1], true);
+    }
+
+    public async Task ShowVictory()
+    {
+        await ShowTitle("Victory", _particlesTitle[2], false);
+        AudioManager.Instance.PlayMusic("win");
+        _quitButton.SetActive(true);
+    }
+
+    public async Task ShowDefeat()
+    {
+        await ShowTitle("Defeat", _particlesTitle[3], false);
+        AudioManager.Instance.PlayMusic("loose");
+        _quitButton.SetActive(true);
+    }
+
+    public async Task ShowTie()
+    {
+        await ShowTitle("Tie", _particlesTitle[4], false);
+        AudioManager.Instance.PlayMusic("tie");
+        _quitButton.SetActive(true);
     }
 
     public void ShowLetterBox()
     {
-        print(_upLetterBox.gameObject);
-        print(_upLetterBox.transform.transform.localPosition);
         TransitionManager.ChangeLocalPosition(_upLetterBox.gameObject, new Vector3(0, _upLetterBox.transform.localPosition.y - 25, 0), 0.2f);
         TransitionManager.ChangeLocalPosition(_bottomLetterBox.gameObject, new Vector3(0, _bottomLetterBox.transform.localPosition.y + 25, 0), 0.2f);
     }
@@ -107,16 +112,22 @@ public class PartyManager : MonoBehaviour
         TransitionManager.ChangeLocalPosition(_bottomLetterBox.gameObject, new Vector3(0, _bottomLetterBox.transform.localPosition.y - 25, 0), 0.2f);
     }
 
-    private async Task ShowTitle(GameObject titleObject, ParticleSystem particle)
+    private async Task ShowTitle(string newtext, ParticleSystem particle,bool end)
     {
-        titleObject.SetActive(true);
-
+        _titleText.SetActive(true);
+        particle.gameObject.SetActive(true);
         particle.Play();
-        var title = titleObject.GetComponentInChildren<TMP_Text>().gameObject;
-        TransitionManager.ChangeSize(title, 3.5f, 1f);
+        var title = _titleText.GetComponentInChildren<TMP_Text>();
+        title.text = newtext;
+        TransitionManager.ChangeSize(title.gameObject, Vector3.one*3.5f, 1f);
         await Task.Delay(2000);
-        TransitionManager.ChangeSize(title, 0.01f, 1f);
-        await Task.Delay(1000);
-        titleObject.SetActive(false);
+        if (end)
+        {
+            TransitionManager.ChangeSize(title.gameObject, Vector3.one * 0.01f, 1f);
+            await Task.Delay(1000);
+            _titleText.SetActive(false);
+            particle.gameObject.SetActive(false);
+
+        }
     }
 }

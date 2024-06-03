@@ -1,6 +1,7 @@
 using AFM_DLL.Models.Cards;
 using System.Collections;
 using System.Collections.Generic;
+using System.Threading.Tasks;
 using UnityEngine;
 
 public class DraggableItem3D : MonoBehaviour
@@ -28,11 +29,16 @@ public class DraggableItem3D : MonoBehaviour
         _startYPos = 0; // Better to not hardcode that one but whatever
         HandPosition = transform.localPosition;
         Lock();
+        if (!IsBlue)
+        {
+            spriteController.Hide();
+        }
        
     }
 
     private void OnMouseDown()
     {
+        if (!IsBlue) return;
         if (BoardController.Instance.Board.GetAllyBoardSide(IsBlue).IsSideReady) return;
         if (CurrentSlot != null)
         {
@@ -46,21 +52,41 @@ public class DraggableItem3D : MonoBehaviour
 
     private void OnMouseEnter()
     {
+        if (!IsBlue) return;
+        if (!PartyManager.Instance.CursorOccupied)
+            SelectCard();
+    }
+
+    /// <summary>
+    /// Move the card up from your hand to see the card you are going to grab
+    /// </summary>
+    public void SelectCard()
+    {
         if (BoardController.Instance.Board.GetAllyBoardSide(IsBlue).IsSideReady) return;
 
-        if (CurrentSlot == null && !PartyManager.Instance.CursorOccupied)
+        if (CurrentSlot == null)
         {
             HandPosition.x = transform.localPosition.x;
-            TransitionManager.ChangeLocalPosition(this.gameObject, HandPosition+new Vector3(0,0.1f,0.1f), 0.1f);
+            TransitionManager.ChangeLocalPosition(this.gameObject, HandPosition + new Vector3(0, 0.1f, 0.1f), 0.1f);
             GetComponentInChildren<SpriteController>().AddLayerIndex(10);
         }
     }
 
     private void OnMouseExit()
     {
+        if (!IsBlue) return;
+        if (!PartyManager.Instance.CursorOccupied)
+            DeselectCard();
+    }
+
+    /// <summary>
+    /// Move the card down to your hand
+    /// </summary>
+    public void DeselectCard()
+    {
         if (BoardController.Instance.Board.GetAllyBoardSide(IsBlue).IsSideReady) return;
 
-        if (CurrentSlot == null && !PartyManager.Instance.CursorOccupied)
+        if (CurrentSlot == null)
         {
             HandPosition.x = transform.localPosition.x;
             TransitionManager.ChangeLocalPosition(this.gameObject, HandPosition, 0.1f);
@@ -70,26 +96,42 @@ public class DraggableItem3D : MonoBehaviour
 
     private void OnMouseDrag()
     {
-
-        if (BoardController.Instance.Board.GetAllyBoardSide(IsBlue).IsSideReady) return;
-
+        if (!IsBlue) return;
         PartyManager.Instance.CursorOccupied = true;
+        DragCard(_board.CurrentMousePosition.x, _board.CurrentMousePosition.z);
+    }
 
-        Vector3 newWorldPosition = new Vector3(_board.CurrentMousePosition.x, _startYPos + heightFromBoard, _board.CurrentMousePosition.z);
-
+    /// <summary>
+    /// Card follow a position when dragged
+    /// </summary>
+    /// <param name="xPosition">XWorldPositionToFollow</param>
+    /// <param name="zPosition">ZWorldPositionToFollow</param>
+    public void DragCard(float xPosition, float zPosition)
+    {
+        if (BoardController.Instance.Board.GetAllyBoardSide(IsBlue).IsSideReady) return;
+        Vector3 newWorldPosition = new Vector3(xPosition, _startYPos + heightFromBoard, zPosition);
         var difference = newWorldPosition - transform.position;
 
         var speed = speedDrag * difference;
         Rigidbody.isKinematic = false;
         Rigidbody.velocity = speed;
-     
+
         Rigidbody.rotation = Quaternion.Euler(new Vector3(speed.z * rotation, 0, -speed.x * rotation));
     }
 
 
-
-
     private void OnMouseUp()
+    {
+        if (!IsBlue) return;
+        DropCard();
+        PartyManager.Instance.CursorOccupied = false;
+
+    }
+
+    /// <summary>
+    /// Drop the card dragged to a slot are your hand if no result
+    /// </summary>
+    public void DropCard()
     {
         if (BoardController.Instance.Board.GetAllyBoardSide(IsBlue).IsSideReady) return;
 
@@ -107,8 +149,6 @@ public class DraggableItem3D : MonoBehaviour
             spriteController.SizeNormal();
             Lock();
         }
-        PartyManager.Instance.CursorOccupied = false;
-
     }
 
     // Méthode pour définir le slot actuel
@@ -134,5 +174,14 @@ public class DraggableItem3D : MonoBehaviour
     {
         Rigidbody.constraints = RigidbodyConstraints.None;
         GetComponent<Collider>().isTrigger = false;
+    }
+
+    public void Hide()
+    {
+        spriteController.Hide();
+    }
+    public async Task Reveal()
+    {
+        await spriteController.Reveal();
     }
 }

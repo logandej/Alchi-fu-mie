@@ -45,7 +45,7 @@ public class TransitionManager : MonoBehaviour
         GetHelper().StartTransition(new ColorTransition(target, targetColor, duration));
     }
 
-    public static void ChangeSize(GameObject target, float targetSize, float duration)
+    public static void ChangeSize(GameObject target, Vector3 targetSize, float duration)
     {
         GetHelper().StartTransition(new SizeTransition(target, targetSize, duration));
     }
@@ -116,11 +116,11 @@ public class TransitionManager : MonoBehaviour
         private Vector3 targetScale;
         private Transform targetTransform;
 
-        public SizeTransition(GameObject target, float targetSize, float duration) : base(target, "Size", duration)
+        public SizeTransition(GameObject target, Vector3 targetSize, float duration) : base(target, "Size", duration)
         {
             targetTransform = target.transform;
             startScale = targetTransform.localScale;
-            targetScale = Vector3.one * targetSize;
+            targetScale = targetSize;
         }
 
         protected override void ApplyTransition(float t)

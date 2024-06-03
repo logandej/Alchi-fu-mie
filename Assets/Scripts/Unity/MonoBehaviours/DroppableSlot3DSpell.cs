@@ -6,7 +6,7 @@ public class DroppableSlot3DSpell : DroppableSlot3D
 {
     protected override void CheckSelection(DraggableItem3D draggableItem)
     {
-        if (draggableItem.Type == GameManager.Type.Spell && draggableItem.GetComponent<SpellCardDisplay>().SpellCard.CanBePlayed(BoardController.Instance.Board.GetAllyBoardSide(draggableItem.IsBlue).Player.ManaPoints)) ;
+        if (draggableItem.Type == GameManager.Type.Spell && draggableItem.GetComponent<SpellCardDisplay>().SpellCard.CanBePlayed(BoardController.Instance.Board.GetAllyBoardSide(draggableItem.IsBlue).Player.ManaPoints))
         {
             base.CheckSelection(draggableItem);
         }

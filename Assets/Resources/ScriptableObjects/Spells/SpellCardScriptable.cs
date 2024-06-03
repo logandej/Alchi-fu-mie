@@ -7,7 +7,6 @@ using AFM_DLL.Models.Cards;
 [CreateAssetMenu(fileName ="SpellCard", menuName ="Card/SpellCard")]
 public class SpellCardScriptable : ScriptableObject
 {
-    public string Description;
     public SpellType SpellType;
     public Sprite Sprite;
 }

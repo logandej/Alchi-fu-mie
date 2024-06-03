@@ -22,9 +22,9 @@ public class DroppableSlot3DElement : DroppableSlot3D
         if (!draggable.GetComponent<ElementCardDisplay>().ElementCard.AddToBoard(BoardController.Instance.Board, draggable.IsBlue, BoardPosition))
             Debug.LogError("Ajout au board non réussi");
 
-        if (!BoardController.Instance.Board.GetAllyBoardSide(_isBlue).AllElementsOfSide.Any(c=>c==null))
+        if (!BoardController.Instance.Board.GetAllyBoardSide(_isBlue).AllElementsOfSide.Any(c=>c==null) && _isBlue)
         {
-            BoardController.Instance.ShowReady(_isBlue);
+            BoardController.Instance.ShowReady();
         }
         base.Occup(draggable);
 
@@ -36,7 +36,8 @@ public class DroppableSlot3DElement : DroppableSlot3D
         if (_draggableItem != null)
         {
             _draggableItem.GetComponent<ElementCardDisplay>().ElementCard.RemoveFromBoard(BoardController.Instance.Board, _draggableItem.IsBlue, BoardPosition);
-            BoardController.Instance.HideReady(_isBlue);
+            if(_isBlue)
+                BoardController.Instance.HideReady();
 
         }
         base.Deactive();

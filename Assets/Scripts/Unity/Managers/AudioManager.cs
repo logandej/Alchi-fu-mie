@@ -34,6 +34,12 @@ public class AudioManager : MonoBehaviour
         }
     }
 
+    public void PlayMusic(string audio)
+    {
+        music.clip = Resources.Load<AudioClip>("Audio/Music/"+audio);
+        music.Play();
+    }
+
     public void PlayEffect(AudioClip clip)
     {
         if (clip != null)
@@ -41,6 +47,12 @@ public class AudioManager : MonoBehaviour
             effect.clip = clip;
             effect.Play();
         }
+    }
+
+    public void PlayEffect(string audio)
+    {
+        effect.clip = Resources.Load<AudioClip>("Audio/SFX/" + audio);
+        effect.Play();
     }
 }
 

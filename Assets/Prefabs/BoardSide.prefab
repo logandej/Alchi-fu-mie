@@ -365,7 +365,7 @@ MonoBehaviour:
   - {fileID: 11400000, guid: b73efd7cd62dc5c478ba5e4aeaae581c, type: 2}
   - {fileID: 11400000, guid: 3707300e449b1bc4b9c0446efb0396dc, type: 2}
   - {fileID: 11400000, guid: caf1f1647983a164d871a4bf416103a4, type: 2}
-  _droppableSlotList:
+  DroppableSlotList:
   - {fileID: 8741337709083005456}
   - {fileID: 5531043219471327054}
   - {fileID: 3864009114682781516}

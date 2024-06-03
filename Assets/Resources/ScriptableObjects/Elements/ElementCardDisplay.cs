@@ -15,8 +15,6 @@ public class ElementCardDisplay : MonoBehaviour
 
     private Element? _overrideElement;
 
-    public bool IsBlue { private set; get; }
-
     private void Start()
     {
         if (Data == null)

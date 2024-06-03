@@ -1,3 +1,4 @@
+using System.Threading.Tasks;
 using UnityEngine;
 
 public class DroppableSlot3D : MonoBehaviour
@@ -59,7 +60,10 @@ public class DroppableSlot3D : MonoBehaviour
     protected virtual void CheckSelection(DraggableItem3D draggableItem)
     {
         draggableItem.SetCurrentSlot(this);
-        draggableItem.spriteController.SetTransparent();
+        if (draggableItem.IsBlue)
+        {
+            //draggableItem.spriteController.SetTransparent();
+        }
       
 
         Select();
@@ -135,7 +139,7 @@ public class DroppableSlot3D : MonoBehaviour
         _snapVisualIndicator.Play();
         _visualIndicator.SetActive(false);
 
-        draggable.spriteController.SetLayerIndex(0);
+        draggable.spriteController.SetLayerIndex(-100);
         draggable.spriteController.SetOpaque();
         draggable.transform.SetParent(_parentTransform);
         draggable.Rigidbody.velocity = Vector3.zero;
@@ -162,6 +166,15 @@ public class DroppableSlot3D : MonoBehaviour
         _audioSource.Play();
     }
 
+
+    /// <summary>
+    /// Reveal the true apparence of the card
+    /// </summary>
+    public async Task RevealCard()
+    {
+        if(_draggableItem!=null)
+            await _draggableItem.GetComponent<DraggableItem3D>().Reveal();
+    }
 
 
 
