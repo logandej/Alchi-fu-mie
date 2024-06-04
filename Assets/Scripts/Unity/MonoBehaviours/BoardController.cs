@@ -48,6 +48,11 @@ public class BoardController : MonoBehaviour
 
     }
 
+    public BoardSideController GetBoardSideController(bool isBlue)
+    {
+        return isBlue ? BoardSideBlue : BoardSideRed;
+    }
+
     public void DrawCards()
     {
         var res = Board.DrawCards();
@@ -89,13 +94,25 @@ public class BoardController : MonoBehaviour
 
             await BoardSideRed.RevealCards();
 
+            if(Board.GetAllyBoardSide(true).Player.Deck.Hero.OverrideCard !=null || Board.GetAllyBoardSide(false).Player.Deck.Hero.OverrideCard != null)
+            {
+                await PartyManager.Instance.ShowHeroTitle();
+                await Task.Delay(500);
+
+                BoardSideBlue.ChangeHero();
+                BoardSideRed.ChangeHero();
+
+                await Task.Delay(500);
+
+            }
+
             await EvaluateSpell();
             await EvaluateCardColumns();
 
 
 
-            BoardSideBlue.DestroyPlacedCards();
-            BoardSideRed.DestroyPlacedCards();
+            BoardSideBlue.DiscardPlacedCards();
+            BoardSideRed.DiscardPlacedCards();
 
             //ReDraw
             if (this.Board.GetAllyBoardSide(true).Player.HealthPoints > 0 && this.Board.GetAllyBoardSide(false).Player.HealthPoints > 0) {
@@ -132,8 +149,7 @@ public class BoardController : MonoBehaviour
         var result = this.Board.EvaluateSpells();
         if (result.SpellsInOrder.Count != 0)
         {
-            BoardSideBlue.ChangeHero();
-            BoardSideRed.ChangeHero();
+         
             await PartyManager.Instance.ShowSpellsTitle();
             if (result.SpellsInOrder.Count == 1)
             {
@@ -170,7 +186,7 @@ public class BoardController : MonoBehaviour
 
     public async Task EvaluateCardColumns()
     {
-        await Task.Delay(1000);
+        await Task.Delay(500);
         await PartyManager.Instance.ShowElementsTitle();
         Debug.Log("Columns");
         var result = this.Board.EvaluateCardColumns();
@@ -193,7 +209,7 @@ public class BoardController : MonoBehaviour
             else if(i==2)
                 await CheckColumn(i, result[BoardPosition.RIGHT]);
 
-            await Task.Delay(2000);
+            await Task.Delay(1000);
         }
     }
 
@@ -234,12 +250,12 @@ public class BoardController : MonoBehaviour
                 heroRedValue = 1;
             }
 
-            await Task.Delay(1000);
+            await Task.Delay(500);
 
             BoardSideBlue.StartEvalutateHero(heroBlueValue);
             BoardSideRed.StartEvalutateHero(heroRedValue);
 
-            await Task.Delay(2000);
+            await Task.Delay(4000);
 
             BoardSideBlue.StopEvalutateHero();
             BoardSideRed.StopEvalutateHero();
@@ -250,7 +266,7 @@ public class BoardController : MonoBehaviour
 
         BoardSideBlue.UpdateHealthAndMana();
         BoardSideRed.UpdateHealthAndMana();
-        await Task.Delay(2000);
+        await Task.Delay(1000);
         if(blueValue!=-1)
             BoardSideBlue.StopEvaluateSlot(index);
         if(redValue!=-1)

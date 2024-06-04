@@ -31,9 +31,15 @@ public class AIPlayer : MonoBehaviour
             await PlayCard(spellCards[0].GetComponent<DraggableItem3D>(), 3);
             await Task.Delay(1000);
         }
+        if (sideController.BoardSide.Player.ManaPoints >= 2)
+        {
+            await ChangeHero(elementCards[3].GetComponent<DraggableItem3D>());
+        }
         print("AI IS READY");
         PartyManager.Instance.BoardController.SetPlayerReady(sideController.IsBlue);
     }
+
+
 
     private async Task PlayCard(DraggableItem3D draggable, int index)
     {
@@ -50,5 +56,18 @@ public class AIPlayer : MonoBehaviour
 
     }
 
-   
+    private async Task ChangeHero(DraggableItem3D draggable)
+    {
+        draggable.SelectCard();
+        await Task.Delay(1000);
+        draggable.DragCard(sideController.GetHeroSlotPosition().x, sideController.GetHeroSlotPosition().z);
+        TransitionManager.ChangePosition(draggable.gameObject, sideController.GetHeroSlotPosition() + Vector3.up / 2, 1f);
+        await Task.Delay(2000);
+        draggable.DropCard();
+        await Task.Delay(1000);
+
+    }
+
+
+
 }

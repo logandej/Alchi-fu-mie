@@ -53,7 +53,7 @@ public class BoardSideController : MonoBehaviour
             Deck.Spells.Add(SpellCard.FromType(spell.SpellType));
         }
 
-        _heroSlot.SwitchSprite(Deck.Hero.ActiveElement);
+        _heroSlot.SetStartHero(Deck.Hero.ActiveElement);
     }
 
     private void Start()
@@ -64,11 +64,11 @@ public class BoardSideController : MonoBehaviour
         _manaBar.SetCounterTo(1);
     }
 
-    public void DestroyPlacedCards()
+    public void DiscardPlacedCards()
     {
         foreach(var droppable in DroppableSlotList)
         {
-            droppable.DestroyDraggable();
+            droppable.Discard();
         }
     }
 
@@ -79,6 +79,7 @@ public class BoardSideController : MonoBehaviour
             await droppable.RevealCard();
             await Task.Delay(1000);
         }
+        await _heroSlot.RevealCard();
     }
 
     public void PlaceToHand(DraggableItem3D draggableItem3D)
@@ -213,7 +214,7 @@ public class BoardSideController : MonoBehaviour
 
     public void StartEvalutateHero(int result)
     {
-        _heroSlot.StartEvaluateHero(result);
+       _heroSlot.StartEvaluateHero(result);
     }
     public void StopEvalutateHero()
     {
@@ -240,6 +241,11 @@ public class BoardSideController : MonoBehaviour
         DroppableSlot3DSpell spellSlot = (DroppableSlot3DSpell)DroppableSlotList[3];
         spellSlot.StopSpell();
 
+    }
+
+    public Vector3 GetHeroSlotPosition()
+    {
+        return _heroSlot.transform.position;
     }
 
 }

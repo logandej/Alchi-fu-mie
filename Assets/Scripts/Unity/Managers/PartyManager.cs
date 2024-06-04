@@ -1,3 +1,4 @@
+using AFM_DLL;
 using System.Collections;
 using System.Collections.Generic;
 using System.Threading.Tasks;
@@ -18,17 +19,21 @@ public class PartyManager : MonoBehaviour
 
     [SerializeField] GameObject _readyBlue;
 
-
     [SerializeField] GameObject _titleText;
     [SerializeField] List<ParticleSystem> _particlesTitle;
 
 
     [SerializeField] GameObject _quitButton;
 
-
-
     [SerializeField] Image _upLetterBox;
     [SerializeField] Image _bottomLetterBox;
+
+
+    [SerializeField] List<HeroScriptable> heroScriptables;
+
+    public Transform defausse;
+
+    public Dictionary<Element , HeroScriptable> HerosByElement;
 
     public bool CursorOccupied;
     public float translateSpellX;
@@ -40,6 +45,11 @@ public class PartyManager : MonoBehaviour
             Instance = this;
         }
         else { Destroy(this.gameObject); }
+
+        HerosByElement = new();
+        HerosByElement.Add(Element.ROCK, heroScriptables[0]);
+        HerosByElement.Add(Element.PAPER, heroScriptables[1]);
+        HerosByElement.Add(Element.SCISSORS, heroScriptables[2]);
     }
 
 
@@ -47,7 +57,7 @@ public class PartyManager : MonoBehaviour
     {
         HideReady();
         _quitButton.SetActive(false);
-
+     
     }
 
     /// <summary>
@@ -68,6 +78,10 @@ public class PartyManager : MonoBehaviour
             _readyBlue.SetActive(false);
     }
 
+    public async Task ShowHeroTitle()
+    {
+        await ShowTitle("Hero", _particlesTitle[1], true);
+    }
 
     public async Task ShowSpellsTitle()
     {

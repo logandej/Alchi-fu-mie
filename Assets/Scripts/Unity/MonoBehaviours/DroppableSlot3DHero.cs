@@ -2,14 +2,25 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using AFM_DLL;
+using System.Threading.Tasks;
 
 public class DroppableSlot3DHero : DroppableSlot3D
 {
     [SerializeField] SpriteRenderer heroSprite;
 
-    [SerializeField] List<Sprite> heroSprites;
-
     [SerializeField] ParticleSystem looseFight;
+
+    [SerializeField] GameObject cardSlot;
+
+    [SerializeField] HeroScriptable heroScriptable;
+    protected override void Start()
+    {
+        _audioSource = GetComponent<AudioSource>();
+        _visualIndicator.SetActive(false);
+        //Définition de la hauteur de base de la pierre
+        _defaultHeight = cardSlot.transform.localPosition.y;
+    }
+
     protected override void CheckSelection(DraggableItem3D draggableItem)
     {
         if (draggableItem.Type == GameManager.Type.Element && BoardController.Instance.Board.GetAllyBoardSide(_isBlue).Player.ManaPoints>=2)
@@ -27,20 +38,23 @@ public class DroppableSlot3DHero : DroppableSlot3D
 
     }
 
-    public void SwitchSprite(Element element)
+    /// <summary>
+    /// To call only at the beginning of the 
+    /// </summary>
+    /// <param name="element"></param>
+    public void SetStartHero(Element element)
     {
-        switch (element)
-        {
-            case Element.ROCK:
-                heroSprite.sprite = heroSprites[0];
-                break;
-            case Element.PAPER:
-                heroSprite.sprite = heroSprites[1];
-                break;
-            case Element.SCISSORS:
-                heroSprite.sprite = heroSprites[2];
-                break;
-        }
+        print(PartyManager.Instance.HerosByElement[element].elementType);
+        heroScriptable = PartyManager.Instance.HerosByElement[element];
+        heroSprite.sprite = heroScriptable.sprite;
+    }
+
+    private void SwitchHero(Element element)
+    {
+        heroScriptable = PartyManager.Instance.HerosByElement[element];
+        heroSprite.sprite = heroScriptable.sprite;
+        AudioManager.Instance.PlayEffect(heroScriptable.onAppearingClip);
+        Instantiate(heroScriptable.onAppearingParticle,this.transform.position,Quaternion.Euler(0,0,0));
     }
 
     public override void Deactive()
@@ -58,7 +72,9 @@ public class DroppableSlot3DHero : DroppableSlot3D
     {
         if (_draggableItem != null)
         {
-            SwitchSprite(_draggableItem.GetComponent<ElementCardDisplay>().ElementCard.ActiveElement);
+            SwitchHero(_draggableItem.GetComponent<ElementCardDisplay>().ElementCard.ActiveElement);
+            
+
             _draggableItem.GetComponent<ElementCardDisplay>().Delete();
         }
         DestroyDraggable();
@@ -66,26 +82,68 @@ public class DroppableSlot3DHero : DroppableSlot3D
 
     public void StartEvaluateHero(int result)
     {
-        TransitionManager.ChangeLocalPosition(this.gameObject, this.gameObject.transform.localPosition + Vector3.up/4, 0.2f);
-        if (result == -1)
+        StartCoroutine(Attack(result));
+    }
+
+    public void DestroyParticle(GameObject particle)
+    {
+        Destroy(particle);
+    }
+
+    IEnumerator Attack(int result)
+    {
+        //TransitionManager.ChangeLocalPosition(cardSlot, cardSlot.transform.localPosition + Vector3.up/4, 0.2f);
+        var attackParticle = Instantiate(heroScriptable.attackParticle, transform.position, Quaternion.Euler(0,0,0));
+        yield return new WaitForSeconds(1);
+        TransitionManager.ChangePosition(attackParticle.gameObject, BoardController.Instance.GetBoardSideController(!_isBlue).GetHeroSlotPosition(), 2);
+        if (result == 1)
         {
+            yield return new WaitForSeconds(3);
+            DestroyParticle(attackParticle.gameObject);
+        }
+        else
+        {
+            float time = result == 0 ? 2 : 1;
+            yield return new WaitForSeconds(time);
+            DestroyParticle(attackParticle.gameObject);
+            if(result==-1)
+                yield return new WaitForSeconds(1f);
             StartCoroutine(LoseColumn());
+
         }
     }
+
+    
 
     IEnumerator LoseColumn()
     {
         looseFight.gameObject.SetActive(true);
         looseFight.Play();
-        yield return new WaitForSeconds(1f);
+        yield return new WaitForSeconds(3f);
         looseFight.gameObject.SetActive(false);
-
-
-
     }
 
     public void StopEvaluateHero()
     {
-        TransitionManager.ChangeLocalPosition(this.gameObject, this.gameObject.transform.localPosition - Vector3.up/4, 0.2f);
+        //TransitionManager.ChangeLocalPosition(cardSlot, cardSlot.transform.localPosition - Vector3.up/4, 0.2f);
+    }
+
+    /// <summary>
+    ///Monte la pierre 
+    /// </summary>
+    protected override void MoveUp()
+    {
+        TransitionManager.ChangeLocalPosition(cardSlot.gameObject, new Vector3(cardSlot.transform.localPosition.x, _targetHeight, cardSlot.transform.localPosition.z), 0.7f);
+        _audioSource.clip = _moveUpClip;
+        _audioSource.Play();
+    }
+    /// <summary>
+    /// Descend la pierre
+    /// </summary>
+    protected override void MoveDown()
+    {
+        TransitionManager.ChangeLocalPosition(cardSlot.gameObject, new Vector3(cardSlot.transform.localPosition.x, _defaultHeight, cardSlot.transform.localPosition.z), 0.7f);
+        _audioSource.clip = _moveDownClip;
+        _audioSource.Play();
     }
 }

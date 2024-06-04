@@ -1,3 +1,4 @@
+using System.Collections;
 using System.Threading.Tasks;
 using UnityEngine;
 
@@ -16,18 +17,18 @@ public class DroppableSlot3D : MonoBehaviour
     public State CurrentState;
 
     [Header("Effects")]
-    [SerializeField] GameObject _visualIndicator;
+    [SerializeField] protected GameObject _visualIndicator;
     [SerializeField] ParticleSystem _snapVisualIndicator;
 
     [Header("Audio")]
-    private AudioSource _audioSource;
+    protected AudioSource _audioSource;
     [SerializeField] AudioClip _onDropClip;
-    [SerializeField] AudioClip _moveUpClip;
-    [SerializeField] AudioClip _moveDownClip;
+    [SerializeField] protected AudioClip _moveUpClip;
+    [SerializeField] protected AudioClip _moveDownClip;
 
     [Header("Animation")]
-    [SerializeField] float _targetHeight = 1;
-    private float _defaultHeight;
+    [SerializeField] protected float _targetHeight = 1;
+    protected float _defaultHeight;
 
     
 
@@ -37,7 +38,7 @@ public class DroppableSlot3D : MonoBehaviour
 
 
 
-    protected void Start()
+    protected virtual void Start()
     {
         _audioSource = GetComponent<AudioSource>();
         _visualIndicator.SetActive(false);
@@ -107,12 +108,30 @@ public class DroppableSlot3D : MonoBehaviour
         if (this._draggableItem != null)
         {
             Destroy(this._draggableItem.gameObject);
+
             //this._draggableItem.transform.SetParent(null);
             //this._draggableItem.gameObject.transform.position = Vector3.one * 100;
         }
         this._draggableItem = null;
         CurrentState = State.Deactivated;
         MoveDown();
+    }
+
+    public void Discard()
+    {
+        if(_draggableItem!=null)
+            StartCoroutine(EDiscard());
+    }
+
+    /// <summary>
+    /// Send the current card to discard
+    /// </summary>
+    /// <returns></returns>
+    IEnumerator EDiscard()
+    {
+        TransitionManager.ChangePosition(_draggableItem.gameObject, PartyManager.Instance.defausse.position, 1);
+        yield return new WaitForSeconds(1);
+        DestroyDraggable();
     }
 
 
@@ -150,7 +169,7 @@ public class DroppableSlot3D : MonoBehaviour
     /// <summary>
     ///Monte la pierre 
     /// </summary>
-    private void MoveUp()
+    protected virtual void MoveUp()
     {
         TransitionManager.ChangeLocalPosition(this.gameObject, new Vector3(transform.localPosition.x, _targetHeight, transform.localPosition.z), 0.7f);
         _audioSource.clip = _moveUpClip;
@@ -159,7 +178,7 @@ public class DroppableSlot3D : MonoBehaviour
     /// <summary>
     /// Descend la pierre
     /// </summary>
-    private void MoveDown()
+    protected virtual void MoveDown()
     {
         TransitionManager.ChangeLocalPosition(this.gameObject, new Vector3(transform.localPosition.x, _defaultHeight, transform.localPosition.z), 0.7f);
         _audioSource.clip = _moveDownClip;
