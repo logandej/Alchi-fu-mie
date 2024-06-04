@@ -132,6 +132,21 @@
                 La méthode a été appelée alors que l'état du plateau ne le permet pas
             </exception>
         </member>
+        <member name="M:AFM_DLL.Models.BoardData.Board.ReplacePlayerHeroWithCard(System.Boolean,AFM_DLL.Models.Cards.ElementCard)">
+            <summary>
+                Remplace le type actuel du héros avec une carte de la main du joueur.
+            </summary>
+            <param name="isBlueSide">Détermine quel joueur on cible</param>
+            <param name="replacement">La carte utilisée pour remplacer le type du héros</param>
+            <returns>Si l'opération a eu lieu avec succès</returns>
+        </member>
+        <member name="M:AFM_DLL.Models.BoardData.Board.CancelReplacePlayerHero(System.Boolean)">
+            <summary>
+                Annule le remplacement du type du héros Si effectué pendant ce tour de jeu (impossible sinon).
+            </summary>
+            <param name="isBlueSide">Détermine quel joueur on cible</param>
+            <returns>Si l'opération a eu lieu avec succès</returns>
+        </member>
         <member name="T:AFM_DLL.Models.BoardData.BoardModifiers">
             <summary>
                 Correspond aux modificateurs qui peuvent être appliqués au plateau
@@ -855,6 +870,11 @@
         <member name="P:AFM_DLL.Models.PlayerInfo.Hero.OverrideCard">
             <summary>
                 Surcharge d'élément du héros (potentiellement dû à un remplacement)
+            </summary>
+        </member>
+        <member name="P:AFM_DLL.Models.PlayerInfo.Hero.CanRevertOverride">
+            <summary>
+                Indique si le remplacement de type peut être annulé
             </summary>
         </member>
         <member name="T:AFM_DLL.Models.PlayerInfo.PlayerGame">

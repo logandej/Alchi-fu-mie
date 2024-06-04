@@ -39,7 +39,7 @@ public class SpriteController : MonoBehaviour
     }
     public void SizeBig()
     {
-        ChangeSize(0.25f);
+        ChangeSize(0.22f);
     }
 
     public void SizeNormal()

@@ -44,9 +44,6 @@ public class BoardController : MonoBehaviour
         this.BoardSideBlue.BoardSide = this.Board.GetAllyBoardSide(true);
         this.BoardSideRed.BoardSide = this.Board.GetAllyBoardSide(false);
 
-        Board.GetAllyBoardSide(true).Player.RemoveHealth(8);
-        Board.GetAllyBoardSide(false).Player.RemoveHealth(8);
-
         DrawCards();
 
     }
@@ -135,6 +132,8 @@ public class BoardController : MonoBehaviour
         var result = this.Board.EvaluateSpells();
         if (result.SpellsInOrder.Count != 0)
         {
+            BoardSideBlue.ChangeHero();
+            BoardSideRed.ChangeHero();
             await PartyManager.Instance.ShowSpellsTitle();
             if (result.SpellsInOrder.Count == 1)
             {
@@ -186,40 +185,71 @@ public class BoardController : MonoBehaviour
     {
         for(int i=0; i < 3; i++)
         {
+            
             if(i==0)
-                await CheckColumn(i,result[BoardPosition.LEFT].CardFightResult);
+                await CheckColumn(i,result[BoardPosition.LEFT]);
             else if(i==1)
-                await CheckColumn(i, result[BoardPosition.MIDDLE].CardFightResult);
+                await CheckColumn(i, result[BoardPosition.MIDDLE]);
             else if(i==2)
-                await CheckColumn(i, result[BoardPosition.RIGHT].CardFightResult);
+                await CheckColumn(i, result[BoardPosition.RIGHT]);
 
             await Task.Delay(2000);
         }
     }
 
-    public async Task CheckColumn(int index, FightResult fightResult)
+    public async Task CheckColumn(int index, ColumnFightResult fightResult)
     {
         //Initalise à Draw
         int blueValue = 0;
         int redValue = 0;
 
-        if (fightResult == FightResult.BLUE_WIN)
+        if (fightResult.CardFightResult == FightResult.BLUE_WIN)
         {
             blueValue = 1;
             redValue = -1;
         }
-        else if (fightResult == FightResult.RED_WIN)
+        else if (fightResult.CardFightResult == FightResult.RED_WIN)
         {
             blueValue = -1;
             redValue = 1;
         }
+        
 
         BoardSideBlue.StartEvaluateSlot(index, blueValue);
         BoardSideRed.StartEvaluateSlot(index, redValue);
+
+        if (blueValue == 0)
+        {
+            int heroBlueValue = 0;
+            int heroRedValue = 0;
+
+            if (fightResult.HeroFightResult == FightResult.BLUE_WIN)
+            {
+                heroBlueValue = 1;
+                heroRedValue = -1;
+            }
+            else if(fightResult.HeroFightResult == FightResult.RED_WIN)
+            {
+                heroBlueValue = -1;
+                heroRedValue = 1;
+            }
+
+            await Task.Delay(1000);
+
+            BoardSideBlue.StartEvalutateHero(heroBlueValue);
+            BoardSideRed.StartEvalutateHero(heroRedValue);
+
+            await Task.Delay(2000);
+
+            BoardSideBlue.StopEvalutateHero();
+            BoardSideRed.StopEvalutateHero();
+        }
+ 
+
+
+
         BoardSideBlue.UpdateHealthAndMana();
         BoardSideRed.UpdateHealthAndMana();
-
-
         await Task.Delay(2000);
         if(blueValue!=-1)
             BoardSideBlue.StopEvaluateSlot(index);

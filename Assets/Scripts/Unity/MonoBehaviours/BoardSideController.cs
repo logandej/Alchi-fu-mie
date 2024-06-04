@@ -22,7 +22,12 @@ public class BoardSideController : MonoBehaviour
 
     public List<DroppableSlot3D> DroppableSlotList;
 
+    [SerializeField] DroppableSlot3DHero _heroSlot;
+
+
+
     public Deck Deck;
+
 
     [SerializeField] DataBar _healtBar;
     [SerializeField] DataBar _manaBar;
@@ -35,7 +40,7 @@ public class BoardSideController : MonoBehaviour
     {
         Deck = new Deck()
         {
-            Hero = new Hero("RockMan", Element.ROCK)
+            Hero = new Hero("LeafMan", Element.PAPER)
         };
 
         foreach (ElementCardScriptable element in _elementDeckList)
@@ -47,6 +52,8 @@ public class BoardSideController : MonoBehaviour
         {
             Deck.Spells.Add(SpellCard.FromType(spell.SpellType));
         }
+
+        _heroSlot.SwitchSprite(Deck.Hero.ActiveElement);
     }
 
     private void Start()
@@ -114,7 +121,7 @@ public class BoardSideController : MonoBehaviour
         {
             var vector = new Vector3(i * translateX, 0, 0);
             handTransform.GetChild(i).GetComponent<DraggableItem3D>().HandPosition = vector;
-            handTransform.GetChild(i).GetComponentInChildren<SpriteController>().SetLayerIndex(i+1-100);
+            handTransform.GetChild(i).GetComponentInChildren<SpriteController>().SetLayerIndex(i*2-100);
             handTransform.GetChild(i).transform.localPosition = vector;
         }
     }
@@ -197,6 +204,20 @@ public class BoardSideController : MonoBehaviour
     {
         DroppableSlot3DElement elementSlot = (DroppableSlot3DElement)DroppableSlotList[index];
         elementSlot.StartEvaluateElementCard(result);
+    }
+
+    public void ChangeHero()
+    {
+        _heroSlot.ChangeHero();
+    }
+
+    public void StartEvalutateHero(int result)
+    {
+        _heroSlot.StartEvaluateHero(result);
+    }
+    public void StopEvalutateHero()
+    {
+        _heroSlot.StopEvaluateHero();
     }
 
     public void StopEvaluateSlot(int index)
