@@ -872,6 +872,11 @@
                 Surcharge d'élément du héros (potentiellement dû à un remplacement)
             </summary>
         </member>
+        <member name="E:AFM_DLL.Models.PlayerInfo.Hero.OverrideCardChanged">
+            <summary>
+                Évènement indiquant quand la carte override a changé
+            </summary>
+        </member>
         <member name="P:AFM_DLL.Models.PlayerInfo.Hero.CanRevertOverride">
             <summary>
                 Indique si le remplacement de type peut être annulé
@@ -975,6 +980,16 @@
                 Le résultat du combat de Héros (null si pas d'égalité aux cartes)
             </summary>
         </member>
+        <member name="P:AFM_DLL.Models.UnityResults.ColumnFightResult.BlueDamage">
+            <summary>
+                Dégâts subis par le joueur bleu
+            </summary>
+        </member>
+        <member name="P:AFM_DLL.Models.UnityResults.ColumnFightResult.RedDamage">
+            <summary>
+                Dégâts subis par le joueur rouge
+            </summary>
+        </member>
         <member name="T:AFM_DLL.Models.UnityResults.DrawingPhaseResult">
             <summary>
                 Représente le résultat d'une phase de tirage du plateau
@@ -1007,20 +1022,40 @@
         </member>
         <member name="T:AFM_DLL.Models.UnityResults.SpellCardEvaluationResult">
             <summary>
+                Résultat d'une séquence d'évaluation de sortilège
+            </summary>
+        </member>
+        <member name="P:AFM_DLL.Models.UnityResults.SpellCardEvaluationResult.SpellCard">
+            <summary>
+                La carte sort qui a été jouée
+            </summary>
+        </member>
+        <member name="P:AFM_DLL.Models.UnityResults.SpellCardEvaluationResult.IsBlueSide">
+            <summary>
+                Si la carte sort appartient au joueur bleu
+            </summary>
+        </member>
+        <member name="P:AFM_DLL.Models.UnityResults.SpellCardEvaluationResult.HasMoreSpells">
+            <summary>
+                Si un autre tour de carte sort doit être joué après celui ci
+            </summary>
+        </member>
+        <member name="T:AFM_DLL.Models.UnityResults.SpellCardEvaluationResultInternal">
+            <summary>
                 Contient les informations liées à la phase de jeu des cartes sortilèges
             </summary>
         </member>
-        <member name="P:AFM_DLL.Models.UnityResults.SpellCardEvaluationResult.SpellsInOrder">
+        <member name="P:AFM_DLL.Models.UnityResults.SpellCardEvaluationResultInternal.SpellsInOrder">
             <summary>
                 Contient les cartes sortilèges exécutées dans l'ordre
             </summary>
         </member>
-        <member name="P:AFM_DLL.Models.UnityResults.SpellCardEvaluationResult.HeroFightResult">
+        <member name="P:AFM_DLL.Models.UnityResults.SpellCardEvaluationResultInternal.HeroFightResult">
             <summary>
                 Résultat du combat des héros pour la priorité des cartes (si besoin)
             </summary>
         </member>
-        <member name="P:AFM_DLL.Models.UnityResults.SpellCardEvaluationResult.BlueSideStartedOnDraw">
+        <member name="P:AFM_DLL.Models.UnityResults.SpellCardEvaluationResultInternal.BlueSideStartedOnDraw">
             <summary>
                 Indique si le jet de pièce a été favorable à l'équipe bleue en cas d'égalité
             </summary>

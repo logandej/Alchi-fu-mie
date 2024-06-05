@@ -45,10 +45,6 @@ public class DroppableSlot3DElement : DroppableSlot3D
     }
 
 
-    public void ChangeOverrideCard()
-    {
-        _draggableItem.GetComponent<ElementCardDisplay>().ChangeVisuel();
-    }
 
     /// <summary>
     /// Evaluate the card, boolean winner ?

@@ -148,40 +148,33 @@ public class BoardController : MonoBehaviour
 
     public async Task EvaluateSpell()
     {
-        await Task.Delay(1000);
         var result = this.Board.EvaluateSpells();
-        if (result.SpellsInOrder.Count != 0)
+        if (result.SpellCard != null)
         {
-         
-            await PartyManager.Instance.ShowSpellsTitle();
-            if (result.SpellsInOrder.Count == 1)
-            {
-                await ExecuteSpell(result.SpellsInOrder[0].isBlueSide ? BoardSideBlue : BoardSideRed);
-                
-            }
-            else if (result.SpellsInOrder[0].isBlueSide)
+            await Task.Delay(1000);
+            if (result.IsBlueSide)
             {
                 await ExecuteSpell(BoardSideBlue);
-                await Task.Delay(1000);
-                await ExecuteSpell(BoardSideRed);
             }
             else
             {
                 await ExecuteSpell(BoardSideRed);
-                await Task.Delay(1000);
-                await ExecuteSpell(BoardSideBlue);
+            }
+
+            if (result.HasMoreSpells)
+            {
+                await EvaluateSpell();
             }
         }
-
     }
 
     public async Task ExecuteSpell(BoardSideController side)
     {
         side.StartSpell();
         await Task.Delay(1000);
-        await BoardSideRed.UpdateOverrideElements();
-        await BoardSideBlue.UpdateOverrideElements();
+     
         BoardSideRed.UpdateMana();
+        BoardSideBlue.UpdateMana();
         await Task.Delay(1000);
         side.StopSpell();
     }
@@ -264,19 +257,23 @@ public class BoardController : MonoBehaviour
             BoardSideBlue.StartEvalutateHero(heroBlueValue);
             BoardSideRed.StartEvalutateHero(heroRedValue);
 
-            await Task.Delay(4000);
+            await Task.Delay(3000);
 
             BoardSideBlue.StopEvalutateHero();
             BoardSideRed.StopEvalutateHero();
         }
- 
 
 
 
-        BoardSideBlue.UpdateHealthAndMana();
-        BoardSideRed.UpdateHealthAndMana();
+
+       
+
         await Task.Delay(1000);
-        if(blueValue!=-1)
+
+        BoardSideBlue.RemoveHealth(fightResult.BlueDamage);
+        BoardSideRed.RemoveHealth(fightResult.RedDamage);
+
+        if (blueValue!=-1)
             BoardSideBlue.StopEvaluateSlot(index);
         if(redValue!=-1)
             BoardSideRed.StopEvaluateSlot(index);

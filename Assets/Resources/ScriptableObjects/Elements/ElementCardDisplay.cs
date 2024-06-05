@@ -28,12 +28,20 @@ public class ElementCardDisplay : MonoBehaviour
     public void SetOverrideSpell(Element? element)
     {
         _overrideElement = element;
+        ChangeVisuel();
     }
 
-    public void ChangeVisuel()
+    private void OnDestroy()
+    {
+        ElementCard.CardOverrideChanged -= SetOverrideSpell;
+    }
+
+
+    IEnumerator ChangeVisuel()
     {
         if (_overrideElement != null)
         {
+            yield return new WaitForSeconds(1);
             visualEffects.Play((int)_overrideElement);
             print("ChangeVisuel !!!");
             string resourcePath = $"ScriptableObjects/Elements/{_overrideElement}";
@@ -43,6 +51,7 @@ public class ElementCardDisplay : MonoBehaviour
         }
         else
         {
+            yield return null;
             print("Nothing change"+_overrideElement);
             _spriteController.SetChildSprite(Data.Sprite);
         }

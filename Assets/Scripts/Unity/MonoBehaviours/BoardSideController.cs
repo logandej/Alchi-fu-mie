@@ -112,6 +112,26 @@ public class BoardSideController : MonoBehaviour
         _healtBar.SetCounterTo(BoardController.Instance.Board.GetAllyBoardSide(IsBlue).Player.HealthPoints);
     }
 
+    public void RemoveMana(uint mana)
+    {
+        _manaBar.RemoveCounter(mana);
+    }
+
+    public void RemoveHealth(uint health)
+    {
+        _healtBar.RemoveCounter(health);
+    }
+
+    public void AddHealth(uint health)
+    {
+        _healtBar.AddCounter(health);
+    }
+
+    public void AddMana(uint mana)
+    {
+        _manaBar.AddCounter(mana);
+    }
+
     public void UpdateHealthAndMana()
     {
         UpdateHealth();
@@ -175,8 +195,7 @@ public class BoardSideController : MonoBehaviour
             var ele = Instantiate(PartyManager.Instance.SpellCardPrefab, HandSpellTransform);
             ele.SpellCard = drawResult.DrawnSpell;
         }
-        
-
+       
         ReplaceHands();
     }
 
@@ -204,15 +223,7 @@ public class BoardSideController : MonoBehaviour
         ReplaceHands();
     }
 
-    public async Task UpdateOverrideElements()
-    {
-        for(int i = 0; i < 3; i++)
-        {
-            DroppableSlot3DElement elementSlot = (DroppableSlot3DElement)DroppableSlotList[i];
-            elementSlot.ChangeOverrideCard();
-            await Task.Delay(10);
-        }
-    }
+
 
 
     public void StartEvaluateSlot(int index, int result)

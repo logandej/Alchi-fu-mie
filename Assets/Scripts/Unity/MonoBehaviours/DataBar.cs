@@ -16,6 +16,7 @@ public class DataBar : MonoBehaviour
     /// <param name="count">New Count</param>
     public void SetCounterTo(int count)
     {
+        count = count <= 0 ? 0 : count;
         if (count <= _maxCount && count>=0)
         {
             _currentCount = count;
@@ -30,7 +31,9 @@ public class DataBar : MonoBehaviour
 
     public void RemoveCounter(uint count)
     {
-        SetCounterTo(_currentCount - (int)count);
+        int diff = _currentCount - (int)count;
+        int decrease = diff <= 0 ? 0 : diff;
+        SetCounterTo(decrease);
     }
 
     public void AddCounter(uint count)
