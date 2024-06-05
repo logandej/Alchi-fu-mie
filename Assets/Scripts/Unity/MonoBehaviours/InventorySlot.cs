@@ -20,27 +20,58 @@ public class InventorySlot : MonoBehaviour, IDropHandler
     private bool replaceWithPreviousPlace = true;
     // Permet de savoir si l'élément actuel doit être remplacé à son emplacement précédent ou échangé avec l'élément déplacé
 
+    private bool _removeNextFrame;
+    private bool _replaceNextFrame;
+    private bool _initItem;
+
     private DraggableItem _currItem;
     public DraggableItem CurrentItem
     {
         get => _currItem;
         set
         {
+
+            if (_initItem)
+            {
+                _currItem = value;
+                return;
+            }
+
             if (_currItem != null)
             {
-                if (_currItem.TryGetComponent<ElementCardContainer>(out var container))
-                    container.RemoveFromDeck();
+                if (_currItem.TryGetComponent<DeckItemContainer>(out var container))
+                    _replaceNextFrame = !container.RemoveFromDeck();
             }
             if (value != null)
             {
-                if (value.TryGetComponent<ElementCardContainer>(out var container))
-                    container.AddToDeck();
+                if (value.TryGetComponent<DeckItemContainer>(out var container))
+                    _removeNextFrame = !container.AddToDeck();
             }
-            _currItem = value;
+            if (!_replaceNextFrame && !_removeNextFrame)
+                _currItem = value;
         }
     }
 
-    public void InitCurrentItem(DraggableItem item) => _currItem = item;
+    private void Update()
+    {
+        if (_removeNextFrame)
+        {
+            Destroy(CurrentItem);
+            _removeNextFrame = false;
+        }
+        if (_replaceNextFrame)
+        {
+            CurrentItem.PlaceToSlot(transform);
+            _replaceNextFrame = false;
+        }
+    }
+
+    public void InitCurrentItem(DraggableItem item)
+    {
+        _initItem = true;
+        item.PlaceToSlot(transform);
+        _initItem = false;
+    }
 
     // Référence à l'élément actuellement placé dans ce slot
 
