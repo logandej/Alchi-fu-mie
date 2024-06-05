@@ -99,8 +99,8 @@ public class BoardController : MonoBehaviour
                 await PartyManager.Instance.ShowHeroTitle();
                 await Task.Delay(500);
 
-                BoardSideBlue.ChangeHero();
                 BoardSideRed.ChangeHero();
+                BoardSideBlue.ChangeHero();
 
                 await Task.Delay(500);
 
@@ -114,6 +114,8 @@ public class BoardController : MonoBehaviour
             BoardSideBlue.DiscardPlacedCards();
             BoardSideRed.DiscardPlacedCards();
 
+            //this.Board.GetAllyBoardSide(true).Player.PlayerDied += CheckDeath;
+            //this.Board.GetAllyBoardSide(false).Player.PlayerDied += CheckDeath;
             //ReDraw
             if (this.Board.GetAllyBoardSide(true).Player.HealthPoints > 0 && this.Board.GetAllyBoardSide(false).Player.HealthPoints > 0) {
                 this.Board.ResetBoard();
@@ -142,6 +144,7 @@ public class BoardController : MonoBehaviour
 
         }
     }
+
 
     public async Task EvaluateSpell()
     {
@@ -178,8 +181,7 @@ public class BoardController : MonoBehaviour
         await Task.Delay(1000);
         await BoardSideRed.UpdateOverrideElements();
         await BoardSideBlue.UpdateOverrideElements();
-        BoardSideBlue.UpdateHealthAndMana();
-        BoardSideRed.UpdateHealthAndMana();
+        BoardSideRed.UpdateMana();
         await Task.Delay(1000);
         side.StopSpell();
     }
@@ -243,15 +245,22 @@ public class BoardController : MonoBehaviour
             {
                 heroBlueValue = 1;
                 heroRedValue = -1;
+                AudioManager.Instance.PlayVoice(BoardSideBlue.GetHeroScriptable().attackClips[0]);
             }
             else if(fightResult.HeroFightResult == FightResult.RED_WIN)
             {
                 heroBlueValue = -1;
                 heroRedValue = 1;
+                AudioManager.Instance.PlayVoice(BoardSideRed.GetHeroScriptable().attackClips[0]);
+            }
+            else
+            {
+                AudioManager.Instance.PlayVoice(BoardSideRed.GetHeroScriptable().attackClips[0]);
             }
 
             await Task.Delay(500);
 
+            AudioManager.Instance.PlayEffect("AttackEffect");
             BoardSideBlue.StartEvalutateHero(heroBlueValue);
             BoardSideRed.StartEvalutateHero(heroRedValue);
 

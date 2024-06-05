@@ -49,7 +49,7 @@ public class SpriteController : MonoBehaviour
 
     public void SizeSmall()
     {
-        ChangeSize(0.10f);
+        ChangeSize(0.11f);
     }
 
     public void AddLayerIndex(uint number)

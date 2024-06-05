@@ -12,7 +12,7 @@ public class DroppableSlot3DHero : DroppableSlot3D
 
     [SerializeField] GameObject cardSlot;
 
-    [SerializeField] HeroScriptable heroScriptable;
+    public HeroScriptable heroScriptable { get; private set; }
     protected override void Start()
     {
         _audioSource = GetComponent<AudioSource>();

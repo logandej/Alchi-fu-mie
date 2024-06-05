@@ -18,5 +18,6 @@ MonoBehaviour:
     type: 3}
   onAppearingParticle: {fileID: 19800000, guid: ada5d62ffe762ce4fbccc70dcdbc9022,
     type: 3}
-  onAppearingClip: {fileID: 8300000, guid: 95b1ab4adbc19504289ca88ebc980783, type: 3}
-  attackClips: []
+  onAppearingClip: {fileID: 8300000, guid: 9bcbdb158134aed4ea6185e54f962fa7, type: 3}
+  attackClips:
+  - {fileID: 8300000, guid: a1f6acd7ac25dc847be33bedd1f752e0, type: 3}

@@ -102,11 +102,25 @@ public class BoardSideController : MonoBehaviour
        
     }
 
+    public void UpdateMana()
+    {
+        _manaBar.SetCounterTo(BoardController.Instance.Board.GetAllyBoardSide(IsBlue).Player.ManaPoints);
+    }
+
+    public void UpdateHealth()
+    {
+        _healtBar.SetCounterTo(BoardController.Instance.Board.GetAllyBoardSide(IsBlue).Player.HealthPoints);
+    }
+
     public void UpdateHealthAndMana()
     {
-        print("HealthPoints = "+ BoardController.Instance.Board.GetAllyBoardSide(IsBlue).Player.HealthPoints);
-        _healtBar.SetCounterTo(BoardController.Instance.Board.GetAllyBoardSide(IsBlue).Player.HealthPoints);
-        _manaBar.SetCounterTo(BoardController.Instance.Board.GetAllyBoardSide(IsBlue).Player.ManaPoints);
+        UpdateHealth();
+        UpdateMana();
+    }
+
+    public HeroScriptable GetHeroScriptable()
+    {
+        return _heroSlot.heroScriptable;
     }
 
 
