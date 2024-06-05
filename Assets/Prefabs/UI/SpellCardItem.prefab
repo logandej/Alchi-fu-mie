@@ -110,7 +110,7 @@ MonoBehaviour:
   previousParentTransform: {fileID: 0}
   parentAfterDrag: {fileID: 0}
   aspectRatioFitter: {fileID: 9122163507059126299}
-  duplicateOnDrag: 0
+  duplicateOnDrag: 1
 --- !u!114 &3612841179718547852
 MonoBehaviour:
   m_ObjectHideFlags: 0

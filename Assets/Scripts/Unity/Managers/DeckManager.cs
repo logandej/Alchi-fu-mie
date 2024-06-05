@@ -1,10 +1,11 @@
 using AFM_DLL.Models.PlayerInfo;
 using UnityEngine;
 using Newtonsoft.Json;
+using AFM_DLL.Converters;
 
 public class DeckManager : MonoBehaviour
 {
-    public Deck PlayerDeck { get; set; }
+    public Deck PlayerDeck { get; private set; }
 
     public static DeckManager Instance { get; private set; }
     private void Awake()
@@ -24,7 +25,7 @@ public class DeckManager : MonoBehaviour
         if (PlayerPrefs.HasKey("DeckJSON"))
         {
             var json = PlayerPrefs.GetString("DeckJSON");
-            PlayerDeck = JsonConvert.DeserializeObject<Deck>(json);
+            PlayerDeck = JsonConvert.DeserializeObject<Deck>(json, new SpellCardConverter());
         }
         else
         {
