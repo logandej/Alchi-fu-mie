@@ -13,4 +13,4 @@ MonoBehaviour:
   m_Name: REPLACE_ENEMY_CARDS_WITH_PLAYER_CARDS
   m_EditorClassIdentifier: 
   SpellType: 10
-  Sprite: {fileID: 21300000, guid: de2ed5d648812034e87932ec78ed27db, type: 3}
+  Sprite: {fileID: 21300000, guid: 9a5a11ce10bd66f44b11c399ac8bef51, type: 3}

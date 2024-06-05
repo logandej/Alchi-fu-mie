@@ -15,8 +15,6 @@ public class AIPlayer : MonoBehaviour
         elementCards = sideController.HandTransform.GetComponentsInChildren<ElementCardDisplay>();
         spellCards = sideController.HandSpellTransform.GetComponentsInChildren<SpellCardDisplay>();
         Invoke("BeginRound", 1);
-
-
     }
 
     public async Task BeginRound()
@@ -30,11 +28,13 @@ public class AIPlayer : MonoBehaviour
         {
             await PlayCard(spellCards[0].GetComponent<DraggableItem3D>(), 3);
             await Task.Delay(1000);
+            
         }
         if (sideController.BoardSide.Player.ManaPoints >= 2)
         {
             await ChangeHero(elementCards[3].GetComponent<DraggableItem3D>());
         }
+
         print("AI IS READY");
         PartyManager.Instance.BoardController.SetPlayerReady(sideController.IsBlue);
     }

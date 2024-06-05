@@ -38,6 +38,11 @@ public class DroppableSlot3DHero : DroppableSlot3D
 
     }
 
+    public bool HasCard()
+    {
+        return _draggableItem != null;
+    }
+
     /// <summary>
     /// To call only at the beginning of the 
     /// </summary>
@@ -119,6 +124,7 @@ public class DroppableSlot3DHero : DroppableSlot3D
     {
         looseFight.gameObject.SetActive(true);
         looseFight.Play();
+        AudioManager.Instance.PlayEffectPitch("mexplosion");
         yield return new WaitForSeconds(3f);
         looseFight.gameObject.SetActive(false);
     }

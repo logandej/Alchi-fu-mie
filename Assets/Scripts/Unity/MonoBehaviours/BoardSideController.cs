@@ -32,28 +32,35 @@ public class BoardSideController : MonoBehaviour
     [SerializeField] DataBar _healtBar;
     [SerializeField] DataBar _manaBar;
 
-
+    public bool testDeck = true;
     public bool IsBlue;
     public bool CanInteract { get; set; }
 
     private void Awake()
     {
-        Deck = new Deck()
+        if (!IsBlue || testDeck)
         {
-            Hero = new Hero("LeafMan", Element.PAPER)
-        };
+            Deck = new Deck()
+            {
+                Hero = new Hero("LeafMan", Element.PAPER)
+            };
 
-        foreach (ElementCardScriptable element in _elementDeckList)
-        {
-            Deck.Elements.Add(new ElementCard(element.Element));
+            foreach (ElementCardScriptable element in _elementDeckList)
+            {
+                Deck.Elements.Add(new ElementCard(element.Element));
+            }
+
+            foreach (SpellCardScriptable spell in _spellDeckList)
+            {
+                Deck.Spells.Add(SpellCard.FromType(spell.SpellType));
+            }
         }
-
-        foreach (SpellCardScriptable spell in _spellDeckList)
+        else
         {
-            Deck.Spells.Add(SpellCard.FromType(spell.SpellType));
+            Deck = DeckManager.Instance.PlayerDeck;
         }
-
         _heroSlot.SetStartHero(Deck.Hero.ActiveElement);
+
     }
 
     private void Start()
@@ -143,6 +150,17 @@ public class BoardSideController : MonoBehaviour
         return _heroSlot.heroScriptable;
     }
 
+    public bool HasHeroToChange()
+    {
+        return _heroSlot.HasCard();
+    }
+
+    public bool HasSpellToExecute()
+    {
+        var slot= DroppableSlotList[3].GetComponent<DroppableSlot3DSpell>();
+        return slot.HasSpell();
+    }
+
 
 
     void ReplaceHands()
@@ -190,7 +208,7 @@ public class BoardSideController : MonoBehaviour
         if (drawResult.DrawnSpell != null)
         {
             //Instanciate Spell Card
-            PartyManager.Instance.SpellCardPrefab.Data = Resources.Load<SpellCardScriptable>("ScriptableObjects/Spells/" + drawResult.DrawnSpell.GetSpellType());
+            PartyManager.Instance.SpellCardPrefab.Data = Resources.Load<SpellCardScriptable>("ScriptableObjects/Spells/" + drawResult.DrawnSpell.SpellType);
             PartyManager.Instance.SpellCardPrefab.GetComponent<DraggableItem3D>().IsBlue = IsBlue;
             var ele = Instantiate(PartyManager.Instance.SpellCardPrefab, HandSpellTransform);
             ele.SpellCard = drawResult.DrawnSpell;

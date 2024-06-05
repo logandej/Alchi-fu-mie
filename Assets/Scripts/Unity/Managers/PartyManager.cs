@@ -35,6 +35,8 @@ public class PartyManager : MonoBehaviour
 
     public Dictionary<Element , HeroScriptable> HerosByElement;
 
+    [SerializeField] AudioClip musicClip;
+
     public bool CursorOccupied;
     public float translateSpellX;
 
@@ -57,7 +59,7 @@ public class PartyManager : MonoBehaviour
     {
         HideReady();
         _quitButton.SetActive(false);
-     
+        AudioManager.Instance.PlayMusic(musicClip);
     }
 
     /// <summary>

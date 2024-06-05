@@ -61,6 +61,7 @@ public class DroppableSlot3DElement : DroppableSlot3D
     IEnumerator LoseColumn()
     {
         yield return new WaitForSeconds(1f);
+        AudioManager.Instance.PlayEffectPitch("mexplosion");
         _draggableItem.GetComponent<ElementCardDisplay>().Delete();
         DestroyDraggable();
 

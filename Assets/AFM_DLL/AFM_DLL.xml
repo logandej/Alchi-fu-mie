@@ -4,6 +4,17 @@
         <name>AFM_DLL</name>
     </assembly>
     <members>
+        <member name="T:AFM_DLL.Converters.SpellCardConverter">
+            <summary>
+                Permet la désérialisation d'une carte sortilège
+            </summary>
+        </member>
+        <member name="M:AFM_DLL.Converters.SpellCardConverter.ReadJson(Newtonsoft.Json.JsonReader,System.Type,System.Object,Newtonsoft.Json.JsonSerializer)">
+            <inheritdoc/>
+        </member>
+        <member name="M:AFM_DLL.Converters.SpellCardConverter.Create(System.Type)">
+            <inheritdoc/>
+        </member>
         <member name="T:AFM_DLL.Extensions.ListExtensions">
             <summary>
                 Contient des méthodes pratiques pour les listes.
@@ -330,7 +341,7 @@
         <member name="M:AFM_DLL.Models.Cards.Spells.AddManaFromScissorsSpell.GetManaCost">
             <inheritdoc/>
         </member>
-        <member name="M:AFM_DLL.Models.Cards.Spells.AddManaFromScissorsSpell.GetSpellType">
+        <member name="P:AFM_DLL.Models.Cards.Spells.AddManaFromScissorsSpell.SpellType">
             <inheritdoc/>
         </member>
         <member name="T:AFM_DLL.Models.Cards.Spells.AddManaFromPaperSpell">
@@ -347,7 +358,7 @@
         <member name="M:AFM_DLL.Models.Cards.Spells.AddManaFromPaperSpell.GetManaCost">
             <inheritdoc/>
         </member>
-        <member name="M:AFM_DLL.Models.Cards.Spells.AddManaFromPaperSpell.GetSpellType">
+        <member name="P:AFM_DLL.Models.Cards.Spells.AddManaFromPaperSpell.SpellType">
             <inheritdoc/>
         </member>
         <member name="T:AFM_DLL.Models.Cards.Spells.AddManaFromRockSpell">
@@ -364,7 +375,7 @@
         <member name="M:AFM_DLL.Models.Cards.Spells.AddManaFromRockSpell.GetManaCost">
             <inheritdoc/>
         </member>
-        <member name="M:AFM_DLL.Models.Cards.Spells.AddManaFromRockSpell.GetSpellType">
+        <member name="P:AFM_DLL.Models.Cards.Spells.AddManaFromRockSpell.SpellType">
             <inheritdoc/>
         </member>
         <member name="T:AFM_DLL.Models.Cards.Spells.DoubleDamageSpell">
@@ -381,7 +392,7 @@
         <member name="M:AFM_DLL.Models.Cards.Spells.DoubleDamageSpell.GetManaCost">
             <inheritdoc/>
         </member>
-        <member name="M:AFM_DLL.Models.Cards.Spells.DoubleDamageSpell.GetSpellType">
+        <member name="P:AFM_DLL.Models.Cards.Spells.DoubleDamageSpell.SpellType">
             <inheritdoc/>
         </member>
         <member name="T:AFM_DLL.Models.Cards.Spells.CancelSpell.CancelEnemySpell">
@@ -398,7 +409,7 @@
         <member name="M:AFM_DLL.Models.Cards.Spells.CancelSpell.CancelEnemySpell.GetManaCost">
             <inheritdoc/>
         </member>
-        <member name="M:AFM_DLL.Models.Cards.Spells.CancelSpell.CancelEnemySpell.GetSpellType">
+        <member name="P:AFM_DLL.Models.Cards.Spells.CancelSpell.CancelEnemySpell.SpellType">
             <inheritdoc/>
         </member>
         <member name="T:AFM_DLL.Models.Cards.Spells.ReplaceElement.ReplaceEnemyCardsWithScissors">
@@ -415,7 +426,7 @@
         <member name="M:AFM_DLL.Models.Cards.Spells.ReplaceElement.ReplaceEnemyCardsWithScissors.GetManaCost">
             <inheritdoc/>
         </member>
-        <member name="M:AFM_DLL.Models.Cards.Spells.ReplaceElement.ReplaceEnemyCardsWithScissors.GetSpellType">
+        <member name="P:AFM_DLL.Models.Cards.Spells.ReplaceElement.ReplaceEnemyCardsWithScissors.SpellType">
             <inheritdoc/>
         </member>
         <member name="T:AFM_DLL.Models.Cards.Spells.ReplaceElement.ReplaceEnemyCardsWithPlayerCards">
@@ -432,7 +443,7 @@
         <member name="M:AFM_DLL.Models.Cards.Spells.ReplaceElement.ReplaceEnemyCardsWithPlayerCards.GetManaCost">
             <inheritdoc/>
         </member>
-        <member name="M:AFM_DLL.Models.Cards.Spells.ReplaceElement.ReplaceEnemyCardsWithPlayerCards.GetSpellType">
+        <member name="P:AFM_DLL.Models.Cards.Spells.ReplaceElement.ReplaceEnemyCardsWithPlayerCards.SpellType">
             <inheritdoc/>
         </member>
         <member name="T:AFM_DLL.Models.Cards.Spells.ReplaceElement.ReplaceEnemyCardsWithPaper">
@@ -449,7 +460,7 @@
         <member name="M:AFM_DLL.Models.Cards.Spells.ReplaceElement.ReplaceEnemyCardsWithPaper.GetManaCost">
             <inheritdoc/>
         </member>
-        <member name="M:AFM_DLL.Models.Cards.Spells.ReplaceElement.ReplaceEnemyCardsWithPaper.GetSpellType">
+        <member name="P:AFM_DLL.Models.Cards.Spells.ReplaceElement.ReplaceEnemyCardsWithPaper.SpellType">
             <inheritdoc/>
         </member>
         <member name="T:AFM_DLL.Models.Cards.Spells.ReplaceElement.ReplaceEnemyCardsWithRock">
@@ -466,7 +477,7 @@
         <member name="M:AFM_DLL.Models.Cards.Spells.ReplaceElement.ReplaceEnemyCardsWithRock.GetManaCost">
             <inheritdoc/>
         </member>
-        <member name="M:AFM_DLL.Models.Cards.Spells.ReplaceElement.ReplaceEnemyCardsWithRock.GetSpellType">
+        <member name="P:AFM_DLL.Models.Cards.Spells.ReplaceElement.ReplaceEnemyCardsWithRock.SpellType">
             <inheritdoc/>
         </member>
         <member name="T:AFM_DLL.Models.Cards.Spells.ReplaceElement.ReplaceEnemyPaperWithRock">
@@ -483,7 +494,7 @@
         <member name="M:AFM_DLL.Models.Cards.Spells.ReplaceElement.ReplaceEnemyPaperWithRock.GetManaCost">
             <inheritdoc/>
         </member>
-        <member name="M:AFM_DLL.Models.Cards.Spells.ReplaceElement.ReplaceEnemyPaperWithRock.GetSpellType">
+        <member name="P:AFM_DLL.Models.Cards.Spells.ReplaceElement.ReplaceEnemyPaperWithRock.SpellType">
             <inheritdoc/>
         </member>
         <member name="T:AFM_DLL.Models.Cards.Spells.ReplaceElement.ReplaceEnemyPaperWithScissors">
@@ -500,7 +511,7 @@
         <member name="M:AFM_DLL.Models.Cards.Spells.ReplaceElement.ReplaceEnemyPaperWithScissors.GetManaCost">
             <inheritdoc/>
         </member>
-        <member name="M:AFM_DLL.Models.Cards.Spells.ReplaceElement.ReplaceEnemyPaperWithScissors.GetSpellType">
+        <member name="P:AFM_DLL.Models.Cards.Spells.ReplaceElement.ReplaceEnemyPaperWithScissors.SpellType">
             <inheritdoc/>
         </member>
         <member name="T:AFM_DLL.Models.Cards.Spells.ReplaceElement.ReplaceEnemyRockWithPaper">
@@ -517,7 +528,7 @@
         <member name="M:AFM_DLL.Models.Cards.Spells.ReplaceElement.ReplaceEnemyRockWithPaper.GetManaCost">
             <inheritdoc/>
         </member>
-        <member name="M:AFM_DLL.Models.Cards.Spells.ReplaceElement.ReplaceEnemyRockWithPaper.GetSpellType">
+        <member name="P:AFM_DLL.Models.Cards.Spells.ReplaceElement.ReplaceEnemyRockWithPaper.SpellType">
             <inheritdoc/>
         </member>
         <member name="T:AFM_DLL.Models.Cards.Spells.ReplaceElement.ReplaceEnemyRockWithScissors">
@@ -534,7 +545,7 @@
         <member name="M:AFM_DLL.Models.Cards.Spells.ReplaceElement.ReplaceEnemyRockWithScissors.GetManaCost">
             <inheritdoc/>
         </member>
-        <member name="M:AFM_DLL.Models.Cards.Spells.ReplaceElement.ReplaceEnemyRockWithScissors.GetSpellType">
+        <member name="P:AFM_DLL.Models.Cards.Spells.ReplaceElement.ReplaceEnemyRockWithScissors.SpellType">
             <inheritdoc/>
         </member>
         <member name="T:AFM_DLL.Models.Cards.Spells.ReplaceElement.ReplaceEnemyScissorsWithPaper">
@@ -551,7 +562,7 @@
         <member name="M:AFM_DLL.Models.Cards.Spells.ReplaceElement.ReplaceEnemyScissorsWithPaper.GetManaCost">
             <inheritdoc/>
         </member>
-        <member name="M:AFM_DLL.Models.Cards.Spells.ReplaceElement.ReplaceEnemyScissorsWithPaper.GetSpellType">
+        <member name="P:AFM_DLL.Models.Cards.Spells.ReplaceElement.ReplaceEnemyScissorsWithPaper.SpellType">
             <inheritdoc/>
         </member>
         <member name="T:AFM_DLL.Models.Cards.Spells.ReplaceElement.ReplaceEnemyScissorsWithRock">
@@ -568,7 +579,7 @@
         <member name="M:AFM_DLL.Models.Cards.Spells.ReplaceElement.ReplaceEnemyScissorsWithRock.GetManaCost">
             <inheritdoc/>
         </member>
-        <member name="M:AFM_DLL.Models.Cards.Spells.ReplaceElement.ReplaceEnemyScissorsWithRock.GetSpellType">
+        <member name="P:AFM_DLL.Models.Cards.Spells.ReplaceElement.ReplaceEnemyScissorsWithRock.SpellType">
             <inheritdoc/>
         </member>
         <member name="M:AFM_DLL.Models.Cards.Spells.WinDuelTie.WinDuelTie.ActivateSpell(AFM_DLL.Models.BoardData.Board,System.Boolean)">
@@ -580,7 +591,7 @@
         <member name="M:AFM_DLL.Models.Cards.Spells.WinDuelTie.WinDuelTie.GetManaCost">
             <inheritdoc/>
         </member>
-        <member name="M:AFM_DLL.Models.Cards.Spells.WinDuelTie.WinDuelTie.GetSpellType">
+        <member name="P:AFM_DLL.Models.Cards.Spells.WinDuelTie.WinDuelTie.SpellType">
             <inheritdoc/>
         </member>
         <member name="T:AFM_DLL.Models.Cards.SpellCard">
@@ -615,7 +626,7 @@
                 La description du sort
             </summary>
         </member>
-        <member name="M:AFM_DLL.Models.Cards.SpellCard.GetSpellType">
+        <member name="P:AFM_DLL.Models.Cards.SpellCard.SpellType">
             <summary>
                 Le type du sort tel qu'indiqué à l'instanciation du sort
             </summary>
@@ -850,7 +861,7 @@
                 Construit un héros
             </summary>
             <param name="name">Le nom du héros</param>
-            <param name="element">L'élément initial du héros</param>
+            <param name="activeElement">L'élément initial du héros</param>
         </member>
         <member name="P:AFM_DLL.Models.PlayerInfo.Hero.Name">
             <summary>

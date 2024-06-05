@@ -39,4 +39,9 @@ public class DroppableSlot3DSpell : DroppableSlot3D
     {
         TransitionManager.ChangeLocalPosition(_draggableItem.gameObject, _draggableItem.transform.localPosition - Vector3.up/3, 0.2f);
     }
+
+    public bool HasSpell()
+    {
+        return _draggableItem != null;
+    }
 }

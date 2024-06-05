@@ -155,7 +155,7 @@ RectTransform:
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
   m_AnchoredPosition: {x: 0.47134596, y: -2.4521208}
-  m_SizeDelta: {x: 14.5723, y: 5}
+  m_SizeDelta: {x: 14.5723, y: 5.5}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!23 &8040070870459460127
 MeshRenderer:
@@ -221,7 +221,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: Ceci est une description des plus normales
+  m_text: Bonsoir je me demande comment fairepour etre acczept
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 2cd875233f458c24e9500640adaa7d80, type: 2}
   m_sharedMaterial: {fileID: -9064286143915916330, guid: 2cd875233f458c24e9500640adaa7d80,
@@ -249,12 +249,12 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 12.7
-  m_fontSizeBase: 12.7
+  m_fontSize: 16.6
+  m_fontSizeBase: 18.84
   m_fontWeight: 400
-  m_enableAutoSizing: 0
-  m_fontSizeMin: 18
-  m_fontSizeMax: 72
+  m_enableAutoSizing: 1
+  m_fontSizeMin: 14.21
+  m_fontSizeMax: 67.2
   m_fontStyle: 0
   m_HorizontalAlignment: 2
   m_VerticalAlignment: 256
@@ -287,7 +287,7 @@ MonoBehaviour:
   m_VertexBufferAutoSizeReduction: 0
   m_useMaxVisibleDescender: 1
   m_pageToDisplay: 1
-  m_margin: {x: 0, y: 0, z: 0, w: 0}
+  m_margin: {x: -1.4317641, y: 0, z: -0.9483452, w: -4.8822136}
   m_isUsingLegacyAnimationComponent: 0
   m_isVolumetricText: 0
   _SortingLayer: 0
@@ -608,8 +608,8 @@ Transform:
   m_GameObject: {fileID: 7952130872119926796}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0.44, y: 0.59, z: -0}
-  m_LocalScale: {x: 0.42735568, y: 0.42735574, z: 0.42735574}
+  m_LocalPosition: {x: 0.44, y: 1.44, z: -0}
+  m_LocalScale: {x: 1.3913419, y: 1.3913422, z: 1.3913422}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 7671384238240943451}
@@ -657,7 +657,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: -101
-  m_Sprite: {fileID: 21300000, guid: 454c7ba261dd613439c921bb1ede64a4, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 5c5c2945de233834ea8d16f45bc60dfd, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0

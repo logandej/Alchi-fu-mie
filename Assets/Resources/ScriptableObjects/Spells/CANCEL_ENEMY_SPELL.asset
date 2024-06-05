@@ -13,4 +13,4 @@ MonoBehaviour:
   m_Name: CANCEL_ENEMY_SPELL
   m_EditorClassIdentifier: 
   SpellType: 14
-  Sprite: {fileID: 21300000, guid: de2ed5d648812034e87932ec78ed27db, type: 3}
+  Sprite: {fileID: 21300000, guid: 3b1fbaba83acc434aada8f6505d7318b, type: 3}

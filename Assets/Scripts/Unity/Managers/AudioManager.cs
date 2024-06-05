@@ -8,6 +8,7 @@ public class AudioManager : MonoBehaviour
 
     [SerializeField] AudioSource music;
     [SerializeField] AudioSource effect;
+    [SerializeField] AudioSource effectPitch;
     [SerializeField] AudioSource voice;
  
     void Awake()
@@ -54,6 +55,13 @@ public class AudioManager : MonoBehaviour
     {
         effect.clip = Resources.Load<AudioClip>("Audio/SFX/" + audio);
         effect.Play();
+    }
+
+    public void PlayEffectPitch(string audio)
+    {
+        effectPitch.pitch = 1 + Random.Range(-0.3f,0.3f);
+        effectPitch.clip = Resources.Load<AudioClip>("Audio/SFX/" + audio);
+        effectPitch.Play();
     }
 
     public void PlayVoice(AudioClip clip)

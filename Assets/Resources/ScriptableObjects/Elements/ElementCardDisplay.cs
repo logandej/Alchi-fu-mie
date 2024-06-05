@@ -28,12 +28,13 @@ public class ElementCardDisplay : MonoBehaviour
     public void SetOverrideSpell(Element? element)
     {
         _overrideElement = element;
-        ChangeVisuel();
+        StartCoroutine(ChangeVisuel());
     }
 
     private void OnDestroy()
     {
         ElementCard.CardOverrideChanged -= SetOverrideSpell;
+       
     }
 
 

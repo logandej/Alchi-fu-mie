@@ -94,7 +94,9 @@ public class BoardController : MonoBehaviour
 
             await BoardSideRed.RevealCards();
 
-            if(Board.GetAllyBoardSide(true).Player.Deck.Hero.OverrideCard !=null || Board.GetAllyBoardSide(false).Player.Deck.Hero.OverrideCard != null)
+          
+
+            if (BoardSideBlue.HasHeroToChange() || BoardSideRed.HasHeroToChange())
             {
                 await PartyManager.Instance.ShowHeroTitle();
                 await Task.Delay(500);
@@ -102,11 +104,18 @@ public class BoardController : MonoBehaviour
                 BoardSideRed.ChangeHero();
                 BoardSideBlue.ChangeHero();
 
+                
+
                 await Task.Delay(500);
 
             }
 
-            await EvaluateSpell();
+            BoardSideBlue.UpdateMana();
+            BoardSideRed.UpdateMana();
+
+           
+            await EvaluateSpell(true);
+           
             await EvaluateCardColumns();
 
 
@@ -146,25 +155,35 @@ public class BoardController : MonoBehaviour
     }
 
 
-    public async Task EvaluateSpell()
+    public async Task EvaluateSpell(bool showTitle)
     {
-        var result = this.Board.EvaluateSpells();
-        if (result.SpellCard != null)
+        if (BoardSideRed.HasSpellToExecute() || BoardSideBlue.HasSpellToExecute())
         {
-            await Task.Delay(1000);
-            if (result.IsBlueSide)
+            if (showTitle)
+                await PartyManager.Instance.ShowSpellsTitle();
+            var result = this.Board.EvaluateSpells();
+            if (result.SpellCard != null)
             {
-                await ExecuteSpell(BoardSideBlue);
-            }
-            else
-            {
-                await ExecuteSpell(BoardSideRed);
-            }
 
-            if (result.HasMoreSpells)
-            {
-                await EvaluateSpell();
+                await Task.Delay(1000);
+                if (result.IsBlueSide)
+                {
+                    await ExecuteSpell(BoardSideBlue);
+                }
+                else
+                {
+                    await ExecuteSpell(BoardSideRed);
+                }
+
+                if (result.HasMoreSpells)
+                {
+                    await EvaluateSpell(false);
+                }
             }
+        }
+        else
+        {
+            this.Board.EvaluateSpells();
         }
     }
 

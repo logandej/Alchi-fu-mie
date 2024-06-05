@@ -13,4 +13,4 @@ MonoBehaviour:
   m_Name: REPLACE_ENEMY_PAPER_WITH_SCISSORS
   m_EditorClassIdentifier: 
   SpellType: 7
-  Sprite: {fileID: 21300000, guid: de2ed5d648812034e87932ec78ed27db, type: 3}
+  Sprite: {fileID: 21300000, guid: 789b735b9b0bfbd43baafb25902c10b8, type: 3}

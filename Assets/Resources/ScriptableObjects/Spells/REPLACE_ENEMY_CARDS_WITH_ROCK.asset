@@ -12,6 +12,5 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2904db5c0de998040a356853084b5787, type: 3}
   m_Name: REPLACE_ENEMY_CARDS_WITH_ROCK
   m_EditorClassIdentifier: 
-  Description: 
   SpellType: 11
-  Sprite: {fileID: 21300000, guid: 809ac15702a7629459f5cdce51222d38, type: 3}
+  Sprite: {fileID: 21300000, guid: c14f536cb6e37be4ba6f129c417a3610, type: 3}

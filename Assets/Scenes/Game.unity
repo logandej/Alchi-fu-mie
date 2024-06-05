@@ -10193,6 +10193,7 @@ MonoBehaviour:
   - {fileID: 11400000, guid: 1e4f0f95e21fa1547882c09fe0a4f7ea, type: 2}
   - {fileID: 11400000, guid: a1c40214e923e5747998d7b02f915d77, type: 2}
   defausse: {fileID: 2027405360}
+  musicClip: {fileID: 8300000, guid: f717831b937a03d4c91308fee8ce664a, type: 3}
   CursorOccupied: 0
   translateSpellX: 0.2
 --- !u!114 &138288357
@@ -15681,6 +15682,50 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 284868317}
   m_CullTransparentMesh: 1
+--- !u!1 &316767713
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 316767715}
+  - component: {fileID: 316767714}
+  m_Layer: 0
+  m_Name: DeckManager
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &316767714
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 316767713}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 28ceffe4f4e60fd4cb4df88e1b00a812, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!4 &316767715
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 316767713}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 1.0535971, y: -1.8902184, z: -1.2567189}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!4 &335568908 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 2078200360991755601, guid: f4801c71c56b0014aba4c06159ef8d7c,
@@ -40214,6 +40259,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   music: {fileID: 2096128761}
   effect: {fileID: 241193002}
+  effectPitch: {fileID: 1960154626}
   voice: {fileID: 125209767}
 --- !u!4 &827482090
 Transform:
@@ -40230,6 +40276,7 @@ Transform:
   m_Children:
   - {fileID: 2096128762}
   - {fileID: 241193003}
+  - {fileID: 1960154627}
   - {fileID: 125209766}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -40321,7 +40368,7 @@ PrefabInstance:
     - target: {fileID: 735595793126467746, guid: f4801c71c56b0014aba4c06159ef8d7c,
         type: 3}
       propertyPath: m_IsActive
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 804433671755980423, guid: f4801c71c56b0014aba4c06159ef8d7c,
         type: 3}
@@ -40336,7 +40383,7 @@ PrefabInstance:
     - target: {fileID: 1302230910461817278, guid: f4801c71c56b0014aba4c06159ef8d7c,
         type: 3}
       propertyPath: m_IsActive
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 2078200360991755601, guid: f4801c71c56b0014aba4c06159ef8d7c,
         type: 3}
@@ -40428,6 +40475,11 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: -319.557
       objectReference: {fileID: 0}
+    - target: {fileID: 3206678767135391708, guid: f4801c71c56b0014aba4c06159ef8d7c,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 3725669184199407686, guid: f4801c71c56b0014aba4c06159ef8d7c,
         type: 3}
       propertyPath: m_IsActive
@@ -40481,7 +40533,7 @@ PrefabInstance:
     - target: {fileID: 4156525444250835391, guid: f4801c71c56b0014aba4c06159ef8d7c,
         type: 3}
       propertyPath: _spellDeckList.Array.size
-      value: 7
+      value: 10
       objectReference: {fileID: 0}
     - target: {fileID: 4156525444250835391, guid: f4801c71c56b0014aba4c06159ef8d7c,
         type: 3}
@@ -40521,37 +40573,55 @@ PrefabInstance:
         type: 3}
       propertyPath: '_spellDeckList.Array.data[1]'
       value: 
-      objectReference: {fileID: 11400000, guid: 8c0af0f1e8ff34b40a9a4680ee2f3b97,
+      objectReference: {fileID: 11400000, guid: 24f1202d7e0019c468619e7968946470,
         type: 2}
     - target: {fileID: 4156525444250835391, guid: f4801c71c56b0014aba4c06159ef8d7c,
         type: 3}
       propertyPath: '_spellDeckList.Array.data[2]'
       value: 
-      objectReference: {fileID: 11400000, guid: 8c0af0f1e8ff34b40a9a4680ee2f3b97,
+      objectReference: {fileID: 11400000, guid: b73efd7cd62dc5c478ba5e4aeaae581c,
         type: 2}
     - target: {fileID: 4156525444250835391, guid: f4801c71c56b0014aba4c06159ef8d7c,
         type: 3}
       propertyPath: '_spellDeckList.Array.data[3]'
       value: 
-      objectReference: {fileID: 11400000, guid: 8c0af0f1e8ff34b40a9a4680ee2f3b97,
+      objectReference: {fileID: 11400000, guid: 6f149063eab8630409b676eee814eefb,
         type: 2}
     - target: {fileID: 4156525444250835391, guid: f4801c71c56b0014aba4c06159ef8d7c,
         type: 3}
       propertyPath: '_spellDeckList.Array.data[4]'
       value: 
-      objectReference: {fileID: 11400000, guid: 8c0af0f1e8ff34b40a9a4680ee2f3b97,
+      objectReference: {fileID: 11400000, guid: caf1f1647983a164d871a4bf416103a4,
         type: 2}
     - target: {fileID: 4156525444250835391, guid: f4801c71c56b0014aba4c06159ef8d7c,
         type: 3}
       propertyPath: '_spellDeckList.Array.data[5]'
       value: 
-      objectReference: {fileID: 11400000, guid: 8c0af0f1e8ff34b40a9a4680ee2f3b97,
+      objectReference: {fileID: 11400000, guid: b73efd7cd62dc5c478ba5e4aeaae581c,
         type: 2}
     - target: {fileID: 4156525444250835391, guid: f4801c71c56b0014aba4c06159ef8d7c,
         type: 3}
       propertyPath: '_spellDeckList.Array.data[6]'
       value: 
-      objectReference: {fileID: 11400000, guid: 8c0af0f1e8ff34b40a9a4680ee2f3b97,
+      objectReference: {fileID: 11400000, guid: 77ad34d55c3151547be2bf2d1c30c2c9,
+        type: 2}
+    - target: {fileID: 4156525444250835391, guid: f4801c71c56b0014aba4c06159ef8d7c,
+        type: 3}
+      propertyPath: '_spellDeckList.Array.data[7]'
+      value: 
+      objectReference: {fileID: 11400000, guid: 3707300e449b1bc4b9c0446efb0396dc,
+        type: 2}
+    - target: {fileID: 4156525444250835391, guid: f4801c71c56b0014aba4c06159ef8d7c,
+        type: 3}
+      propertyPath: '_spellDeckList.Array.data[8]'
+      value: 
+      objectReference: {fileID: 11400000, guid: b73efd7cd62dc5c478ba5e4aeaae581c,
+        type: 2}
+    - target: {fileID: 4156525444250835391, guid: f4801c71c56b0014aba4c06159ef8d7c,
+        type: 3}
+      propertyPath: '_spellDeckList.Array.data[9]'
+      value: 
+      objectReference: {fileID: 11400000, guid: ba5d49dd41064754ab18f348da84b920,
         type: 2}
     - target: {fileID: 4156525444250835391, guid: f4801c71c56b0014aba4c06159ef8d7c,
         type: 3}
@@ -40594,6 +40664,12 @@ PrefabInstance:
       propertyPath: 'ElementDeckList.Array.data[6]'
       value: 
       objectReference: {fileID: 11400000, guid: b1394ea8caad1ce4a845b536bfa9da90,
+        type: 2}
+    - target: {fileID: 4156525444250835391, guid: f4801c71c56b0014aba4c06159ef8d7c,
+        type: 3}
+      propertyPath: '_spellDeckList.Array.data[10]'
+      value: 
+      objectReference: {fileID: 11400000, guid: b2c398d49a0683a438a92428363e2bb8,
         type: 2}
     - target: {fileID: 4156525444250835391, guid: f4801c71c56b0014aba4c06159ef8d7c,
         type: 3}
@@ -40712,7 +40788,12 @@ PrefabInstance:
     - target: {fileID: 8240405437100544481, guid: f4801c71c56b0014aba4c06159ef8d7c,
         type: 3}
       propertyPath: m_IsActive
-      value: 1
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8844116370954815107, guid: f4801c71c56b0014aba4c06159ef8d7c,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 9179821353318639391, guid: f4801c71c56b0014aba4c06159ef8d7c,
         type: 3}
@@ -104118,6 +104199,136 @@ MonoBehaviour:
     mipBias: 0
     varianceClampScale: 0.9
     contrastAdaptiveSharpening: 0
+--- !u!1 &1960154625
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1960154627}
+  - component: {fileID: 1960154626}
+  m_Layer: 0
+  m_Name: EffectPitch
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!82 &1960154626
+AudioSource:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1960154625}
+  m_Enabled: 1
+  serializedVersion: 4
+  OutputAudioMixerGroup: {fileID: 8888446540872941762, guid: a0581dda8aac69a4ea796cf292d7a387,
+    type: 2}
+  m_audioClip: {fileID: 0}
+  m_Resource: {fileID: 0}
+  m_PlayOnAwake: 0
+  m_Volume: 1
+  m_Pitch: 1
+  Loop: 0
+  Mute: 0
+  Spatialize: 0
+  SpatializePostEffects: 0
+  Priority: 128
+  DopplerLevel: 1
+  MinDistance: 1
+  MaxDistance: 500
+  Pan2D: 0
+  rolloffMode: 0
+  BypassEffects: 0
+  BypassListenerEffects: 0
+  BypassReverbZones: 0
+  rolloffCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    - serializedVersion: 3
+      time: 1
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  panLevelCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  spreadCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  reverbZoneMixCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+--- !u!4 &1960154627
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1960154625}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 827482090}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1994299724
 GameObject:
   m_ObjectHideFlags: 0
@@ -104275,7 +104486,7 @@ AudioSource:
   m_audioClip: {fileID: 0}
   m_Resource: {fileID: 0}
   m_PlayOnAwake: 0
-  m_Volume: 0.525
+  m_Volume: 0.191
   m_Pitch: 1
   Loop: 1
   Mute: 0
@@ -109623,7 +109834,7 @@ PrefabInstance:
     - target: {fileID: 4156525444250835391, guid: f4801c71c56b0014aba4c06159ef8d7c,
         type: 3}
       propertyPath: _spellDeckList.Array.size
-      value: 5
+      value: 10
       objectReference: {fileID: 0}
     - target: {fileID: 4156525444250835391, guid: f4801c71c56b0014aba4c06159ef8d7c,
         type: 3}
@@ -109705,7 +109916,31 @@ PrefabInstance:
         type: 3}
       propertyPath: '_spellDeckList.Array.data[5]'
       value: 
-      objectReference: {fileID: 11400000, guid: f4b9e83379c08a84bb7ebada3dde82c6,
+      objectReference: {fileID: 11400000, guid: 8c0af0f1e8ff34b40a9a4680ee2f3b97,
+        type: 2}
+    - target: {fileID: 4156525444250835391, guid: f4801c71c56b0014aba4c06159ef8d7c,
+        type: 3}
+      propertyPath: '_spellDeckList.Array.data[6]'
+      value: 
+      objectReference: {fileID: 11400000, guid: 24f1202d7e0019c468619e7968946470,
+        type: 2}
+    - target: {fileID: 4156525444250835391, guid: f4801c71c56b0014aba4c06159ef8d7c,
+        type: 3}
+      propertyPath: '_spellDeckList.Array.data[7]'
+      value: 
+      objectReference: {fileID: 11400000, guid: b73efd7cd62dc5c478ba5e4aeaae581c,
+        type: 2}
+    - target: {fileID: 4156525444250835391, guid: f4801c71c56b0014aba4c06159ef8d7c,
+        type: 3}
+      propertyPath: '_spellDeckList.Array.data[8]'
+      value: 
+      objectReference: {fileID: 11400000, guid: b73efd7cd62dc5c478ba5e4aeaae581c,
+        type: 2}
+    - target: {fileID: 4156525444250835391, guid: f4801c71c56b0014aba4c06159ef8d7c,
+        type: 3}
+      propertyPath: '_spellDeckList.Array.data[9]'
+      value: 
+      objectReference: {fileID: 11400000, guid: ba5d49dd41064754ab18f348da84b920,
         type: 2}
     - target: {fileID: 4156525444250835391, guid: f4801c71c56b0014aba4c06159ef8d7c,
         type: 3}
@@ -109961,3 +110196,4 @@ SceneRoots:
   - {fileID: 1039120683}
   - {fileID: 827482090}
   - {fileID: 2027405360}
+  - {fileID: 316767715}

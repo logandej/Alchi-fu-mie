@@ -30,7 +30,7 @@ public class DeckLoader : MonoBehaviour
         i = 0;
         foreach (SpellCard card in DeckManager.Instance.PlayerDeck.Spells)
         {
-            var toClone = _spellCardContainers.Single(c => c.SpellType == card.GetSpellType());
+            var toClone = _spellCardContainers.Single(c => c.SpellType == card.SpellType);
             var clone = Instantiate(toClone, toClone.transform.parent);
             var draggable = clone.GetComponent<DraggableItem>();
             draggable.duplicateOnDrag = false;

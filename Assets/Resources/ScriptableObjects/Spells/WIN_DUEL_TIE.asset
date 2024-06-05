@@ -13,4 +13,4 @@ MonoBehaviour:
   m_Name: WIN_DUEL_TIE
   m_EditorClassIdentifier: 
   SpellType: 15
-  Sprite: {fileID: 21300000, guid: de2ed5d648812034e87932ec78ed27db, type: 3}
+  Sprite: {fileID: 21300000, guid: 5c5c2945de233834ea8d16f45bc60dfd, type: 3}

@@ -12,6 +12,5 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2904db5c0de998040a356853084b5787, type: 3}
   m_Name: ADD_MANA_FROM_ROCK
   m_EditorClassIdentifier: 
-  Description: 
   SpellType: 0
-  Sprite: {fileID: 21300000, guid: de2ed5d648812034e87932ec78ed27db, type: 3}
+  Sprite: {fileID: 21300000, guid: 23612c717281fde4cbac76fb03adca52, type: 3}
