@@ -190,7 +190,7 @@ public class BoardSideController : MonoBehaviour
         if (drawResult.DrawnSpell != null)
         {
             //Instanciate Spell Card
-            PartyManager.Instance.SpellCardPrefab.Data = Resources.Load<SpellCardScriptable>("ScriptableObjects/Spells/" + drawResult.DrawnSpell.GetSpellType());
+            PartyManager.Instance.SpellCardPrefab.Data = Resources.Load<SpellCardScriptable>("ScriptableObjects/Spells/" + drawResult.DrawnSpell.SpellType);
             PartyManager.Instance.SpellCardPrefab.GetComponent<DraggableItem3D>().IsBlue = IsBlue;
             var ele = Instantiate(PartyManager.Instance.SpellCardPrefab, HandSpellTransform);
             ele.SpellCard = drawResult.DrawnSpell;

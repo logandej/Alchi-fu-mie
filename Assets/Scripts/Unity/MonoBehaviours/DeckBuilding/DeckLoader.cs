@@ -2,6 +2,7 @@ using AFM_DLL.Models.Cards;
 using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class DeckLoader : MonoBehaviour
 {
@@ -11,7 +12,7 @@ public class DeckLoader : MonoBehaviour
 
     [SerializeField] private List<HeroContainer> _heroContainers;
     [SerializeField] private List<ElementCardContainer> _elementCardContainers;
-    [SerializeField] private List<SpellCardContainer> _spellCardContainers;
+    [SerializeField] private GameObject _spellCardContainerParent;
 
     private void Start()
     {
@@ -27,15 +28,18 @@ public class DeckLoader : MonoBehaviour
             i++;
         }
 
+        var spellCards = _spellCardContainerParent.GetComponentsInChildren<SpellCardContainer>();
+
         i = 0;
         foreach (SpellCard card in DeckManager.Instance.PlayerDeck.Spells)
         {
-            var toClone = _spellCardContainers.Single(c => c.SpellType == card.GetSpellType());
+            var toClone = spellCards.Single(c => c.SpellType == card.SpellType);
             var clone = Instantiate(toClone, toClone.transform.parent);
             var draggable = clone.GetComponent<DraggableItem>();
             draggable.duplicateOnDrag = false;
             draggable.parentAfterDrag = draggable.transform.parent;
             _spellCardSlots[i].InitCurrentItem(draggable);
+            clone.GetComponent<AspectRatioFitter>().enabled = true;
             i++;
         }
 
@@ -46,8 +50,6 @@ public class DeckLoader : MonoBehaviour
             var draggable = toMove.GetComponent<DraggableItem>();
             draggable.duplicateOnDrag = false;
             draggable.parentAfterDrag = draggable.transform.parent;
-            if (draggable.TryGetComponent<RectTransform>(out var rect))
-                rect.sizeDelta = Vector2.one * 250;
             _heroCardSlots.InitCurrentItem(draggable);
         }
     }

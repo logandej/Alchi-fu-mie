@@ -31,7 +31,7 @@ public class InventorySlot : MonoBehaviour, IDropHandler
         set
         {
 
-            if (_initItem)
+            if (_initItem || multipleElements)
             {
                 _currItem = value;
                 return;
@@ -47,7 +47,7 @@ public class InventorySlot : MonoBehaviour, IDropHandler
                 if (value.TryGetComponent<DeckItemContainer>(out var container))
                     _removeNextFrame = !container.AddToDeck();
             }
-            if (!_replaceNextFrame && !_removeNextFrame)
+            if (!_replaceNextFrame)
                 _currItem = value;
         }
     }
@@ -56,7 +56,7 @@ public class InventorySlot : MonoBehaviour, IDropHandler
     {
         if (_removeNextFrame)
         {
-            Destroy(CurrentItem);
+            Destroy(CurrentItem.gameObject);
             _removeNextFrame = false;
         }
         if (_replaceNextFrame)
