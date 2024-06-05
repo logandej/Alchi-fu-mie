@@ -13,6 +13,7 @@ GameObject:
   - component: {fileID: 6876275500008232805}
   - component: {fileID: 9122163507059126299}
   - component: {fileID: 7571368942618712264}
+  - component: {fileID: 3612841179718547852}
   m_Layer: 5
   m_Name: SpellCardItem
   m_TagString: Untagged
@@ -104,6 +105,22 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   image: {fileID: 6876275500008232805}
+  clipOnDrag: {fileID: 0}
+  particleFollow: {fileID: 0}
   previousParentTransform: {fileID: 0}
   parentAfterDrag: {fileID: 0}
   aspectRatioFitter: {fileID: 9122163507059126299}
+  duplicateOnDrag: 0
+--- !u!114 &3612841179718547852
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6658336014475845165}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9aa87e9c833af034d91c1a09f7e609cd, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  SpellType: 0

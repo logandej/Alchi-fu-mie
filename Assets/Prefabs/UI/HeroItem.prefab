@@ -321,6 +321,7 @@ GameObject:
   - component: {fileID: 2273392807313535438}
   - component: {fileID: 5265854723302324785}
   - component: {fileID: 2540078945185040364}
+  - component: {fileID: 1740164068484300329}
   m_Layer: 5
   m_Name: HeroItem
   m_TagString: Untagged
@@ -420,6 +421,20 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_ShowMaskGraphic: 1
+--- !u!114 &1740164068484300329
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6714694328010942436}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f1c8e4c93effb384f9eea4a628f474d8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  HeroName: 
+  HeroElement: 0
 --- !u!1 &7456929807222086790
 GameObject:
   m_ObjectHideFlags: 0

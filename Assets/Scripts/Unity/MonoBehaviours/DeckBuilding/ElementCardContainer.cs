@@ -1,22 +1,27 @@
 using AFM_DLL;
 using AFM_DLL.Models.Cards;
-using UnityEngine;
 
-public class ElementCardContainer : MonoBehaviour
+class ElementCardContainer : DeckItemContainer
 {
     public Element CardElement;
 
-    public void AddToDeck()
+    public override bool AddToDeck()
     {
-        Debug.Log("Added to deck element " + CardElement.ToString());
-        DeckManager.Instance.PlayerDeck.AddElement(new ElementCard(CardElement));
-        DeckManager.Instance.SaveDeck();
+        if (DeckManager.Instance.PlayerDeck.AddElement(new ElementCard(CardElement)))
+        {
+            DeckManager.Instance.SaveDeck();
+            return true;
+        }
+        return false;
     }
 
-    public void RemoveFromDeck()
+    public override bool RemoveFromDeck()
     {
-        Debug.Log("Removed from deck element " + CardElement.ToString());
-        DeckManager.Instance.PlayerDeck.RemoveElement(new ElementCard(CardElement));
-        DeckManager.Instance.SaveDeck();
+        if (DeckManager.Instance.PlayerDeck.RemoveElement(new ElementCard(CardElement)))
+        {
+            DeckManager.Instance.SaveDeck();
+            return true;
+        }
+        return false;
     }
 }
