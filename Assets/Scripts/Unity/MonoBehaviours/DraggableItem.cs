@@ -17,12 +17,20 @@ public class DraggableItem : MonoBehaviour, IBeginDragHandler, IDragHandler, IEn
     public Transform parentAfterDrag;
     public AspectRatioFitter aspectRatioFitter;
     public bool duplicateOnDrag;
+    public bool destroyOnSameDrag;
+
+    public Transform SourceParent;
 
     private Camera cameraUI;
+
+    public bool IsFromSource => SourceParent == previousParentTransform;
+
     private void Start()
     {
         if (particleFollow != null)
             particleFollow.SetActive(false);
+        if (SourceParent == null)
+            SourceParent = transform.parent;
     }
     public void OnBeginDrag(PointerEventData eventData)
     {
@@ -31,7 +39,9 @@ public class DraggableItem : MonoBehaviour, IBeginDragHandler, IDragHandler, IEn
         Debug.Log("Begin Drag");
         if (duplicateOnDrag)
         {
-            Instantiate(this.gameObject, transform.position, transform.rotation, transform.parent);
+            var idx = transform.GetSiblingIndex();
+            var clone = Instantiate(this.gameObject, transform.position, transform.rotation, transform.parent);
+            clone.transform.SetSiblingIndex(idx);
             duplicateOnDrag = false;
         }
 
@@ -76,6 +86,12 @@ public class DraggableItem : MonoBehaviour, IBeginDragHandler, IDragHandler, IEn
 
     public void OnEndDrag(PointerEventData eventData)
     {
+        if (destroyOnSameDrag && SourceParent == parentAfterDrag)        
+        {
+            Destroy(gameObject);
+            return;
+        }
+
         // Réactive le composant AspectRatioFitter pour restaurer le redimensionnement de l'objet
         if (aspectRatioFitter != null && parentAfterDrag.GetComponent<InventorySlot>() != null && !parentAfterDrag.GetComponent<InventorySlot>().GetMultipleElements())
         {

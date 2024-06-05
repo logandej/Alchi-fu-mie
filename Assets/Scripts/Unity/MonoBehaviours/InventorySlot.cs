@@ -20,6 +20,9 @@ public class InventorySlot : MonoBehaviour, IDropHandler
     private bool replaceWithPreviousPlace = true;
     // Permet de savoir si l'élément actuel doit être remplacé à son emplacement précédent ou échangé avec l'élément déplacé
 
+    [SerializeField]
+    private bool deleteCurrentElementOnReplace = false;
+
     private bool _removeNextFrame;
     private bool _replaceNextFrame;
     private bool _initItem;
@@ -89,8 +92,13 @@ public class InventorySlot : MonoBehaviour, IDropHandler
             // Si l'élément actuel doit être remplacé à son emplacement précédent
             if (replaceWithPreviousPlace)
             {
-               
                 RemoveCurrentPrevious();
+                PlaceItem(eventData.pointerDrag);
+            }
+            else if (deleteCurrentElementOnReplace && eventData.pointerDrag.GetComponent<DraggableItem>().IsFromSource)
+            {
+                Destroy(CurrentItem != null ? CurrentItem.gameObject : null);
+                CurrentItem = null;
                 PlaceItem(eventData.pointerDrag);
             }
             // Si l'élément actuel doit être échangé avec l'élément déplacé
@@ -106,9 +114,10 @@ public class InventorySlot : MonoBehaviour, IDropHandler
 
     public void RemoveCurrentPrevious()
     {
+        var currItem = CurrentItem;
         // Déplace l'élément actuel à son emplacement précédent
-        CurrentItem.PlaceToSlot(CurrentItem.previousParentTransform);
         CurrentItem = null;
+        currItem?.PlaceToSlot(currItem.previousParentTransform);
     }
 
  
@@ -120,8 +129,9 @@ public class InventorySlot : MonoBehaviour, IDropHandler
         if (parent.GetComponent<InventorySlot>() != null)
         {
             print("current item " + CurrentItem.name + "has to move to parent" + parent.name);
-            CurrentItem.PlaceToSlot(parent);
+            var curr = CurrentItem;
             CurrentItem = null;
+            curr.PlaceToSlot(parent);
             PlaceItem(dropped);
         }
     }

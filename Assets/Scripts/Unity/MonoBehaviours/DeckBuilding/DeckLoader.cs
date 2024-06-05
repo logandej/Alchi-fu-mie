@@ -1,4 +1,5 @@
 using AFM_DLL.Models.Cards;
+using AFM_DLL.Models.Enum;
 using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
@@ -22,8 +23,9 @@ public class DeckLoader : MonoBehaviour
             var toClone = _elementCardContainers.Single(c => c.CardElement == card.ActiveElement);
             var clone = Instantiate(toClone, toClone.transform.parent);
             var draggable = clone.GetComponent<DraggableItem>();
+            draggable.SourceParent = toClone.transform.parent;
             draggable.duplicateOnDrag = false;
-            draggable.parentAfterDrag = draggable.transform.parent;
+            draggable.parentAfterDrag = _elementCardSlots[i].transform;
             _elementCardSlots[i].InitCurrentItem(draggable);
             i++;
         }
@@ -36,11 +38,21 @@ public class DeckLoader : MonoBehaviour
             var toClone = spellCards.Single(c => c.SpellType == card.SpellType);
             var clone = Instantiate(toClone, toClone.transform.parent);
             var draggable = clone.GetComponent<DraggableItem>();
+            draggable.SourceParent = _spellCardContainerParent.transform;
             draggable.duplicateOnDrag = false;
-            draggable.parentAfterDrag = draggable.transform.parent;
+            draggable.parentAfterDrag = _spellCardSlots[i].transform;
             _spellCardSlots[i].InitCurrentItem(draggable);
             clone.GetComponent<AspectRatioFitter>().enabled = true;
             i++;
+        }
+
+        foreach (var card in spellCards)
+        {
+            if (DeckManager.Instance.PlayerDeck.Spells.Count(c => c.SpellType == card.SpellType) == 3)
+            {
+                card.GetComponent<Image>().color = Color.gray;
+                card.GetComponent<DraggableItem>().enabled = false;
+            }
         }
 
         var hero = DeckManager.Instance.PlayerDeck.Hero;
@@ -52,6 +64,8 @@ public class DeckLoader : MonoBehaviour
             draggable.parentAfterDrag = draggable.transform.parent;
             _heroCardSlots.InitCurrentItem(draggable);
         }
+
+        
     }
 
 }

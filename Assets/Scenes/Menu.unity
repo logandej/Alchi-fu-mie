@@ -127,6 +127,11 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 1285183637}
     m_Modifications:
+    - target: {fileID: 109110265869686606, guid: 9d36571041885a94cae07ca708eb015f,
+        type: 3}
+      propertyPath: deleteCurrentElementOnReplace
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 6187721633652852970, guid: 9d36571041885a94cae07ca708eb015f,
         type: 3}
       propertyPath: m_Pivot.x
@@ -256,6 +261,11 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 598231895}
     m_Modifications:
+    - target: {fileID: 109110265869686606, guid: 9d36571041885a94cae07ca708eb015f,
+        type: 3}
+      propertyPath: deleteCurrentElementOnReplace
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 6187721633652852970, guid: 9d36571041885a94cae07ca708eb015f,
         type: 3}
       propertyPath: m_Pivot.x
@@ -848,6 +858,11 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 1285183637}
     m_Modifications:
+    - target: {fileID: 109110265869686606, guid: 9d36571041885a94cae07ca708eb015f,
+        type: 3}
+      propertyPath: deleteCurrentElementOnReplace
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 6187721633652852970, guid: 9d36571041885a94cae07ca708eb015f,
         type: 3}
       propertyPath: m_Pivot.x
@@ -982,10 +997,20 @@ PrefabInstance:
       propertyPath: SpellType
       value: 2
       objectReference: {fileID: 0}
+    - target: {fileID: 3612841179718547852, guid: 0ead9ba97d30756498e89e4a97b0bb15,
+        type: 3}
+      propertyPath: OriginalParent
+      value: 
+      objectReference: {fileID: 641306174}
     - target: {fileID: 6658336014475845165, guid: 0ead9ba97d30756498e89e4a97b0bb15,
         type: 3}
       propertyPath: m_Name
       value: SpellCardItem (2)
+      objectReference: {fileID: 0}
+    - target: {fileID: 7571368942618712264, guid: 0ead9ba97d30756498e89e4a97b0bb15,
+        type: 3}
+      propertyPath: destroyOnSameDrag
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 8340329137990789897, guid: 0ead9ba97d30756498e89e4a97b0bb15,
         type: 3}
@@ -2063,6 +2088,11 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 1285183637}
     m_Modifications:
+    - target: {fileID: 109110265869686606, guid: 9d36571041885a94cae07ca708eb015f,
+        type: 3}
+      propertyPath: deleteCurrentElementOnReplace
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 6187721633652852970, guid: 9d36571041885a94cae07ca708eb015f,
         type: 3}
       propertyPath: m_Pivot.x
@@ -2192,6 +2222,11 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 378356460}
     m_Modifications:
+    - target: {fileID: 109110265869686606, guid: 9d36571041885a94cae07ca708eb015f,
+        type: 3}
+      propertyPath: deleteCurrentElementOnReplace
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 6187721633652852970, guid: 9d36571041885a94cae07ca708eb015f,
         type: 3}
       propertyPath: m_Pivot.x
@@ -2326,10 +2361,20 @@ PrefabInstance:
       propertyPath: SpellType
       value: 9
       objectReference: {fileID: 0}
+    - target: {fileID: 3612841179718547852, guid: 0ead9ba97d30756498e89e4a97b0bb15,
+        type: 3}
+      propertyPath: OriginalParent
+      value: 
+      objectReference: {fileID: 641306174}
     - target: {fileID: 6658336014475845165, guid: 0ead9ba97d30756498e89e4a97b0bb15,
         type: 3}
       propertyPath: m_Name
       value: SpellCardItem (8)
+      objectReference: {fileID: 0}
+    - target: {fileID: 7571368942618712264, guid: 0ead9ba97d30756498e89e4a97b0bb15,
+        type: 3}
+      propertyPath: destroyOnSameDrag
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 8340329137990789897, guid: 0ead9ba97d30756498e89e4a97b0bb15,
         type: 3}
@@ -2450,6 +2495,11 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 378356460}
     m_Modifications:
+    - target: {fileID: 109110265869686606, guid: 9d36571041885a94cae07ca708eb015f,
+        type: 3}
+      propertyPath: deleteCurrentElementOnReplace
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 6187721633652852970, guid: 9d36571041885a94cae07ca708eb015f,
         type: 3}
       propertyPath: m_Pivot.x
@@ -2861,10 +2911,20 @@ PrefabInstance:
       propertyPath: SpellType
       value: 7
       objectReference: {fileID: 0}
+    - target: {fileID: 3612841179718547852, guid: 0ead9ba97d30756498e89e4a97b0bb15,
+        type: 3}
+      propertyPath: OriginalParent
+      value: 
+      objectReference: {fileID: 641306174}
     - target: {fileID: 6658336014475845165, guid: 0ead9ba97d30756498e89e4a97b0bb15,
         type: 3}
       propertyPath: m_Name
       value: SpellCardItem (7)
+      objectReference: {fileID: 0}
+    - target: {fileID: 7571368942618712264, guid: 0ead9ba97d30756498e89e4a97b0bb15,
+        type: 3}
+      propertyPath: destroyOnSameDrag
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 8340329137990789897, guid: 0ead9ba97d30756498e89e4a97b0bb15,
         type: 3}
@@ -2985,6 +3045,11 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 598231895}
     m_Modifications:
+    - target: {fileID: 109110265869686606, guid: 9d36571041885a94cae07ca708eb015f,
+        type: 3}
+      propertyPath: deleteCurrentElementOnReplace
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 6187721633652852970, guid: 9d36571041885a94cae07ca708eb015f,
         type: 3}
       propertyPath: m_Pivot.x
@@ -3246,7 +3311,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 0, y: 1}
-  m_AnchoredPosition: {x: 485.2101, y: -96.55}
+  m_AnchoredPosition: {x: 483.0101, y: -96.55}
   m_SizeDelta: {x: 194.2, y: 193.1}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!1 &416576842
@@ -3433,7 +3498,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 0, y: 1}
-  m_AnchoredPosition: {x: 643.0101, y: -299.65002}
+  m_AnchoredPosition: {x: 325.2101, y: -502.75}
   m_SizeDelta: {x: 194.2, y: 193.1}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!1001 &459093476
@@ -3444,6 +3509,11 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 378356460}
     m_Modifications:
+    - target: {fileID: 109110265869686606, guid: 9d36571041885a94cae07ca708eb015f,
+        type: 3}
+      propertyPath: deleteCurrentElementOnReplace
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 6187721633652852970, guid: 9d36571041885a94cae07ca708eb015f,
         type: 3}
       propertyPath: m_Pivot.x
@@ -3680,6 +3750,11 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 598231895}
     m_Modifications:
+    - target: {fileID: 109110265869686606, guid: 9d36571041885a94cae07ca708eb015f,
+        type: 3}
+      propertyPath: deleteCurrentElementOnReplace
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 6187721633652852970, guid: 9d36571041885a94cae07ca708eb015f,
         type: 3}
       propertyPath: m_Pivot.x
@@ -4179,6 +4254,11 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 461345480}
     m_Modifications:
+    - target: {fileID: 109110265869686606, guid: 9d36571041885a94cae07ca708eb015f,
+        type: 3}
+      propertyPath: deleteCurrentElementOnReplace
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 6187721633652852970, guid: 9d36571041885a94cae07ca708eb015f,
         type: 3}
       propertyPath: m_Pivot.x
@@ -4668,6 +4748,11 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 461345480}
     m_Modifications:
+    - target: {fileID: 109110265869686606, guid: 9d36571041885a94cae07ca708eb015f,
+        type: 3}
+      propertyPath: deleteCurrentElementOnReplace
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 6187721633652852970, guid: 9d36571041885a94cae07ca708eb015f,
         type: 3}
       propertyPath: m_Pivot.x
@@ -4811,9 +4896,9 @@ GameObject:
   m_Component:
   - component: {fileID: 641306175}
   - component: {fileID: 641306176}
-  - component: {fileID: 641306177}
   - component: {fileID: 641306179}
   - component: {fileID: 641306178}
+  - component: {fileID: 641306180}
   m_Layer: 5
   m_Name: Content
   m_TagString: Untagged
@@ -4873,23 +4958,6 @@ MonoBehaviour:
   m_Spacing: {x: 63.58, y: 56.64}
   m_Constraint: 0
   m_ConstraintCount: 2
---- !u!114 &641306177
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 641306174}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: e252e40431654e44daeed7c30acfd9cc, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  clipOnDrop: {fileID: 0}
-  particleOnDrop: {fileID: 0}
-  multipleElements: 1
-  replaceElementOnDrag: 0
-  replaceWithPreviousPlace: 0
 --- !u!114 &641306178
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -4928,6 +4996,24 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 641306174}
   m_CullTransparentMesh: 1
+--- !u!114 &641306180
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 641306174}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e252e40431654e44daeed7c30acfd9cc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  clipOnDrop: {fileID: 0}
+  particleOnDrop: {fileID: 0}
+  multipleElements: 1
+  replaceElementOnDrag: 0
+  replaceWithPreviousPlace: 1
+  deleteCurrentElementOnReplace: 1
 --- !u!1 &645763736
 GameObject:
   m_ObjectHideFlags: 0
@@ -5835,10 +5921,20 @@ PrefabInstance:
       propertyPath: SpellType
       value: 8
       objectReference: {fileID: 0}
+    - target: {fileID: 3612841179718547852, guid: 0ead9ba97d30756498e89e4a97b0bb15,
+        type: 3}
+      propertyPath: OriginalParent
+      value: 
+      objectReference: {fileID: 641306174}
     - target: {fileID: 6658336014475845165, guid: 0ead9ba97d30756498e89e4a97b0bb15,
         type: 3}
       propertyPath: m_Name
       value: SpellCardItem (5)
+      objectReference: {fileID: 0}
+    - target: {fileID: 7571368942618712264, guid: 0ead9ba97d30756498e89e4a97b0bb15,
+        type: 3}
+      propertyPath: destroyOnSameDrag
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 8340329137990789897, guid: 0ead9ba97d30756498e89e4a97b0bb15,
         type: 3}
@@ -6159,8 +6255,8 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 1057472777}
   m_HandleRect: {fileID: 1057472776}
   m_Direction: 2
-  m_Value: 0
-  m_Size: 0.65549713
+  m_Value: 1
+  m_Size: 1
   m_NumberOfSteps: 0
   m_OnValueChanged:
     m_PersistentCalls:
@@ -6211,6 +6307,11 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 461345480}
     m_Modifications:
+    - target: {fileID: 109110265869686606, guid: 9d36571041885a94cae07ca708eb015f,
+        type: 3}
+      propertyPath: deleteCurrentElementOnReplace
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 6187721633652852970, guid: 9d36571041885a94cae07ca708eb015f,
         type: 3}
       propertyPath: m_Pivot.x
@@ -6377,7 +6478,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 0, y: 1}
-  m_AnchoredPosition: {x: 958.6101, y: -96.55}
+  m_AnchoredPosition: {x: 325.2101, y: -299.65002}
   m_SizeDelta: {x: 194.2, y: 193.1}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!1001 &857695962
@@ -7307,6 +7408,7 @@ MonoBehaviour:
   multipleElements: 0
   replaceElementOnDrag: 1
   replaceWithPreviousPlace: 1
+  deleteCurrentElementOnReplace: 0
 --- !u!1 &999415095
 GameObject:
   m_ObjectHideFlags: 0
@@ -7632,7 +7734,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 0, y: 1}
-  m_AnchoredPosition: {x: 485.2101, y: -299.65002}
+  m_AnchoredPosition: {x: 167.41013, y: -502.75}
   m_SizeDelta: {x: 194.2, y: 193.1}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!1 &1022086193
@@ -7938,7 +8040,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 0, y: 1}
-  m_AnchoredPosition: {x: 327.41013, y: -299.65002}
+  m_AnchoredPosition: {x: 640.81006, y: -299.65002}
   m_SizeDelta: {x: 194.2, y: 193.1}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!1 &1050633392
@@ -8144,7 +8246,7 @@ RectTransform:
   m_Father: {fileID: 929164760}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
-  m_AnchorMax: {x: 1, y: 0.65549713}
+  m_AnchorMax: {x: 1, y: 1}
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 20, y: 20}
   m_Pivot: {x: 0.5, y: 0.5}
@@ -8259,6 +8361,11 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 461345480}
     m_Modifications:
+    - target: {fileID: 109110265869686606, guid: 9d36571041885a94cae07ca708eb015f,
+        type: 3}
+      propertyPath: deleteCurrentElementOnReplace
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 6187721633652852970, guid: 9d36571041885a94cae07ca708eb015f,
         type: 3}
       propertyPath: m_Pivot.x
@@ -8913,10 +9020,20 @@ PrefabInstance:
       propertyPath: SpellType
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 3612841179718547852, guid: 0ead9ba97d30756498e89e4a97b0bb15,
+        type: 3}
+      propertyPath: OriginalParent
+      value: 
+      objectReference: {fileID: 641306174}
     - target: {fileID: 6658336014475845165, guid: 0ead9ba97d30756498e89e4a97b0bb15,
         type: 3}
       propertyPath: m_Name
       value: SpellCardItem (1)
+      objectReference: {fileID: 0}
+    - target: {fileID: 7571368942618712264, guid: 0ead9ba97d30756498e89e4a97b0bb15,
+        type: 3}
+      propertyPath: destroyOnSameDrag
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 8340329137990789897, guid: 0ead9ba97d30756498e89e4a97b0bb15,
         type: 3}
@@ -9127,6 +9244,11 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 641306175}
     m_Modifications:
+    - target: {fileID: 3612841179718547852, guid: 0ead9ba97d30756498e89e4a97b0bb15,
+        type: 3}
+      propertyPath: OriginalParent
+      value: 
+      objectReference: {fileID: 641306174}
     - target: {fileID: 6658336014475845165, guid: 0ead9ba97d30756498e89e4a97b0bb15,
         type: 3}
       propertyPath: m_Name
@@ -9135,17 +9257,22 @@ PrefabInstance:
     - target: {fileID: 6876275500008232805, guid: 0ead9ba97d30756498e89e4a97b0bb15,
         type: 3}
       propertyPath: m_Color.b
-      value: 0.5698112
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 6876275500008232805, guid: 0ead9ba97d30756498e89e4a97b0bb15,
         type: 3}
       propertyPath: m_Color.g
-      value: 0.5698112
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 6876275500008232805, guid: 0ead9ba97d30756498e89e4a97b0bb15,
         type: 3}
       propertyPath: m_Color.r
-      value: 0.5698112
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 7571368942618712264, guid: 0ead9ba97d30756498e89e4a97b0bb15,
+        type: 3}
+      propertyPath: destroyOnSameDrag
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 8340329137990789897, guid: 0ead9ba97d30756498e89e4a97b0bb15,
         type: 3}
@@ -9590,7 +9717,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 0, y: 1}
-  m_AnchoredPosition: {x: 643.0101, y: -96.55}
+  m_AnchoredPosition: {x: 640.81006, y: -96.55}
   m_SizeDelta: {x: 194.2, y: 193.1}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!224 &1289333730 stripped
@@ -10053,10 +10180,20 @@ PrefabInstance:
       propertyPath: SpellType
       value: 6
       objectReference: {fileID: 0}
+    - target: {fileID: 3612841179718547852, guid: 0ead9ba97d30756498e89e4a97b0bb15,
+        type: 3}
+      propertyPath: OriginalParent
+      value: 
+      objectReference: {fileID: 641306174}
     - target: {fileID: 6658336014475845165, guid: 0ead9ba97d30756498e89e4a97b0bb15,
         type: 3}
       propertyPath: m_Name
       value: SpellCardItem (4)
+      objectReference: {fileID: 0}
+    - target: {fileID: 7571368942618712264, guid: 0ead9ba97d30756498e89e4a97b0bb15,
+        type: 3}
+      propertyPath: destroyOnSameDrag
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 8340329137990789897, guid: 0ead9ba97d30756498e89e4a97b0bb15,
         type: 3}
@@ -11013,7 +11150,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 0, y: 1}
-  m_AnchoredPosition: {x: 169.61014, y: -299.65002}
+  m_AnchoredPosition: {x: 483.0101, y: -299.65002}
   m_SizeDelta: {x: 194.2, y: 193.1}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1524073422 stripped
@@ -11125,7 +11262,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 0, y: 1}
-  m_AnchoredPosition: {x: 327.41013, y: -96.55}
+  m_AnchoredPosition: {x: 325.2101, y: -96.55}
   m_SizeDelta: {x: 194.2, y: 193.1}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!1001 &1568348491
@@ -11136,6 +11273,11 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 461345480}
     m_Modifications:
+    - target: {fileID: 109110265869686606, guid: 9d36571041885a94cae07ca708eb015f,
+        type: 3}
+      propertyPath: deleteCurrentElementOnReplace
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 6187721633652852970, guid: 9d36571041885a94cae07ca708eb015f,
         type: 3}
       propertyPath: m_Pivot.x
@@ -11550,10 +11692,20 @@ PrefabInstance:
       propertyPath: SpellType
       value: 5
       objectReference: {fileID: 0}
+    - target: {fileID: 3612841179718547852, guid: 0ead9ba97d30756498e89e4a97b0bb15,
+        type: 3}
+      propertyPath: OriginalParent
+      value: 
+      objectReference: {fileID: 641306174}
     - target: {fileID: 6658336014475845165, guid: 0ead9ba97d30756498e89e4a97b0bb15,
         type: 3}
       propertyPath: m_Name
       value: SpellCardItem (6)
+      objectReference: {fileID: 0}
+    - target: {fileID: 7571368942618712264, guid: 0ead9ba97d30756498e89e4a97b0bb15,
+        type: 3}
+      propertyPath: destroyOnSameDrag
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 8340329137990789897, guid: 0ead9ba97d30756498e89e4a97b0bb15,
         type: 3}
@@ -11864,10 +12016,20 @@ PrefabInstance:
       propertyPath: SpellType
       value: 4
       objectReference: {fileID: 0}
+    - target: {fileID: 3612841179718547852, guid: 0ead9ba97d30756498e89e4a97b0bb15,
+        type: 3}
+      propertyPath: OriginalParent
+      value: 
+      objectReference: {fileID: 641306174}
     - target: {fileID: 6658336014475845165, guid: 0ead9ba97d30756498e89e4a97b0bb15,
         type: 3}
       propertyPath: m_Name
       value: SpellCardItem (3)
+      objectReference: {fileID: 0}
+    - target: {fileID: 7571368942618712264, guid: 0ead9ba97d30756498e89e4a97b0bb15,
+        type: 3}
+      propertyPath: destroyOnSameDrag
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 8340329137990789897, guid: 0ead9ba97d30756498e89e4a97b0bb15,
         type: 3}
@@ -11988,6 +12150,11 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 1285183637}
     m_Modifications:
+    - target: {fileID: 109110265869686606, guid: 9d36571041885a94cae07ca708eb015f,
+        type: 3}
+      propertyPath: deleteCurrentElementOnReplace
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 6187721633652852970, guid: 9d36571041885a94cae07ca708eb015f,
         type: 3}
       propertyPath: m_Pivot.x
@@ -12129,6 +12296,11 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 598231895}
     m_Modifications:
+    - target: {fileID: 109110265869686606, guid: 9d36571041885a94cae07ca708eb015f,
+        type: 3}
+      propertyPath: deleteCurrentElementOnReplace
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 6187721633652852970, guid: 9d36571041885a94cae07ca708eb015f,
         type: 3}
       propertyPath: m_Pivot.x
@@ -12500,6 +12672,11 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 378356460}
     m_Modifications:
+    - target: {fileID: 109110265869686606, guid: 9d36571041885a94cae07ca708eb015f,
+        type: 3}
+      propertyPath: deleteCurrentElementOnReplace
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 6187721633652852970, guid: 9d36571041885a94cae07ca708eb015f,
         type: 3}
       propertyPath: m_Pivot.x
@@ -12953,7 +13130,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 0, y: 1}
-  m_AnchoredPosition: {x: 800.81006, y: -96.55}
+  m_AnchoredPosition: {x: 167.41013, y: -299.65002}
   m_SizeDelta: {x: 194.2, y: 193.1}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!1001 &1871666340
@@ -12964,6 +13141,11 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 598231895}
     m_Modifications:
+    - target: {fileID: 109110265869686606, guid: 9d36571041885a94cae07ca708eb015f,
+        type: 3}
+      propertyPath: deleteCurrentElementOnReplace
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 6187721633652852970, guid: 9d36571041885a94cae07ca708eb015f,
         type: 3}
       propertyPath: m_Pivot.x
@@ -13366,6 +13548,11 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 378356460}
     m_Modifications:
+    - target: {fileID: 109110265869686606, guid: 9d36571041885a94cae07ca708eb015f,
+        type: 3}
+      propertyPath: deleteCurrentElementOnReplace
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 6187721633652852970, guid: 9d36571041885a94cae07ca708eb015f,
         type: 3}
       propertyPath: m_Pivot.x
@@ -13532,7 +13719,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 0, y: 1}
-  m_AnchoredPosition: {x: 169.61014, y: -96.55}
+  m_AnchoredPosition: {x: 167.41013, y: -96.55}
   m_SizeDelta: {x: 194.2, y: 193.1}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!1 &2078254227
@@ -13618,6 +13805,7 @@ MonoBehaviour:
   multipleElements: 1
   replaceElementOnDrag: 0
   replaceWithPreviousPlace: 1
+  deleteCurrentElementOnReplace: 0
 --- !u!222 &2078254232
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -28454,6 +28642,11 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 1285183637}
     m_Modifications:
+    - target: {fileID: 109110265869686606, guid: 9d36571041885a94cae07ca708eb015f,
+        type: 3}
+      propertyPath: deleteCurrentElementOnReplace
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 6187721633652852970, guid: 9d36571041885a94cae07ca708eb015f,
         type: 3}
       propertyPath: m_Pivot.x
