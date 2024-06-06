@@ -52,9 +52,19 @@ public class DraggableItem3D : MonoBehaviour
 
     private void OnMouseEnter()
     {
+        
         if (!IsBlue) return;
+       
         if (!PartyManager.Instance.CursorOccupied)
+        {
             SelectCard();
+            TryGetComponent<SpellCardDisplay>(out var spellCard);
+            if (spellCard != null && CurrentSlot==null)
+            {
+                PartyManager.Instance.ShowSpellDescription(spellCard.SpellCard.GetDescription());
+            }
+
+        }
     }
 
     /// <summary>
@@ -63,6 +73,8 @@ public class DraggableItem3D : MonoBehaviour
     public void SelectCard()
     {
         if (BoardController.Instance.Board.GetAllyBoardSide(IsBlue).IsSideReady) return;
+
+       
 
         if (CurrentSlot == null)
         {
@@ -75,6 +87,11 @@ public class DraggableItem3D : MonoBehaviour
     private void OnMouseExit()
     {
         if (!IsBlue) return;
+        TryGetComponent<SpellCardDisplay>(out var spellCard);
+        if (spellCard != null)
+        {
+            PartyManager.Instance.HideSpellDescription();
+        }
         if (!PartyManager.Instance.CursorOccupied)
             DeselectCard();
     }

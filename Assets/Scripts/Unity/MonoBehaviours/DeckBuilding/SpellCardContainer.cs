@@ -3,15 +3,28 @@ using AFM_DLL.Models.Cards;
 using AFM_DLL.Models.Enum;
 using AFM_DLL.Models.PlayerInfo;
 using System.Linq;
+using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
 
 class SpellCardContainer : DeckItemContainer
 {
-	public SpellType SpellType;
+	public SpellType SpellType { get; private set; }
 	public GameObject OriginalParent;
+    [SerializeField] SpellCardScriptable spellScriptable;
+    [SerializeField] Image spellImage;
+    [SerializeField] TMP_Text manaCostText;
+    [SerializeField] TMP_Text descriptionText;
 
-	public override bool AddToDeck()
+    private void Awake()
+    {
+        SpellType = spellScriptable.SpellType;
+        spellImage.sprite = spellScriptable.Sprite;
+        SpellCard spellCard = SpellCard.FromType(spellScriptable.SpellType);
+        manaCostText.text = spellCard.GetManaCost().ToString();
+        descriptionText.text = spellCard.GetDescription();
+    }
+    public override bool AddToDeck()
 	{
 		if (DeckManager.Instance.PlayerDeck.AddSpell(SpellCard.FromType(SpellType)))
 		{

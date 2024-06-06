@@ -37,6 +37,8 @@ public class PartyManager : MonoBehaviour
 
     [SerializeField] AudioClip musicClip;
 
+    [SerializeField] GameObject spellDescription;
+
     public bool CursorOccupied;
     public float translateSpellX;
 
@@ -145,5 +147,16 @@ public class PartyManager : MonoBehaviour
             particle.gameObject.SetActive(false);
 
         }
+    }
+
+    public void ShowSpellDescription(string text)
+    {
+        spellDescription.SetActive(true);
+        spellDescription.GetComponentInChildren<TMP_Text>().text = text;
+    }
+
+    public void HideSpellDescription()
+    {
+        spellDescription.SetActive(false);
     }
 }

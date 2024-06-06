@@ -1,5 +1,6 @@
 using AFM_DLL.Models.Cards;
 using AFM_DLL.Models.Enum;
+using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
@@ -17,9 +18,16 @@ public class DeckLoader : MonoBehaviour
 
     private void Start()
     {
+        LoadElements();
+        LoadHero();
+        LoadSpells();
+    }
+    private void LoadElements()
+    {
         var i = 0;
         foreach (ElementCard card in DeckManager.Instance.PlayerDeck.Elements)
         {
+            //print(_elementCardContainers[i].CardElement);
             var toClone = _elementCardContainers.Single(c => c.CardElement == card.ActiveElement);
             var clone = Instantiate(toClone, toClone.transform.parent);
             var draggable = clone.GetComponent<DraggableItem>();
@@ -29,12 +37,17 @@ public class DeckLoader : MonoBehaviour
             _elementCardSlots[i].InitCurrentItem(draggable);
             i++;
         }
+    }
+
+    private void LoadSpells()
+    {
 
         var spellCards = _spellCardContainerParent.GetComponentsInChildren<SpellCardContainer>();
 
-        i = 0;
+        int i = 0;
         foreach (SpellCard card in DeckManager.Instance.PlayerDeck.Spells)
         {
+            print(card.SpellType);
             var toClone = spellCards.Single(c => c.SpellType == card.SpellType);
             var clone = Instantiate(toClone, toClone.transform.parent);
             var draggable = clone.GetComponent<DraggableItem>();
@@ -54,7 +67,10 @@ public class DeckLoader : MonoBehaviour
                 card.GetComponent<DraggableItem>().enabled = false;
             }
         }
+    }
 
+    private void LoadHero()
+    {
         var hero = DeckManager.Instance.PlayerDeck.Hero;
         if (hero != null)
         {
@@ -64,8 +80,6 @@ public class DeckLoader : MonoBehaviour
             draggable.parentAfterDrag = draggable.transform.parent;
             _heroCardSlots.InitCurrentItem(draggable);
         }
-
-        
     }
 
 }
