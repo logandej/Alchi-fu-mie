@@ -88,7 +88,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e252e40431654e44daeed7c30acfd9cc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  clipOnDrop: {fileID: 8300000, guid: 728ddc4d0172d5044b025e7ee086d6c1, type: 3}
+  particleOnDrop: {fileID: 0}
   multipleElements: 0
   replaceElementOnDrag: 1
   replaceWithPreviousPlace: 0
-  currentItem: {fileID: 0}
+  deleteCurrentElementOnReplace: 0

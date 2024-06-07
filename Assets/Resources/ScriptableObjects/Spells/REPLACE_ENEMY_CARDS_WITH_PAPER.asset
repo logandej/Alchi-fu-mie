@@ -13,4 +13,4 @@ MonoBehaviour:
   m_Name: REPLACE_ENEMY_CARDS_WITH_PAPER
   m_EditorClassIdentifier: 
   SpellType: 12
-  Sprite: {fileID: 21300000, guid: 49711f0f446a5914f9adf4e17de2940f, type: 3}
+  Sprite: {fileID: 21300000, guid: 26078d488623c2846843a23cac730c85, type: 3}

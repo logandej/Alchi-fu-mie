@@ -10,7 +10,7 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 2904db5c0de998040a356853084b5787, type: 3}
-  m_Name: REPLACE_ENEMY_CARDS_WITH_ROCK
+  m_Name: REPLACE_ENEMY_CARDS_WITH_SCISSORS
   m_EditorClassIdentifier: 
-  SpellType: 11
-  Sprite: {fileID: 21300000, guid: c909d32587a080f459d1b410e37b6827, type: 3}
+  SpellType: 13
+  Sprite: {fileID: 21300000, guid: cc4390651ba92cd49aa41f77a6900a60, type: 3}

@@ -357,7 +357,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   image: {fileID: 6876275500008232805}
-  clipOnDrag: {fileID: 0}
+  clipOnDrag: {fileID: 8300000, guid: 4f99f2b0f99260245a117876b3cdd6e4, type: 3}
   particleFollow: {fileID: 0}
   previousParentTransform: {fileID: 0}
   parentAfterDrag: {fileID: 0}

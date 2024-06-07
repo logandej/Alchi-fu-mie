@@ -14770,16 +14770,12 @@ MonoBehaviour:
   CurrentState: 0
   _visualIndicator: {fileID: 6482794428512890116}
   _snapVisualIndicator: {fileID: 6482794428512890117}
-  _onDropClip: {fileID: 8300000, guid: 243924ef7bb47184b8ceaefb154c3715, type: 3}
-  _moveUpClip: {fileID: 8300000, guid: 8a3fbc2438a3f6047830ba10897b1c76, type: 3}
-  _moveDownClip: {fileID: 8300000, guid: 630706175a4f98b4c93ba12c0f0d8871, type: 3}
+  _onDropClip: {fileID: 8300000, guid: 5d7e8c1309eafe54ba8e6f16b997d86d, type: 3}
+  _moveUpClip: {fileID: 8300000, guid: 66d5df049293d0c40ab8c0345d34c8e1, type: 3}
+  _moveDownClip: {fileID: 8300000, guid: b0766c4e686e1d74e9e23dc7ab9d3514, type: 3}
   _targetHeight: 0.2
   _parentTransform: {fileID: 4444685695807414847}
   heroSprite: {fileID: 5426081076914896379}
-  heroSprites:
-  - {fileID: 21300000, guid: 5e411a81234925543bed69c082c27704, type: 3}
-  - {fileID: 21300000, guid: 2c41d6c5e5ad96c42b38d127014a7f24, type: 3}
-  - {fileID: 21300000, guid: d4d3697bfc96cad468e757f396e2c249, type: 3}
   looseFight: {fileID: 1373640536566147742}
   cardSlot: {fileID: 408670011505914961}
 --- !u!1001 &2760789424246880155

@@ -402,12 +402,14 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   image: {fileID: 2273392807313535438}
-  clipOnDrag: {fileID: 0}
+  clipOnDrag: {fileID: 8300000, guid: ffb27bbf856026346b10144454756e78, type: 3}
   particleFollow: {fileID: 4594716350795663881}
   previousParentTransform: {fileID: 0}
   parentAfterDrag: {fileID: 0}
   aspectRatioFitter: {fileID: 0}
   duplicateOnDrag: 0
+  destroyOnSameDrag: 0
+  SourceParent: {fileID: 0}
 --- !u!114 &2540078945185040364
 MonoBehaviour:
   m_ObjectHideFlags: 0

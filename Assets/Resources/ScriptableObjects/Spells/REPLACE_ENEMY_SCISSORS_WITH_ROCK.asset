@@ -13,4 +13,4 @@ MonoBehaviour:
   m_Name: REPLACE_ENEMY_SCISSORS_WITH_ROCK
   m_EditorClassIdentifier: 
   SpellType: 9
-  Sprite: {fileID: 21300000, guid: 8a2361cb41e1d4049affbd8fcc774e7c, type: 3}
+  Sprite: {fileID: 21300000, guid: 219d8d6f6b54109458f00c459d191647, type: 3}
