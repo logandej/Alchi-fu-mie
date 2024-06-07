@@ -129,6 +129,7 @@ public class BoardController : MonoBehaviour
             if (this.Board.GetAllyBoardSide(true).Player.HealthPoints > 0 && this.Board.GetAllyBoardSide(false).Player.HealthPoints > 0) {
                 this.Board.ResetBoard();
 
+               
                 PartyManager.Instance.HideLetterBox();
                 DrawCards();
             }
@@ -243,10 +244,10 @@ public class BoardController : MonoBehaviour
             blueValue = -1;
             redValue = 1;
         }
-        
 
-        BoardSideBlue.StartEvaluateSlot(index, blueValue);
-        BoardSideRed.StartEvaluateSlot(index, redValue);
+        Debug.Log("RESULT : Blue =" + fightResult.BlueDamage + " RED" + fightResult.RedDamage);
+        BoardSideBlue.StartEvaluateSlot(index, blueValue, (int)fightResult.BlueDamage);
+        BoardSideRed.StartEvaluateSlot(index, redValue, (int)fightResult.RedDamage);
 
         if (blueValue == 0)
         {
@@ -281,16 +282,17 @@ public class BoardController : MonoBehaviour
             BoardSideBlue.StopEvalutateHero();
             BoardSideRed.StopEvalutateHero();
         }
-
-
-
+        else
+        {
+            await Task.Delay(1000);
+        }
 
        
 
-        await Task.Delay(1000);
-
         BoardSideBlue.RemoveHealth(fightResult.BlueDamage);
         BoardSideRed.RemoveHealth(fightResult.RedDamage);
+
+        await Task.Delay(1000);
 
         if (blueValue!=-1)
             BoardSideBlue.StopEvaluateSlot(index);

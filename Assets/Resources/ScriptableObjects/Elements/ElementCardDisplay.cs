@@ -1,5 +1,6 @@
 using AFM_DLL;
 using AFM_DLL.Models.Cards;
+using CartoonFX;
 using System;
 using System.Collections;
 using System.Collections.Generic;
@@ -12,6 +13,7 @@ public class ElementCardDisplay : MonoBehaviour
     [SerializeField] LoadParticle visualEffects;
     [SerializeField] ParticleSystem deleteEffect;
     private SpriteController _spriteController;
+    [SerializeField] CFXR_ParticleText particleText;
 
     private Element? _overrideElement;
 
@@ -60,8 +62,10 @@ public class ElementCardDisplay : MonoBehaviour
 
     }
 
-    public void Delete()
+    public void Delete(int damage)
     {
+        Debug.Log("DAMAGE ON DELETE= " + damage);
+        particleText.text = "-"+damage.ToString();
         var effect = Instantiate(deleteEffect, transform.position, transform.rotation);
         effect.gameObject.SetActive(true);
         effect.Play();

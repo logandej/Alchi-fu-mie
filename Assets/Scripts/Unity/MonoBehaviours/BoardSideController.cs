@@ -38,33 +38,38 @@ public class BoardSideController : MonoBehaviour
 
     private void Awake()
     {
-        if (!IsBlue || testDeck)
+        if (!IsBlue)
         {
-            Deck = new Deck()
+            if (testDeck)
             {
-                Hero = new Hero("LeafMan", Element.PAPER)
-            };
+                Deck = new Deck()
+                {
+                    Hero = new Hero("LeafMan", Element.PAPER)
+                };
 
-            foreach (ElementCardScriptable element in _elementDeckList)
-            {
-                Deck.Elements.Add(new ElementCard(element.Element));
+                foreach (ElementCardScriptable element in _elementDeckList)
+                {
+                    Deck.Elements.Add(new ElementCard(element.Element));
+                }
+
+                foreach (SpellCardScriptable spell in _spellDeckList)
+                {
+                    Deck.Spells.Add(SpellCard.FromType(spell.SpellType));
+                }
             }
 
-            foreach (SpellCardScriptable spell in _spellDeckList)
-            {
-                Deck.Spells.Add(SpellCard.FromType(spell.SpellType));
-            }
         }
         else
         {
-            Deck = DeckManager.Instance.PlayerDeck;
+            Deck = new Deck(DeckManager.Instance.PlayerDeck);
         }
-        _heroSlot.SetStartHero(Deck.Hero.ActiveElement);
+      
 
     }
 
     private void Start()
     {
+        _heroSlot.SetStartHero(Deck.Hero.ActiveElement);
         ReplaceHand(HandTransform);
         ReplaceHand(HandSpellTransform);
         _healtBar.SetCounterTo(10);
@@ -244,10 +249,10 @@ public class BoardSideController : MonoBehaviour
 
 
 
-    public void StartEvaluateSlot(int index, int result)
+    public void StartEvaluateSlot(int index, int result, int damage)
     {
         DroppableSlot3DElement elementSlot = (DroppableSlot3DElement)DroppableSlotList[index];
-        elementSlot.StartEvaluateElementCard(result);
+        elementSlot.StartEvaluateElementCard(result, damage);
     }
 
     public void ChangeHero()

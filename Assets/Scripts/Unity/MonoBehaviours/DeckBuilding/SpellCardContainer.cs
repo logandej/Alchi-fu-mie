@@ -13,6 +13,7 @@ class SpellCardContainer : DeckItemContainer
 	public GameObject OriginalParent;
     [SerializeField] SpellCardScriptable spellScriptable;
     [SerializeField] Image spellImage;
+    public Image spellFrame;
     [SerializeField] TMP_Text manaCostText;
     [SerializeField] TMP_Text descriptionText;
 
@@ -33,7 +34,7 @@ class SpellCardContainer : DeckItemContainer
 			if (DeckManager.Instance.PlayerDeck.Spells.Count(c => c.SpellType == SpellType) == 3)
 			{
 				var original = OriginalParent.GetComponentsInChildren<SpellCardContainer>().Single(c => c.SpellType == SpellType);
-				original.GetComponent<Image>().color = Color.gray;
+                original.GetComponentInChildren<SpellCardContainer>().spellFrame.color = Color.gray;
 				original.GetComponent<DraggableItem>().enabled = false;
 			}
 
@@ -49,7 +50,7 @@ class SpellCardContainer : DeckItemContainer
             if (DeckManager.Instance.PlayerDeck.Spells.Count(c => c.SpellType == SpellType) == 2)
             {
                 var original = OriginalParent.GetComponentsInChildren<SpellCardContainer>().Single(c => c.SpellType == SpellType);
-                original.GetComponent<Image>().color = Color.white;
+                original.GetComponentInChildren<SpellCardContainer>().spellFrame.color = Color.white;
                 original.GetComponent<DraggableItem>().enabled = true;
             }
 

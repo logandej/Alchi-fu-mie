@@ -8,6 +8,7 @@ public class ListMenuItem : MonoBehaviour
     [SerializeField] List<MenuItem> menuItems = new List<MenuItem>(); // Liste des éléments du menu
 
     [Header("Views")]
+    [SerializeField] bool updateView = true;
     [SerializeField] List<GameObject> viewList = new List<GameObject>();
 
     [Header("Music")]
@@ -37,7 +38,8 @@ public class ListMenuItem : MonoBehaviour
 
             menuItems[selectedIndex].Select();
         }
-        UpdateView();
+        if(updateView)
+            UpdateView();
     }
 
     // Méthode pour sélectionner un élément spécifique dans le menu
@@ -48,7 +50,10 @@ public class ListMenuItem : MonoBehaviour
         menuItems[selectedIndex].Deselect();
         // Mettre à jour l'index de l'élément sélectionné
         selectedIndex = index;
-        UpdateView();
+        if (updateView)
+        {
+            UpdateView();
+        }
     }
 
     public void UpdateView()

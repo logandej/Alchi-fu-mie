@@ -49,20 +49,20 @@ public class DroppableSlot3DElement : DroppableSlot3D
     /// <summary>
     /// Evaluate the card, boolean winner ?
     /// </summary>
-    public void StartEvaluateElementCard(int result)
+    public void StartEvaluateElementCard(int result, int damage)
     {
         TransitionManager.ChangeLocalPosition(_draggableItem.gameObject, _draggableItem.transform.localPosition + Vector3.up,0.2f);
         if (result == -1)
         {
-            StartCoroutine(LoseColumn());
+            StartCoroutine(LoseColumn(damage));
         }
     }
 
-    IEnumerator LoseColumn()
+    IEnumerator LoseColumn(int damage)
     {
         yield return new WaitForSeconds(1f);
         AudioManager.Instance.PlayEffectPitch("mexplosion");
-        _draggableItem.GetComponent<ElementCardDisplay>().Delete();
+        _draggableItem.GetComponent<ElementCardDisplay>().Delete(damage);
         DestroyDraggable();
 
     }

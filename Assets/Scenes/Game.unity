@@ -10067,6 +10067,9 @@ MonoBehaviour:
   spellDescription: {fileID: 1276034519}
   CursorOccupied: 0
   translateSpellX: 0.2
+  win: {fileID: 8300000, guid: 368dd1dc3a28e5f40963ae04cbe7756c, type: 3}
+  loose: {fileID: 8300000, guid: 0a3a3ab8e3250b846b440037c1faddcd, type: 3}
+  tie: {fileID: 8300000, guid: 251402731f0438640832bff7ed5635cc, type: 3}
 --- !u!114 &138288357
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -15350,6 +15353,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 28ceffe4f4e60fd4cb4df88e1b00a812, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  aIDeckScriptable: {fileID: 0}
 --- !u!4 &316767715
 Transform:
   m_ObjectHideFlags: 0
@@ -40174,6 +40178,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4156525444250835391, guid: f4801c71c56b0014aba4c06159ef8d7c,
         type: 3}
+      propertyPath: testDeck
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4156525444250835391, guid: f4801c71c56b0014aba4c06159ef8d7c,
+        type: 3}
       propertyPath: translateX
       value: 0.3
       objectReference: {fileID: 0}
@@ -40185,7 +40194,7 @@ PrefabInstance:
     - target: {fileID: 4156525444250835391, guid: f4801c71c56b0014aba4c06159ef8d7c,
         type: 3}
       propertyPath: _spellDeckList.Array.size
-      value: 10
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 4156525444250835391, guid: f4801c71c56b0014aba4c06159ef8d7c,
         type: 3}
@@ -40213,7 +40222,7 @@ PrefabInstance:
     - target: {fileID: 4156525444250835391, guid: f4801c71c56b0014aba4c06159ef8d7c,
         type: 3}
       propertyPath: _elementDeckList.Array.size
-      value: 10
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 4156525444250835391, guid: f4801c71c56b0014aba4c06159ef8d7c,
         type: 3}
@@ -40339,7 +40348,7 @@ PrefabInstance:
         type: 3}
       propertyPath: '_elementDeckList.Array.data[2]'
       value: 
-      objectReference: {fileID: 11400000, guid: b05bdd7d506092240b66b8f4bf06ffbd,
+      objectReference: {fileID: 11400000, guid: 7dd79dce6af112b4f955a113d4c184b0,
         type: 2}
     - target: {fileID: 4156525444250835391, guid: f4801c71c56b0014aba4c06159ef8d7c,
         type: 3}
@@ -40351,13 +40360,19 @@ PrefabInstance:
         type: 3}
       propertyPath: '_elementDeckList.Array.data[4]'
       value: 
-      objectReference: {fileID: 11400000, guid: b1394ea8caad1ce4a845b536bfa9da90,
+      objectReference: {fileID: 11400000, guid: 7dd79dce6af112b4f955a113d4c184b0,
         type: 2}
     - target: {fileID: 4156525444250835391, guid: f4801c71c56b0014aba4c06159ef8d7c,
         type: 3}
       propertyPath: '_elementDeckList.Array.data[5]'
       value: 
-      objectReference: {fileID: 11400000, guid: b1394ea8caad1ce4a845b536bfa9da90,
+      objectReference: {fileID: 11400000, guid: 7dd79dce6af112b4f955a113d4c184b0,
+        type: 2}
+    - target: {fileID: 4156525444250835391, guid: f4801c71c56b0014aba4c06159ef8d7c,
+        type: 3}
+      propertyPath: '_elementDeckList.Array.data[6]'
+      value: 
+      objectReference: {fileID: 11400000, guid: 7dd79dce6af112b4f955a113d4c184b0,
         type: 2}
     - target: {fileID: 4156525444250835391, guid: f4801c71c56b0014aba4c06159ef8d7c,
         type: 3}

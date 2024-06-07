@@ -1,0 +1,41 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3990b01ba05137e4693c868901c538b8, type: 3}
+  m_Name: 2
+  m_EditorClassIdentifier: 
+  useSpell: 1
+  spellFrequence: 0.26
+  useChangeHero: 1
+  heroFrequence: 0.3
+  Hero: {fileID: 11400000, guid: a1c40214e923e5747998d7b02f915d77, type: 2}
+  ElementDeckList:
+  - {fileID: 11400000, guid: b05bdd7d506092240b66b8f4bf06ffbd, type: 2}
+  - {fileID: 11400000, guid: b1394ea8caad1ce4a845b536bfa9da90, type: 2}
+  - {fileID: 11400000, guid: 7dd79dce6af112b4f955a113d4c184b0, type: 2}
+  - {fileID: 11400000, guid: 7dd79dce6af112b4f955a113d4c184b0, type: 2}
+  - {fileID: 11400000, guid: b1394ea8caad1ce4a845b536bfa9da90, type: 2}
+  - {fileID: 11400000, guid: b1394ea8caad1ce4a845b536bfa9da90, type: 2}
+  - {fileID: 11400000, guid: b05bdd7d506092240b66b8f4bf06ffbd, type: 2}
+  - {fileID: 11400000, guid: 7dd79dce6af112b4f955a113d4c184b0, type: 2}
+  - {fileID: 11400000, guid: 7dd79dce6af112b4f955a113d4c184b0, type: 2}
+  - {fileID: 11400000, guid: 7dd79dce6af112b4f955a113d4c184b0, type: 2}
+  SpellDeckList:
+  - {fileID: 11400000, guid: 8c0af0f1e8ff34b40a9a4680ee2f3b97, type: 2}
+  - {fileID: 11400000, guid: 24f1202d7e0019c468619e7968946470, type: 2}
+  - {fileID: 11400000, guid: b73efd7cd62dc5c478ba5e4aeaae581c, type: 2}
+  - {fileID: 11400000, guid: 8c0af0f1e8ff34b40a9a4680ee2f3b97, type: 2}
+  - {fileID: 11400000, guid: 24f1202d7e0019c468619e7968946470, type: 2}
+  - {fileID: 11400000, guid: b73efd7cd62dc5c478ba5e4aeaae581c, type: 2}
+  - {fileID: 11400000, guid: 8c0af0f1e8ff34b40a9a4680ee2f3b97, type: 2}
+  - {fileID: 11400000, guid: 24f1202d7e0019c468619e7968946470, type: 2}
+  - {fileID: 11400000, guid: b73efd7cd62dc5c478ba5e4aeaae581c, type: 2}
+  - {fileID: 11400000, guid: caf1f1647983a164d871a4bf416103a4, type: 2}

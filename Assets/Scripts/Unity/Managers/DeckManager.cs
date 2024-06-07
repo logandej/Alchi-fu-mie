@@ -7,6 +7,7 @@ public class DeckManager : MonoBehaviour
 {
     public Deck PlayerDeck { get; private set; }
 
+    public AIDeckScriptable aIDeckScriptable;
     public static DeckManager Instance { get; private set; }
     private void Awake()
     {
@@ -18,6 +19,13 @@ public class DeckManager : MonoBehaviour
         Instance = this;
         LoadPlayerPrefs();
         DontDestroyOnLoad(this);
+    }
+
+    public void SetAIDeck(int deckNumber)
+    {
+     
+        string resourcePath = $"ScriptableObjects/AIDECK/{deckNumber}";
+        aIDeckScriptable = Resources.Load<AIDeckScriptable>(resourcePath);
     }
 
     private void LoadPlayerPrefs()

@@ -78,9 +78,9 @@ public class DroppableSlot3DHero : DroppableSlot3D
         if (_draggableItem != null)
         {
             SwitchHero(_draggableItem.GetComponent<ElementCardDisplay>().ElementCard.ActiveElement);
-            
 
-            _draggableItem.GetComponent<ElementCardDisplay>().Delete();
+
+            Destroy(_draggableItem.GetComponent<ElementCardDisplay>().gameObject);
         }
         DestroyDraggable();
     }

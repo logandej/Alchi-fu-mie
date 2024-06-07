@@ -730,7 +730,7 @@
                 Surcharge les cartes ciseaux de l'ennemi par des cartes pierre
             </summary>
         </member>
-        <member name="F:AFM_DLL.Models.Enum.SpellType.REPLACE_ENEMY_CARDS_WITH_PLAYER_CARDS">
+        <member name="F:AFM_DLL.Models.Enum.SpellType.SWAP_ENEMY_CARDS_WITH_PLAYER_CARDS">
             <summary>
                 Surcharge les cartes de l'ennemi par les cartes du joueur 
             </summary>
@@ -764,6 +764,17 @@
             <summary>
                 Représente le deck d'un joueur.
             </summary>
+        </member>
+        <member name="M:AFM_DLL.Models.PlayerInfo.Deck.#ctor">
+            <summary>
+                Constructeur vide du deck
+            </summary>
+        </member>
+        <member name="M:AFM_DLL.Models.PlayerInfo.Deck.#ctor(AFM_DLL.Models.PlayerInfo.Deck)">
+            <summary>
+                Constructeur par copie du deck
+            </summary>
+            <param name="original">Le deck à copier</param>
         </member>
         <member name="P:AFM_DLL.Models.PlayerInfo.Deck.Hero">
             <summary>

@@ -42,6 +42,10 @@ public class PartyManager : MonoBehaviour
     public bool CursorOccupied;
     public float translateSpellX;
 
+    [SerializeField] AudioClip win;
+    [SerializeField] AudioClip loose;
+    [SerializeField] AudioClip tie;
+
     private void Awake()
     {
         if (Instance == null)
@@ -100,21 +104,21 @@ public class PartyManager : MonoBehaviour
     public async Task ShowVictory()
     {
         await ShowTitle("Victory", _particlesTitle[2], false);
-        AudioManager.Instance.PlayMusic("win");
+        AudioManager.Instance.PlayMusic(win);
         _quitButton.SetActive(true);
     }
 
     public async Task ShowDefeat()
     {
         await ShowTitle("Defeat", _particlesTitle[3], false);
-        AudioManager.Instance.PlayMusic("loose");
+        AudioManager.Instance.PlayMusic(loose);
         _quitButton.SetActive(true);
     }
 
     public async Task ShowTie()
     {
         await ShowTitle("Tie", _particlesTitle[4], false);
-        AudioManager.Instance.PlayMusic("tie");
+        AudioManager.Instance.PlayMusic(tie);
         _quitButton.SetActive(true);
     }
 
